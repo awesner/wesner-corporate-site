@@ -22,10 +22,7 @@
         "paragraphs": [
           {
             "text": "Text Text Text.",
-            "list": [
-              "Text Text Text.",
-              "Text Text Text."
-            ]
+            "list": ["Text Text Text.", "Text Text Text."]
           }
         ]
       },
@@ -34,10 +31,7 @@
         "paragraphs": [
           {
             "text": "combine both worlds, would it be more exciting and possible?:",
-            "list": [
-              "text Text Text.",
-              "Text Text Text."
-            ]
+            "list": ["text Text Text.", "Text Text Text."]
           },
           {
             "text": "Text Text Text."
@@ -112,43 +106,6 @@
       {
         "imgUrl": "/services/development/benefit3.png",
         "text": "Seamlessly integrated"
-      }
-    ]
-  },
-  {
-    "path": "support",
-    "name": "Support Services",
-    "shortDescription": "Operation tasks and always keep it up to date with the latest technology.",
-    "iconUrl": "/services/support.png",
-    "whiteIconUrl": "/services/support-white.png",
-    "bannerUrl": "/services/support-banner.png",
-    "description": "We offer tailor-made solutions for your support needs - all with one goal, to ensure the smooth operation of your BizTalk and Azure integration applications.",
-    "subtitle": "Play it safe with our support",
-    "mainTexts": [
-      {
-        "text": "we take over your integration solution in the following:",
-        "list": [
-          "Text Text Text.",
-          "Text Text Text",
-          "Text Text Text",
-          "Text text Text.",
-          "Text Text Text.",
-          "Text."
-        ]
-      }
-    ],
-    "benefits": [
-      {
-        "imgUrl": "/services/support/benefit1.png",
-        "text": "Defined service levels according to your needs"
-      },
-      {
-        "imgUrl": "/services/support/benefit2.png",
-        "text": "Managed services up to complete operation"
-      },
-      {
-        "imgUrl": "/services/support/benefit3.png",
-        "text": "Dedicated support team"
       }
     ]
   }

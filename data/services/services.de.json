@@ -22,10 +22,7 @@
         "paragraphs": [
           {
             "text": "Text Text Text.",
-            "list": [
-              "Text Text Text.",
-              "Text Text Text."
-            ]
+            "list": ["Text Text Text.", "Text Text Text."]
           }
         ]
       },
@@ -34,10 +31,7 @@
         "paragraphs": [
           {
             "text": "beide Welten miteinander zu verbinden, wäre es spannender und möglich?:",
-            "list": [
-              "Text Text Text.",
-              "Text Text Text."
-            ]
+            "list": ["Text Text Text.", "Text Text Text."]
           },
           {
             "text": "Text Text Text."
@@ -112,43 +106,6 @@
       {
         "imgUrl": "/services/development/benefit3.png",
         "text": "Nahtlos integriert"
-      }
-    ]
-  },
-  {
-    "path": "support",
-    "name": "Support-Services",
-    "shortDescription": "Betriebsaufgaben und halten Sie es immer auf dem neusten Stand der Technik.",
-    "iconUrl": "/services/support.png",
-    "whiteIconUrl": "/services/support-white.png",
-    "bannerUrl": "/services/support-banner.png",
-    "description": "Wir bieten maßgeschneiderte Lösungen für Ihren Supportbedarf – alles mit einem Ziel, den reibungslosen Betrieb Ihrer BizTalk- und Azure-Integrationsanwendungen sicherzustellen.",
-    "subtitle": "Gehen Sie mit unserer Unterstützung auf Nummer sicher",
-    "mainTexts": [
-      {
-        "text": " wir übernehmen ihre Integrationslösung in folgendenmaßen:",
-        "list": [
-          "Text Text Text",
-          "Text text text",
-          "Text Text Text.",
-          "Text Text Text.",
-          "Text Text text.",
-          "Text Text Text."
-        ]
-      }
-    ],
-    "benefits": [
-      {
-        "imgUrl": "/services/support/benefit1.png",
-        "text": "Definierte Service Levels nach Ihren Bedürfnissen"
-      },
-      {
-        "imgUrl": "/services/support/benefit2.png",
-        "text": "Managed Services bis zum kompletten Betrieb"
-      },
-      {
-        "imgUrl": "/services/support/benefit3.png",
-        "text": "Engagiertes Support-Team"
       }
     ]
   }

@@ -29,7 +29,10 @@ export default function ServicesSection({
         <Stack
           sx={{
             display: 'grid',
-            gridTemplateColumns: { xs: '1fr', lg: 'repeat(3, 1fr)' },
+            gridTemplateColumns: {
+              xs: '1fr',
+              lg: 'repeat(auto-fit, minmax(20%, 1fr))',
+            },
             gap: 3,
           }}
         >

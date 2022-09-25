@@ -1,11 +1,12 @@
 import { Box, Container, Grid, Typography } from '@mui/material';
-import { benefitsConfig } from 'models/configs/careers/benefits.config';
+import { useBenefitsConfig } from 'models/configs/careers/benefits.config';
 import { useTranslations } from 'next-intl';
 import { useGetResponsiveFontVariants } from 'utils/hooks/responsiveFontVariant.util';
 import BenefitItem, { IBenefitItem } from './benefit-item';
 
 export default function Benefits(): JSX.Element {
   const t = useTranslations('careers');
+  const benefitsConfig = useBenefitsConfig();
   const getResponsiveFont = useGetResponsiveFontVariants();
 
   return (

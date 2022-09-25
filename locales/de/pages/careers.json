@@ -4,6 +4,14 @@
     "description": "Wir gehören zu der Welweiten Partner von Microsoft und dafür arbeiten wir hart, um Softwärelösungen zu entwicklern.",
     "btnText": "Begleiten Sie uns",
     "benefitsTitle": "Unsere Vorteile",
+    "benefits": {
+      "benefit1": "Exciting and challenging projects",
+      "benefit2": "Good equipment",
+      "benefit3": "Little bureaucracy and flat hierarchies",
+      "benefit4": "Relaxed and open work environment",
+      "benefit5": "Flexible working hours",
+      "benefit6": "Transparent salary structure"
+    },
     "whyJoin": {
       "title": "Warum Sie mitmachen sollten",
       "description": "Text Text, Text",

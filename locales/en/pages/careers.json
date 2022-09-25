@@ -4,6 +4,14 @@
     "description": "We are one of the world-wide partners of Microsoft and for this we work hard to develop software solutions.",
     "btnText": "Join Us",
     "benefitsTitle": "Our Benefits",
+    "benefits": {
+      "benefit1": "Exciting and challenging projects",
+      "benefit2": "Good equipment",
+      "benefit3": "Little bureaucracy and flat hierarchies",
+      "benefit4": "Relaxed and open work environment",
+      "benefit5": "Flexible working hours",
+      "benefit6": "Transparent salary structure"
+    },
     "whyJoin": {
       "title": "Why You Should Join",
       "description": "text Text Text",

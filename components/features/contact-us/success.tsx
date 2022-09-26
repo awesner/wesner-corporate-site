@@ -39,7 +39,7 @@ export default function Success(): JSX.Element {
         >
           {t('description')}
         </Typography>
-        <Link href={ERoutes.CaseStudies}>
+        <Link href={ERoutes.Home}>
           <Button sx={{ mt: 1 }}>{t('btnText')}</Button>
         </Link>
       </Stack>

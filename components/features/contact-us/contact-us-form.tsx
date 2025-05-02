@@ -32,11 +32,6 @@ export default function ContactUsForm({
           label={t('contactUsPage.emailLabel')}
         />
         <ControlledInput
-          name="company"
-          variant="filled"
-          label={t('contactUsPage.companyLabel')}
-        />
-        <ControlledInput
           name="message"
           variant="filled"
           multiline

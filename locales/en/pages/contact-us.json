@@ -4,7 +4,6 @@
         "description": "Let’s discuss your product goals and how we can help you reach them.",
         "nameLabel": "Your name",
         "emailLabel": "Email",
-        "companyLabel": "Company",
         "textareaLabel": "How can we help you?",
         "thankYou": {
             "title": "Thank You!",

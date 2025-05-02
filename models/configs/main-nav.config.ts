@@ -34,10 +34,6 @@ export const useGetMainNavConfig = () => {
     //   path: ERoutes.CaseStudies,
     // },
     {
-      name: t('navigation.company'),
-      path: ERoutes.Company,
-    },
-    {
       name: t('navigation.careers'),
       path: ERoutes.Careers,
     },

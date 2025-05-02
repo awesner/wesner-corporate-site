@@ -9,6 +9,12 @@ import {
 } from 'components/shared/icons';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import { useTranslations } from 'next-intl';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import { SiTiktok } from 'react-icons/si';
+import { SiXing } from 'react-icons/si';
+
+const SiTiktokTyped = SiTiktok as React.FC<React.SVGProps<SVGSVGElement>>;
+const SiXingTyped = SiXing as React.FC<React.SVGProps<SVGSVGElement>>;
 
 const socialIconsStyles = {
   display: 'inline-flex',
@@ -73,12 +79,33 @@ export default function FooterContacts(): JSX.Element {
           <TwitterIcon sx={{ fontSize: 16 }} />
         </Link>
         <Link
-          href="https://linkedin.com"
+          href="https://www.linkedin.com/in/wesner-softwareentwicklung-gmbh/"
           target="_blank"
           sx={socialIconsStyles}
           aria-label="linked in page"
         >
           <LinkedInIcon sx={{ fontSize: 16 }} />
+        </Link>
+        <Link href="https://www.instagram.com/wesner.softwareentwicklung/"
+              target="_blank"
+              sx={socialIconsStyles}
+              aria-label="instagram page"
+        >
+          <InstagramIcon sx={{ fontSize: 16, color: 'white' }} />
+        </Link>
+        <Link href="https://www.tiktok.com/@wesnersoftwaregmbh?lang=de-DE"
+              target="_blank"
+              aria-label="tiktok page"
+        >
+          <SiTiktokTyped style={{ fontSize: '16px', color: 'white' }} />
+        </Link>
+        <Link
+          href="https://www.xing.com/profile/Alexander_Wesner040491"
+          target="_blank"
+          sx={socialIconsStyles}
+          aria-label="xing page"
+        >
+          <SiXingTyped style={{ fontSize: '16px', color: 'white' }} />
         </Link>
       </Stack>
     </Stack>

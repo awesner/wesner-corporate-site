@@ -9,11 +9,12 @@
     "services": "Dienstleistungen",
     "caseStudies": "Fallstudien",
     "careers": "Karriere",
+    "blog": "Blog",
     "terms": "Geschäftsbedingungen",
     "policy": "Datenschutz-Bestimmungen",
     "servicesChildren": {
       "enterprise": "Unternehmensintegration",
-      "development": "Kundenspezifische Entwicklung",
+      "ekaer": "EKAER",
       "support": "Support-Services"
     }
   },

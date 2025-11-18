@@ -20,8 +20,8 @@ export const useGetMainNavConfig = () => {
           path: `${ERoutes.Services}${EServicesRoutes.Enterprise}`,
         },
         {
-          name: t('navigation.servicesChildren.development'),
-          path: `${ERoutes.Services}${EServicesRoutes.Development}`,
+          name: t('navigation.servicesChildren.ekaer'),
+          path: `${ERoutes.Services}${EServicesRoutes.Ekaer}`,
         },
         // {
         //   name: t('navigation.servicesChildren.support'),
@@ -40,6 +40,10 @@ export const useGetMainNavConfig = () => {
     {
       name: t('contactUs.button'),
       path: ERoutes.ContactUs,
+    },
+    {
+      name: t('navigation.blog'),
+      path: ERoutes.Blog,
     },
   ] as IMainNavItem[];
 };

@@ -9,11 +9,12 @@
     "services": "Services",
     "caseStudies": "Case Studies",
     "careers": "Careers",
+    "blog": "Blog",
     "terms": "Terms and Conditions",
     "policy": "Privacy Policy",
     "servicesChildren": {
       "enterprise": "Enterprise Integration",
-      "development": "Custom Development",
+      "ekaer": "EKAER",
       "support": "Support Services"
     }
   },

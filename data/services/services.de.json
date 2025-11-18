@@ -55,18 +55,30 @@
     ]
   },
   {
-    "path": "development",
-    "name": "Kundenspezifische Entwicklung",
-    "shortDescription": "Individuelle maßgeschneiderte Softwarelösungen, die sich nahtlos integrieren.",
+    "path": "ekaer",
+    "name": "EKAER",
+    "shortDescription": "Elektronisches Straßen-Frachtkontrollsystem in Ungarn.",
     "iconUrl": "/services/development.png",
     "whiteIconUrl": "/services/development-white.png",
     "bannerUrl": "/services/development-banner.png",
-    "description": "Bei unseren individuellen Softwareentwicklungen gibt es keine Redundanzen. Wir erhalten die notwendigen Daten zur Verarbeitung in unseren Lösungen.",
-    "subtitle": "Ihre individuelle Lösung",
+    "description": "Das Elektronische Straßen-Frachtkontrollsystem (EKAER) in Ungarn erfordert eine Meldepflicht für bestimmte Gütertransporte auf öffentlichen Straßen.",
+    "subtitle": "Elektronisches Straßen-Frachtkontrollsystem in Ungarn",
     "mainTexts": [
       {
-        "text": "Eine unternehmenskritische Anwendung ist keine Insellösung mehr. Außeur zu machen, wofür es entwickelt wurde. muss es sich Außerdem nahtlos in die Systeme und Prozesse eines Unternehmens integrieren. Durch der Arbeit oder Teinahme von Wesner- Softwareentwicklung an unterschiedliche Entwicklungs- und Integrationsprojekten wurde sich die kompetenzen der Firma vertiefen. Die Firma besitz dadurch Verständnis für die Entwicklung von Prozessen in großen und mittelständischen Unternehmen."
+        "text": "Eine Meldepflicht nach EKAER besteht insbesondere für Gütertransporte, die:",
+        "list": [
+          "aus der EU nach Ungarn importiert werden",
+          "aus Ungarn in die EU exportiert werden",
+          "innerhalb Ungarns erstmals an Nicht-Endverbraucher verkauft werden"
+        ]
+      },
+      {
+        "text": "Eine EKAER-Anmeldung ist in der Regel nicht erforderlich, wenn der Wert der Ware unter 2 Mio. HUF brutto oder das Gewicht unter 2.500 kg liegt. Bei Überschreiten dieser Grenzwerte ist eine EKAER-Nummer grundsätzlich erforderlich."
+      },
+      {
+        "text": "Bitte beachten Sie zudem, dass das Kennzeichen des LKW im EKAER-Antrag eingetragen werden muss."
       }
+
     ],
     "features": [
       {
@@ -97,15 +109,15 @@
     "benefits": [
       {
         "imgUrl": "/services/development/benefit1.png",
-        "text": "Tiefes Verständnis von unternehmenskritischen Anwendungen"
+        "text": "Umfassende Erfahrung mit logistischen Systemen"
       },
       {
         "imgUrl": "/services/development/benefit2.png",
-        "text": "Basierend auf den neuesten Microsoft-Technologien"
+        "text": "Nahtlose Integration in Ihre IT-Infrastruktur"
       },
       {
         "imgUrl": "/services/development/benefit3.png",
-        "text": "Nahtlos integriert"
+        "text": "Individuelle Anpassung an Ihre Geschäftsprozesse"
       }
     ]
   }

@@ -1,0 +1,227 @@
+[
+  {
+    "slug": "datenbankmigration-von-ms-sql-server-zu-postgresql",
+    "title": "Datenbankmigration von MS SQL Server zu PostgreSQL",
+    "subtitle": "Eine praktische Anleitung am Realbeispiel",
+    "date": "2025-11-17",
+    "author": "Wesner-Softwareentwicklung",
+    "summary": "Eine schrittweise Anleitung zur Migration einer Datenbank von Microsoft SQL Server zu PostgreSQL, demonstriert an einem realen Beispiel.",
+    "image_title": "/blog/SQL_PostgreSQL.png",
+
+    "content": [
+      {
+      "type": "toc",
+      "title": "Inhaltsverzeichnis",
+      "items": [
+        { "text": "Schritt 1: Export von Schema und Daten", "href": "#schritt-1" },
+        { "text": "Schritt 2: Analyse der Unterschiede", "href": "#schritt-2" },
+        { "text": "Schritt 3: Adaption des Skripts", "href": "#schritt-3", "subItems": [
+          { "text": "3.1 Bereinigung von Befehlen", "href": "#schritt-3-1" },
+          { "text": "3.2 Modifikation von CREATE TABLE", "href": "#schritt-3-2" },
+          { "text": "3.3 Vereinfachung von INSERT und VIEWS", "href": "#schritt-3-3" }
+        ]},
+        { "text": "Schritt 4. Wichtige Empfehlungen für die Praxis", "href": "#empfehlungen" },
+        { "text": "Schritt 5. Fazit", "href": "#fazit" }
+      ]
+      },
+      {
+        "type": "paragraph",
+        "text": "In der Welt der Softwareentwicklung und Datenbankadministration stellt der Transfer eines Projekts von einem Datenbanksystem (DBMS) zu einem anderen eine häufige Herausforderung dar. Ein typisches Szenario ist die Migration von einem kommerziellen Microsoft SQL Server zu seinem leistungsstarken und kostenfreien Open-Source-Äquivalent PostgreSQL. Auf den ersten Blick mag diese Aufgabe aufgrund der unterschiedlichen SQL-Dialekte komplex erscheinen, in der Praxis ist sie jedoch mit dem richtigen Vorgehen gut zu bewältigen."
+      },
+      {
+        "type": "paragraph",
+        "text": "Dieser Artikel dient als Ihre schrittweise Anleitung. Anhand eines realen Beispiels einer kleinen Firmendatenbank (Büro) wird demonstriert, wie Schema und Daten korrekt aus MSSQL exportiert und anschließend für PostgreSQL adaptiert und importiert werden."
+      },
+      {
+        "type": "paragraph",
+        "text": "Der Beitrag richtet sich an Junior-Entwickler, Datenbankadministratoren und alle, die vor einer ähnlichen Migrationsaufgabe stehen."
+      },
+      {
+        "type": "list",
+        "title": "Verwendete Tools:",
+        "items": [
+          "SQL Server Management Studio (SSMS)",
+          "pgAdmin",
+          "Notepad ++"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "schritt-1",
+        "text": "Schritt 1: Export von Schema und Daten aus dem MS SQL Server"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ein häufiger Fehler ist der Versuch, ein binäres Backup (eine .bak-Datei) zu erstellen. Dieses Format ist MSSQL-spezifisch und mit PostgreSQL inkompatibel. Die korrekte Methode ist der Export in Form eines SQL-Skripts, das die Befehle zur Wiederherstellung der Struktur und zur Einfügung der Daten enthält."
+      },
+      {
+        "type": "list",
+        "title": "Vorgehensweise in SSMS:",
+        "items": [
+          "Im Objekt-Explorer wird mit der rechten Maustaste auf die Quelldatenbank (Büro) geklickt.",
+          "Im Kontextmenü werden \"Tasks\" -> \"Generate Scripts...\" ausgewählt.",
+          "Anschließend werden die zu exportierenden Objekte (alle Tabellen und Views) selektiert.",
+          "Im Schritt \"Set Scripting Options\" wird ein Speicherort für die Datei gewählt und auf den Button \"Advanced\" geklickt.",
+          "Im sich öffnenden Fenster muss die Option \"Types of data to script\" auf den Wert \"Schema and data\" geändert werden. Dieser Schritt ist entscheidend, da andernfalls nur die leere Tabellenstruktur exportiert wird."
+        ]
+      },
+      {
+        "type": "image",
+        "src": "/blog/Script_MSSQL.png",
+        "alt": "SSMS Advanced Scripting Options Fenster"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ergebnis: Nach Abschluss dieses Prozesses liegt eine einzelne, große .sql-Datei vor. Diese Datei ist unser Ausgangspunkt. Sie enthält die gesamte Logik, ist jedoch im T-SQL-Dialekt verfasst, den PostgreSQL nicht direkt interpretieren kann."
+      },
+      {
+        "type": "heading",
+        "id": "schritt-2",
+        "text": "Schritt 2: Analyse der Unterschiede: Die Dialekte T-SQL und PostgreSQL"
+      },
+      {
+        "type": "paragraph",
+        "text": "Vor der direkten Ausführung des Skripts müssen die inkompatiblen Teile identifiziert werden. Obwohl beide Systeme SQL verwenden, unterscheidet sich die Syntax für einige Schlüsseloperationen erheblich."
+      },
+      {
+        "type": "table",
+        "headers": ["Aspekt", "MS SQL Server (T-SQL)", "PostgreSQL"],
+        "rows": [
+          ["Auto-Inkrement ID", "INT IDENTITY(1,1)", "SERIAL oder GENERATED AS IDENTITY"],
+          ["Text-Datentypen", "NVARCHAR, NCHAR (für Unicode)", "VARCHAR, TEXT (Unicode ist Standard)"],
+          ["Objektnamen", "[dbo].[TableName]", "tablename (wird in Kleinbuchstaben konvertiert)"],
+          ["Spezifische Befehle", "USE, GO, SET IDENTITY_INSERT", "Werden nicht verwendet"],
+          ["Schlüsselerstellung", "PRIMARY KEY CLUSTERED (...) ON [PRIMARY]", "PRIMARY KEY (deutlich einfachere Syntax)"]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Für eine detaillierte Gegenüberstellung der beiden Datenbanksysteme empfehlen wir diesen umfassenden Artikel von Kinsta: https://kinsta.com/de/blog/postgresql-vs-sql-server/"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mit diesem Wissen kann die gezielte Anpassung des Skripts beginnen."
+      },
+      {
+        "type": "heading",
+        "id": "schritt-3",
+        "text": "Schritt 3: Adaption des Skripts – Die Übersetzung von T-SQL nach PostgreSQL"
+      },
+      {
+        "type": "paragraph",
+        "text": "Die generierte .sql-Datei wird in einem Texteditor geöffnet, um die \"Übersetzung\" vorzunehmen."
+      },
+      {
+        "type": "subheading",
+        "id": "schritt-3-1",
+        "text": "3.1 Bereinigung von MSSQL-spezifischen Befehlen"
+      },
+      {
+        "type": "paragraph",
+        "text": "Zuerst werden alle Anweisungen entfernt, die ausschließlich für die Konfiguration des MS SQL Servers relevant sind. Dies betrifft zahlreiche Zeilen am Anfang und Ende der Datei:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "USE [DatabaseName]",
+          "Alle SET ...-Befehle (z. B. SET ANSI_NULLS ON)",
+          "Alle ALTER DATABASE ...-Befehle",
+          "Der Batch-Trenner GO"
+        ]
+      },
+      {
+        "type": "subheading",
+        "id": "schritt-3-2",
+        "text": "3.2 Modifikation von CREATE TABLE"
+      },
+      {
+        "type": "paragraph",
+        "text": "Dies ist der zentrale Teil der Anpassung. Am Beispiel der Tabelle Positionen:"
+      },
+      {
+        "type": "code",
+        "language": "sql",
+        "title": "Original im MSSQL-Skript:",
+        "code": "CREATE TABLE [dbo].[Positionen](\n\t[PositionID] [int] IDENTITY(1,1) NOT NULL,\n\t[Positionsbezeichnung] [nvarchar](100) NOT NULL,\n\t[Gehalt] [decimal](10, 2) NOT NULL,\nPRIMARY KEY CLUSTERED \n(\n\t[PositionID] ASC\n)WITH (PAD_INDEX = OFF, ...) ON [PRIMARY]\n) ON [PRIMARY]\nGO"
+      },
+      {
+        "type": "code",
+        "language": "sql",
+        "title": "Adaptiert für PostgreSQL:",
+        "code": "CREATE TABLE Positionen (\n    PositionID SERIAL PRIMARY KEY,\n    Positionsbezeichnung VARCHAR(100) NOT NULL,\n    Gehalt DECIMAL(10, 2) NOT NULL\n);"
+      },
+      {
+        "type": "paragraph",
+        "text": "Der Code ist sichtlich sauberer und prägnanter. [dbo]. und die eckigen Klammern wurden entfernt, IDENTITY wurde durch SERIAL PRIMARY KEY und nvarchar durch VARCHAR ersetzt."
+      },
+      {
+        "type": "subheading",
+        "id": "schritt-3-3",
+        "text": "3.3 Vereinfachung von INSERT und VIEWS"
+      },
+      {
+        "type": "paragraph",
+        "text": "Die INSERT-Befehle müssen von SET IDENTITY_INSERT und dem Präfix N vor Zeichenketten bereinigt werden. Der Code für CREATE VIEW erfordert glücklicherweise kaum Änderungen, da die JOIN-Syntax Teil des SQL-Standards ist."
+      },
+      {
+        "type": "heading",
+        "text": "Endergebnis: Das universelle \"Master-Skript\" für PostgreSQL"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nach allen Anpassungen liegt ein einziges, sauberes Skript vor, das zur Ausführung in pgAdmin bereit ist. Es erstellt die gesamte Datenbankstruktur von Grund auf, befüllt sie mit Daten und stellt die Views wieder her."
+      },
+      {
+        "type": "heading",
+        "id": "empfehlungen",
+        "text": "Wichtige Empfehlungen für die professionelle Praxis (Bonus-Abschnitt)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Die reine Adaption des Skripts ist nur die halbe Miete. Es sollte um einige Aspekte erweitert werden, um es robust und professionell zu gestalten."
+      },
+      {
+        "type": "subheading",
+        "text": "Empfehlung 1: Synchronisation der Auto-Inkrement-Zähler"
+      },
+      {
+        "type": "paragraph",
+        "text": "Problem: Durch das manuelle Einfügen von Daten mit spezifischen IDs (INSERT ... (PositionID, ...) VALUES (1, ...)), ist der interne Zähler des SERIAL-Typs in PostgreSQL nicht mehr synchron. Der Versuch, einen neuen Datensatz hinzuzufügen, würde zu einem \"duplicate key\"-Fehler führen."
+      },
+      {
+        "type": "paragraph",
+        "text": "Lösung: Nach allen INSERT-Befehlen müssen spezielle Funktionen ausgeführt werden, die PostgreSQL den aktuellen Höchstwert für jeden Zähler mitteilen."
+      },
+      {
+        "type": "code",
+        "language": "sql",
+        "code": "-- Synchronisation der Zähler für SERIAL-Felder\nSELECT setval('positionen_positionid_seq', (SELECT MAX(positionid) FROM positionen));\n-- ... usw. für alle Tabellen mit SERIAL-Spalten"
+      },
+      {
+        "type": "paragraph",
+        "text": "Dies ist ein obligatorischer Schritt für den korrekten Betrieb der Datenbank nach einem manuellen Datenimport."
+      },
+      {
+        "type": "subheading",
+        "text": "Empfehlung 2: Beachtung der Groß- und Kleinschreibung!"
+      },
+      {
+        "type": "paragraph",
+        "text": "Problem: MSSQL hat die \"CamelCase\"-Schreibweise (PositionID) beibehalten, während PostgreSQL standardmäßig alle Namen in Kleinbuchstaben (positionid) konvertiert hat."
+      },
+      {
+        "type": "paragraph",
+        "text": "Empfehlung: Es ist ratsam, diesen Standard von PostgreSQL zu akzeptieren (Kleinbuchstaben und bei Bedarf snake_case, z. B. position_id). Dies vereinfacht zukünftige Abfragen erheblich und vermeidet Verwirrung."
+      },
+      {
+        "type": "heading",
+        "id": "fazit",
+        "text": "Fazit"
+      },
+      {
+        "type": "paragraph",
+        "text": "Wie sich zeigt, ist eine Migration von MS SQL Server zu PostgreSQL mehr als nur \"Kopieren und Einfügen\" – es ist ein durchdachter Prozess der syntaktischen Anpassung. Durch das Verständnis der wichtigsten Unterschiede in den SQL-Dialekten und die Anwendung der Best Practices des Zielsystems kann der Übergang reibungslos und zuverlässig gestaltet werden."
+      }
+    ]
+  }
+]

@@ -1,0 +1,227 @@
+[
+  {
+    "slug": "datenbankmigration-von-ms-sql-server-zu-postgresql",
+    "title": "Database Migration from MS SQL Server to PostgreSQL",
+    "subtitle": "A Practical Guide with a Real-World Example",
+    "date": "2025-11-17",
+    "author": "Wesner-Softwareentwicklung",
+    "summary": "A step-by-step guide on how to migrate a database from Microsoft SQL Server to PostgreSQL, demonstrated with a real-world example.",
+    "image_title": "/blog/SQL_PostgreSQL.png",
+
+    "content": [
+      {
+        "type": "toc",
+        "title": "Table of Contents",
+        "items": [
+          { "text": "Step 1: Exporting Schema and Data", "href": "#schritt-1" },
+          { "text": "Step 2: Analyzing the Differences", "href": "#schritt-2" },
+          { "text": "Step 3: Adapting the Script", "href": "#schritt-3", "subItems": [
+            { "text": "3.1 Cleaning Up Commands", "href": "#schritt-3-1" },
+            { "text": "3.2 Modifying CREATE TABLE", "href": "#schritt-3-2" },
+            { "text": "3.3 Simplifying INSERT and VIEWS", "href": "#schritt-3-3" }
+          ]},
+          { "text": "Step 4. Important Recommendations for Practice", "href": "#empfehlungen" },
+          { "text": "Step 5. Conclusion", "href": "#fazit" }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "In the world of software development and database administration, transferring a project from one database management system (DBMS) to another is a common challenge. A typical scenario is migrating from a commercial Microsoft SQL Server to its powerful and free open-source equivalent, PostgreSQL. At first glance, this task may seem complex due to the different SQL dialects, but in practice, it is manageable with the right approach."
+      },
+      {
+        "type": "paragraph",
+        "text": "This article serves as your step-by-step guide. Using a real-world example of a small company database (Office), it demonstrates how to correctly export the schema and data from MSSQL and then adapt and import them for PostgreSQL."
+      },
+      {
+        "type": "paragraph",
+        "text": "This post is aimed at junior developers, database administrators, and anyone facing a similar migration task."
+      },
+      {
+        "type": "list",
+        "title": "Tools Used:",
+        "items": [
+          "SQL Server Management Studio (SSMS)",
+          "pgAdmin",
+          "Notepad++"
+        ]
+      },
+      {
+        "type": "heading",
+        "id": "schritt-1",
+        "text": "Step 1: Exporting Schema and Data from MS SQL Server"
+      },
+      {
+        "type": "paragraph",
+        "text": "A common mistake is trying to create a binary backup (a .bak file). This format is MSSQL-specific and incompatible with PostgreSQL. The correct method is to export it as an SQL script, which contains the commands to restore the structure and insert the data."
+      },
+      {
+        "type": "list",
+        "title": "Procedure in SSMS:",
+        "items": [
+          "In the Object Explorer, right-click on the source database (Office_Test).",
+          "In the context menu, select \"Tasks\" -> \"Generate Scripts...\".",
+          "Then, select the objects to be exported (all tables and views).",
+          "In the \"Set Scripting Options\" step, choose a location for the file and click the \"Advanced\" button.",
+          "In the window that opens, the option \"Types of data to script\" must be changed to \"Schema and data\". This step is crucial, as otherwise only the empty table structure will be exported."
+        ]
+      },
+      {
+        "type": "image",
+        "src": "/blog/Script_MSSQL.png",
+        "alt": "SSMS Advanced Scripting Options Window"
+      },
+      {
+        "type": "paragraph",
+        "text": "Result: After this process is complete, you will have a single, large .sql file. This file is our starting point. It contains all the logic, but it is written in the T-SQL dialect, which PostgreSQL cannot interpret directly."
+      },
+      {
+        "type": "heading",
+        "id": "schritt-2",
+        "text": "Step 2: Analyzing the Differences: The T-SQL and PostgreSQL Dialects"
+      },
+      {
+        "type": "paragraph",
+        "text": "Before executing the script directly, the incompatible parts must be identified. Although both systems use SQL, the syntax for some key operations differs significantly."
+      },
+      {
+        "type": "table",
+        "headers": ["Aspect", "MS SQL Server (T-SQL)", "PostgreSQL"],
+        "rows": [
+          ["Auto-increment ID", "INT IDENTITY(1,1)", "SERIAL or GENERATED AS IDENTITY"],
+          ["Text Data Types", "NVARCHAR, NCHAR (for Unicode)", "VARCHAR, TEXT (Unicode is standard)"],
+          ["Object Names", "[dbo].[TableName]", "tablename (is converted to lowercase)"],
+          ["Specific Commands", "USE, GO, SET IDENTITY_INSERT", "Are not used"],
+          ["Key Creation", "PRIMARY KEY CLUSTERED (...) ON [PRIMARY]", "PRIMARY KEY (much simpler syntax)"]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "For a detailed comparison of the two database systems, we recommend this comprehensive article from Kinsta: https://kinsta.com/blog/postgresql-vs-sql-server/"
+      },
+      {
+        "type": "paragraph",
+        "text": "With this knowledge, the targeted adaptation of the script can begin."
+      },
+      {
+        "type": "heading",
+        "id": "schritt-3",
+        "text": "Step 3: Adapting the Script – Translating from T-SQL to PostgreSQL"
+      },
+      {
+        "type": "paragraph",
+        "text": "The generated .sql file is opened in a text editor to perform the \"translation\"."
+      },
+      {
+        "type": "subheading",
+        "id": "schritt-3-1",
+        "text": "3.1 Cleaning Up MSSQL-Specific Commands"
+      },
+      {
+        "type": "paragraph",
+        "text": "First, all statements that are exclusively relevant for the configuration of the MS SQL Server are removed. This affects numerous lines at the beginning and end of the file:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "USE [DatabaseName]",
+          "All SET ... commands (e.g., SET ANSI_NULLS ON)",
+          "All ALTER DATABASE ... commands",
+          "The batch separator GO"
+        ]
+      },
+      {
+        "type": "subheading",
+        "id": "schritt-3-2",
+        "text": "3.2 Modifying CREATE TABLE"
+      },
+      {
+        "type": "paragraph",
+        "text": "This is the central part of the adaptation. Using the 'Positionen' table as an example:"
+      },
+      {
+        "type": "code",
+        "language": "sql",
+        "title": "Original in the MSSQL script:",
+        "code": "CREATE TABLE [dbo].[Positionen](\n\t[PositionID] [int] IDENTITY(1,1) NOT NULL,\n\t[Positionsbezeichnung] [nvarchar](100) NOT NULL,\n\t[Gehalt] [decimal](10, 2) NOT NULL,\nPRIMARY KEY CLUSTERED \n(\n\t[PositionID] ASC\n)WITH (PAD_INDEX = OFF, ...) ON [PRIMARY]\n) ON [PRIMARY]\nGO"
+      },
+      {
+        "type": "code",
+        "language": "sql",
+        "title": "Adapted for PostgreSQL:",
+        "code": "CREATE TABLE Positionen (\n    PositionID SERIAL PRIMARY KEY,\n    Positionsbezeichnung VARCHAR(100) NOT NULL,\n    Gehalt DECIMAL(10, 2) NOT NULL\n);"
+      },
+      {
+        "type": "paragraph",
+        "text": "The code is visibly cleaner and more concise. [dbo]. and the square brackets were removed, IDENTITY was replaced by SERIAL PRIMARY KEY, and nvarchar was replaced by VARCHAR."
+      },
+      {
+        "type": "subheading",
+        "id": "schritt-3-3",
+        "text": "3.3 Simplifying INSERT and VIEWS"
+      },
+      {
+        "type": "paragraph",
+        "text": "The INSERT commands must be cleaned of SET IDENTITY_INSERT and the prefix N before strings. Fortunately, the code for CREATE VIEW requires hardly any changes, as the JOIN syntax is part of the SQL standard."
+      },
+      {
+        "type": "heading",
+        "text": "Final Result: The Universal \"Master Script\" for PostgreSQL"
+      },
+      {
+        "type": "paragraph",
+        "text": "After all adaptations, a single, clean script is available, ready for execution in pgAdmin. It creates the entire database structure from scratch, populates it with data, and restores the views."
+      },
+      {
+        "type": "heading",
+        "id": "empfehlungen",
+        "text": "Important Recommendations for Professional Practice (Bonus Section)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Simply adapting the script is only half the battle. It should be extended with a few aspects to make it robust and professional."
+      },
+      {
+        "type": "subheading",
+        "text": "Recommendation 1: Synchronizing the Auto-Increment Counters"
+      },
+      {
+        "type": "paragraph",
+        "text": "Problem: By manually inserting data with specific IDs (INSERT ... (PositionID, ...) VALUES (1, ...)), the internal counter of the SERIAL type in PostgreSQL is no longer synchronized. Trying to add a new record would lead to a \"duplicate key\" error."
+      },
+      {
+        "type": "paragraph",
+        "text": "Solution: After all INSERT commands, special functions must be executed to inform PostgreSQL of the current maximum value for each counter."
+      },
+      {
+        "type": "code",
+        "language": "sql",
+        "code": "-- Synchronization of counters for SERIAL fields\nSELECT setval('positionen_positionid_seq', (SELECT MAX(positionid) FROM positionen));\n-- ... etc. for all tables with SERIAL columns"
+      },
+      {
+        "type": "paragraph",
+        "text": "This is a mandatory step for the correct operation of the database after a manual data import."
+      },
+      {
+        "type": "subheading",
+        "text": "Recommendation 2: Pay Attention to Case Sensitivity!"
+      },
+      {
+        "type": "paragraph",
+        "text": "Problem: MSSQL retained the \"CamelCase\" notation (PositionID), while PostgreSQL, by default, converted all names to lowercase (positionid)."
+      },
+      {
+        "type": "paragraph",
+        "text": "Recommendation: It is advisable to accept this PostgreSQL standard (lowercase and, if necessary, snake_case, e.g., position_id). This significantly simplifies future queries and avoids confusion."
+      },
+      {
+        "type": "heading",
+        "id": "fazit",
+        "text": "Conclusion"
+      },
+      {
+        "type": "paragraph",
+        "text": "As it turns out, migrating from MS SQL Server to PostgreSQL is more than just \"copy and paste\" – it's a thoughtful process of syntactic adaptation. By understanding the key differences in the SQL dialects and applying the best practices of the target system, the transition can be made smooth and reliable."
+      }
+    ]
+  }
+]

@@ -36,6 +36,11 @@ const nextConfig = {
         destination: '/services/enterprise',
         permanent: true,
       },
+      {
+        source: '/services/development',
+        destination: '/services/ekaer',
+        permanent: true,
+      },
     ];
   },
   reactStrictMode: true,

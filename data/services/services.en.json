@@ -55,8 +55,8 @@
     ]
   },
   {
-    "path": "development",
-    "name": "Custom Development",
+    "path": "ekaer",
+    "name": "EKAER",
     "shortDescription": "Individual tailor-made software solutions that integrate seamlessly.",
     "iconUrl": "/services/development.png",
     "whiteIconUrl": "/services/development-white.png",

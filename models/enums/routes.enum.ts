@@ -6,10 +6,11 @@ export enum ERoutes {
   Terms = '/terms',
   Policy = '/privacy-policy',
   ContactUs = '/contact-us',
+  Blog = '/blog',
 }
 
 export enum EServicesRoutes {
   Enterprise = '/enterprise',
-  Development = '/development',
+  Ekaer = '/ekaer',
   Support = '/support',
 }

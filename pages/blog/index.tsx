@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { ReactElement } from 'react';
 import { BaseLayout } from '@components/layouts/base-layout';
 import path from 'path';
+import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/router';
 
 interface IArticleSummary {
   slug: string;
@@ -17,25 +19,30 @@ interface IBlogIndexPageProps {
 }
 
 const BlogIndexPage: NextPage<IBlogIndexPageProps> = ({ articles }) => {
+
+  const t = useTranslations('blogIndex');
+  const { locale } = useRouter();
+
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '2rem' }}>
-      <h1>Unser Blog</h1>
-      <p>Hier finden Sie Artikel zu Themen rund um Softwareentwicklung und IT.</p>
+      <h1>{t('title')}</h1>
+      <p>{t('description')}</p>
 
       <div style={{ marginTop: '2rem' }}>
         {articles.map((article) => (
-          <div key={article.slug} style={{ marginBottom: '2rem', borderBottom: '1px solid #ccc', paddingBottom: '1rem' }}>
+          <div key={article.slug}
+               style={{ marginBottom: '2rem', borderBottom: '1px solid #ccc', paddingBottom: '1rem' }}>
             <h2>
               <Link href={`/blog/${article.slug}`}>
                 <a style={{ textDecoration: 'none', color: '#0070f3' }}>{article.title}</a>
               </Link>
             </h2>
             <p style={{ color: '#555' }}>
-              Veröffentlicht am: {new Date(article.date).toLocaleDateString('de-DE')}
+              {t('publishedOn')}: {new Date(article.date).toLocaleDateString(locale)}
             </p>
             <p>{article.summary}</p>
             <Link href={`/blog/${article.slug}`}>
-              <a style={{ fontWeight: 'bold', color: '#0070f3' }}>Weiterlesen...</a>
+              <a style={{ fontWeight: 'bold', color: '#0070f3' }}>{t('readMore')}</a>
             </Link>
           </div>
         ))}

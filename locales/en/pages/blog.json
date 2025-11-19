@@ -1,1 +1,8 @@
-{}
+{
+  "blogIndex": {
+    "title": "Our Blog",
+    "description": "Here you will find articles on topics related to software development and IT.",
+    "publishedOn": "Published on",
+    "readMore": "Read more..."
+  }
+}

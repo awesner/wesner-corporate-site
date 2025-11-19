@@ -8,6 +8,8 @@ import theme from 'theme/theme';
 import Transition from '@components/Transition';
 import Cookies from '@components/Cookies';
 import { useEffect, useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
+import Script from 'next/script';
 
 import '@styles/globals.css';
 import { getCookie } from 'utils/cookies';
@@ -52,6 +54,24 @@ function MyApp({ Component, pageProps }: AppLayoutProps) {
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
         </Head>
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-D9PJ18VG8E"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-D9PJ18VG8E', {
+                page_path: window.location.pathname,
+              });
+            `,
+          }}
+        />
         <ReactQueryProvider>
           <ThemeProvider theme={theme()}>
             <CssBaseline />
@@ -59,6 +79,7 @@ function MyApp({ Component, pageProps }: AppLayoutProps) {
             {getLayout(<Component {...pageProps} />)}
           </ThemeProvider>
         </ReactQueryProvider>
+        <Analytics />
       </NextIntlProvider>
     </Transition>
   );

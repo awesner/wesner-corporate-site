@@ -45,5 +45,9 @@ export const useGetMainNavConfig = () => {
       name: t('navigation.blog'),
       path: ERoutes.Blog,
     },
+    {
+      name: t('navigation.products'),
+      path: ERoutes.Products,
+    },
   ] as IMainNavItem[];
 };

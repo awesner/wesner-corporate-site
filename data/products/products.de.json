@@ -1,0 +1,93 @@
+[
+  {
+    "slug": "monitoring",
+    "name": "Process Monitoring Tool",
+    "tagline": "Gewinnen Sie volle Transparenz über Ihre Geschäftsprozesse in Echtzeit.",
+    "summary": "Unser Process Monitoring Tool ist eine schlüsselfertige Lösung zur Überwachung und Analyse Ihrer kritischen Geschäftsabläufe. Verfolgen Sie den Status von Prozessen, identifizieren Sie Fehlerquellen sofort und analysieren Sie XML-Daten ohne tiefgreifende Datenbankkenntnisse. Eine flexible und universelle Anwendung für jedes Projekt.",
+    "image_hero": "/products/monitoring/monitoring-hero.png",
+
+    "gallery_images": [
+      {
+        "original": "/products/monitoring/Monitoring-1.png",
+        "thumbnail": "/products/monitoring/Monitoring-1.png"
+      },
+      {
+        "original": "/products/monitoring/Monitoring-2.png",
+        "thumbnail": "/products/monitoring/Monitoring-2.png"
+      },
+      {
+        "original": "/products/monitoring/Monitoring-3.png",
+        "thumbnail": "/products/monitoring/Monitoring-3.png"
+      }
+    ],
+
+    "features": [
+      {
+        "title": "Schneller Informationszugriff",
+        "description": "Erhalten Sie sofortigen Zugang zu Prozessdaten direkt aus Ihrer Datenbank, ohne komplexe Abfragen.",
+        "icon": "speed"
+      },
+      {
+        "title": "Intuitive Prozessübersicht",
+        "description": "Überblicken und sortieren Sie alle Prozesse nach Status (Erfolgreich, Fehlerhaft etc.) auf einen Blick.",
+        "icon": "dashboard"
+      },
+      {
+        "title": "Flexible Filter & Suche",
+        "description": "Nutzen Sie leistungsstarke Filter- und Suchfunktionen, um genau die Informationen zu finden, die Sie benötigen.",
+        "icon": "filter"
+      },
+      {
+        "title": "Transparente Prozessschritte",
+        "description": "Visualisieren Sie jeden einzelnen Schritt eines Prozesses zwischen verschiedenen Systemen (CRM, CPQ, DB).",
+        "icon": "steps"
+      },
+      {
+        "title": "XML-Analyse",
+        "description": "Prüfen Sie übertragene XML-Daten direkt im Tool, um Fehler schnell zu diagnostizieren und zu beheben.",
+        "icon": "xml"
+      },
+      {
+        "title": "Universelle Kompatibilität",
+        "description": "Einfache Einrichtung über IIS und Anbindung an jede beliebige Datenbank (MS SQL, PostgreSQL u.a.).",
+        "icon": "universal"
+      }
+    ],
+
+    "content": [
+      {
+        "type": "heading",
+        "text": "Die Lösung für komplexe Prozesslandschaften"
+      },
+      {
+        "type": "paragraph",
+        "text": "In modernen IT-Systemen laufen unzählige Prozesse zwischen verschiedenen Anwendungen ab. Den Überblick zu behalten und Fehler schnell zu identifizieren, kann ohne das richtige Werkzeug zu einer enormen Herausforderung werden. Unser Process Monitoring Tool wurde entwickelt, um genau diese Lücke zu schließen. Es ist eine sofort einsatzbereite Lösung, die Ihnen eine klare und verständliche Sicht auf Ihre Datenflüsse ermöglicht, ohne dass Sie sich in die Tiefen der Datenbank oder die Komplexität von Systemen wie BizTalk einarbeiten müssen."
+      },
+      {
+        "type": "paragraph",
+        "text": "Egal ob Sie Prozesse lokal oder auf einem Server überwachen möchten, die flexible Konfiguration über IIS oder IIS Express macht die Einrichtung unkompliziert. Das Tool ist als universelle Lösung konzipiert und kann an jedes Projekt und jede Geschäftsanforderung angepasst werden."
+      },
+      {
+        "type": "subheading",
+        "text": "Unser Service-Angebot"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "title": "Erst-Einrichtung und Konfiguration",
+            "description": "Wir helfen Ihnen, das Tool schnell und effizient in Ihre bestehende Infrastruktur zu integrieren."
+          },
+          {
+            "title": "Individuelle Erweiterungen",
+            "description": "Benötigen Sie zusätzliche Funktionen? Wir passen das Tool exakt an Ihre spezifischen Anforderungen an."
+          },
+          {
+            "title": "Technischer Support",
+            "description": "Unser Team steht Ihnen zur Seite, um einen reibungslosen Betrieb sicherzustellen und alle Fragen zu beantworten."
+          }
+        ]
+      }
+    ]
+  }
+]

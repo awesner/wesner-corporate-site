@@ -1,0 +1,37 @@
+[
+  {
+    "slug": "monitoring",
+    "name": "Monitoring-Anwendung für Geschäftsprozesse",
+    "tagline": "Behalten Sie Ihre kritischen Abläufe in Echtzeit im Blick.",
+    "summary": "Unsere Monitoring-Anwendung bietet eine detaillierte Echtzeit-Überwachung Ihrer Geschäftsprozesse. Verfolgen Sie den Status, identifizieren Sie Fehler und optimieren Sie die Effizienz Ihrer Abläufe durch direkte Anbindung an Ihre Datenbank.",
+    "image_hero": "/products/monitoring/hero-image.png",
+    "features": [
+      {
+        "title": "Echtzeit-Dashboard",
+        "description": "Visualisieren Sie den Status aller Prozesse auf einen Blick.",
+        "icon": "dashboard"
+      },
+      {
+        "title": "Fehler-Benachrichtigungen",
+        "description": "Erhalten Sie sofortige Alarme bei fehlgeschlagenen Prozessen.",
+        "icon": "notifications"
+      },
+      {
+        "title": "Datenbank-Integration",
+        "description": "Direkte Anbindung an Ihre bestehende Datenbank (z.B. MS SQL, PostgreSQL).",
+        "icon": "database"
+      }
+    ],
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "In der heutigen digitalen Landschaft ist die reibungslose Funktion Ihrer Geschäftsprozesse entscheidend für den Erfolg. Unsere Monitoring-Anwendung gibt Ihnen die Werkzeuge an die Hand, um..."
+      },
+      {
+        "type": "image",
+        "src": "/products/monitoring/screenshot-1.png",
+        "alt": "Screenshot des Dashboards"
+      }
+    ]
+  }
+]

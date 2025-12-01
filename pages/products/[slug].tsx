@@ -4,20 +4,16 @@ import fs from 'fs';
 import path from 'path';
 import Head from 'next/head';
 import { BaseLayout } from '@components/layouts/base-layout';
-import { Box, Typography, Paper, Grid, Snackbar, Alert } from '@mui/material';
+import { Box, Typography, Paper, Grid } from '@mui/material';
 import SpeedIcon from '@mui/icons-material/Speed';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import CodeIcon from '@mui/icons-material/Code';
 import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
-import { FieldValues } from 'react-hook-form';
-import axios from 'axios';
 
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-import ProductContactForm from '@components/features/products/ProductContactForm';
-import Success from 'components/features/contact-us/success';
 
 interface IProductGalleryImage {
   original: string;
@@ -33,7 +29,7 @@ interface IProductContentBlock {
   text?: string;
   src?: string;
   alt?: string;
-  items?: string[];
+  items?: any[];
 }
 interface IProduct {
   slug: string;
@@ -94,38 +90,6 @@ const ProductContent: React.FC<{ block: IProductContentBlock }> = ({ block }) =>
 };
 
 const ProductPage: NextPage<IProductPageProps> = ({ product }) => {
-
-  const [isSubmited, setIsSubmited] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [snackBar, setSnackBar] = useState({
-    open: false,
-    message: '',
-  });
-
-  const handleClose = (_?: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setSnackBar({ open: false, message: '' });
-  };
-
-  const onFormSubmit = (values: FieldValues) => {
-    setIsLoading(true);
-    axios
-      .post('/api/contact', values)
-      .then((res) => {
-        if (res.status === 200) {
-          setIsSubmited(true);
-        }
-      })
-      .catch((err) => {
-        setSnackBar({ open: true, message: err.message });
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  };
-
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
@@ -227,30 +191,6 @@ const ProductPage: NextPage<IProductPageProps> = ({ product }) => {
           slides={lightboxSlides}
           index={lightboxIndex}
         />
-
-        {isSubmited ? (
-          <Paper elevation={3} sx={{ p: { xs: 2, md: 4 }, mt: 6, textAlign: 'center' }}>
-            <Success />
-          </Paper>
-        ) : (
-          <ProductContactForm onSubmit={onFormSubmit} isLoading={isLoading} />
-        )}
-
-        <Snackbar
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-          onClose={handleClose}
-          open={snackBar.open}
-          autoHideDuration={3000}
-        >
-          <Alert
-            onClose={() => setSnackBar({ open: false, message: '' })}
-            severity="error"
-            sx={{ bgcolor: 'error.main', color: 'common.white' }}
-          >
-            {snackBar.message}
-          </Alert>
-        </Snackbar>
-
       </Box>
     </>
   );

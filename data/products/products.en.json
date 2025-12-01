@@ -1,36 +1,92 @@
 [
   {
     "slug": "monitoring",
-    "name": "Monitoring-Anwendung für Geschäftsprozesse",
-    "tagline": "Behalten Sie Ihre kritischen Abläufe in Echtzeit im Blick.",
-    "summary": "Unsere Monitoring-Anwendung bietet eine detaillierte Echtzeit-Überwachung Ihrer Geschäftsprozesse. Verfolgen Sie den Status, identifizieren Sie Fehler und optimieren Sie die Effizienz Ihrer Abläufe durch direkte Anbindung an Ihre Datenbank.",
-    "image_hero": "/products/monitoring/hero-image.png",
+    "name": "Process Monitoring Tool",
+    "tagline": "Gain full transparency over your business processes in real-time.",
+    "summary": "Our Process Monitoring Tool is a turnkey solution for monitoring and analyzing your critical business operations. Track the status of processes, identify sources of error immediately, and analyze XML data without in-depth database knowledge. A flexible and universal application for any project.",
+    "image_hero": "/products/monitoring/monitoring-hero.png",
+
+    "gallery_images": [
+      {
+        "original": "/products/monitoring/Monitoring-1.png",
+        "thumbnail": "/products/monitoring/Monitoring-1.png"
+      },
+      {
+        "original": "/products/monitoring/Monitoring-2.png",
+        "thumbnail": "/products/monitoring/Monitoring-2.png"
+      },
+      {
+        "original": "/products/monitoring/Monitoring-3.png",
+        "thumbnail": "/products/monitoring/Monitoring-3.png"
+      }
+    ],
+
     "features": [
       {
-        "title": "Echtzeit-Dashboard",
-        "description": "Visualisieren Sie den Status aller Prozesse auf einen Blick.",
+        "title": "Fast Information Access",
+        "description": "Get instant access to process data directly from your database without complex queries.",
+        "icon": "speed"
+      },
+      {
+        "title": "Intuitive Process Overview",
+        "description": "View and sort all processes by status (Successful, Failed, etc.) at a glance.",
         "icon": "dashboard"
       },
       {
-        "title": "Fehler-Benachrichtigungen",
-        "description": "Erhalten Sie sofortige Alarme bei fehlgeschlagenen Prozessen.",
-        "icon": "notifications"
+        "title": "Flexible Filters & Search",
+        "description": "Use powerful filtering and search functions to find exactly the information you need.",
+        "icon": "filter"
       },
       {
-        "title": "Datenbank-Integration",
-        "description": "Direkte Anbindung an Ihre bestehende Datenbank (z.B. MS SQL, PostgreSQL).",
-        "icon": "database"
+        "title": "Transparent Process Steps",
+        "description": "Visualize every single step of a process between different systems (CRM, CPQ, DB).",
+        "icon": "steps"
+      },
+      {
+        "title": "XML Analysis",
+        "description": "Check transmitted XML data directly in the tool to quickly diagnose and resolve errors.",
+        "icon": "xml"
+      },
+      {
+        "title": "Universal Compatibility",
+        "description": "Easy setup via IIS and connection to any database (MS SQL, PostgreSQL, etc.).",
+        "icon": "universal"
       }
     ],
+
     "content": [
       {
-        "type": "paragraph",
-        "text": "In der heutigen digitalen Landschaft ist die reibungslose Funktion Ihrer Geschäftsprozesse entscheidend für den Erfolg. Unsere Monitoring-Anwendung gibt Ihnen die Werkzeuge an die Hand, um..."
+        "type": "heading",
+        "text": "The Solution for Complex Process Landscapes"
       },
       {
-        "type": "image",
-        "src": "/products/monitoring/screenshot-1.png",
-        "alt": "Screenshot des Dashboards"
+        "type": "paragraph",
+        "text": "In modern IT systems, countless processes run between different applications. Keeping an overview and quickly identifying errors can become an enormous challenge without the right tool. Our Process Monitoring Tool was developed to close this exact gap. It is a ready-to-use solution that gives you a clear and understandable view of your data flows, without you having to delve into the depths of the database or the complexity of systems like BizTalk."
+      },
+      {
+        "type": "paragraph",
+        "text": "Whether you want to monitor processes locally or on a server, the flexible configuration via IIS or IIS Express makes setup straightforward. The tool is designed as a universal solution and can be adapted to any project and business requirement."
+      },
+      {
+        "type": "subheading",
+        "text": "Our Service Offer"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "title": "Initial Setup and Configuration",
+            "description": "We help you integrate the tool quickly and efficiently into your existing infrastructure."
+          },
+          {
+            "title": "Custom Extensions",
+            "description": "Need additional features? We adapt the tool to your exact specific requirements."
+          },
+          {
+            "title": "Technical Support",
+            "description": "Our team is here to ensure smooth operation and to answer all your questions."
+          }
+        ]
       }
     ]
   }

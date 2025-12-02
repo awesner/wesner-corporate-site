@@ -3,5 +3,8 @@
     "title": "Our Products",
     "description": "Discover our custom software solutions designed to optimize your business processes.",
     "learnMore": "Learn more"
+  },
+  "productPage": {
+    "gallery": "Gallery"
   }
 }

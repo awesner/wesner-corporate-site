@@ -13,6 +13,7 @@ import Script from 'next/script';
 
 import '@styles/globals.css';
 import { getCookie } from 'utils/cookies';
+import ChatWidget from '@components/features/chat/ChatWidget';
 
 function MyApp({ Component, pageProps }: AppLayoutProps) {
   const getLayout = Component.getLayout ?? ((page: JSX.Element) => page);
@@ -80,6 +81,7 @@ function MyApp({ Component, pageProps }: AppLayoutProps) {
           </ThemeProvider>
         </ReactQueryProvider>
         <Analytics />
+        <ChatWidget />
       </NextIntlProvider>
     </Transition>
   );

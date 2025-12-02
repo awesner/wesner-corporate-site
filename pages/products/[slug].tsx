@@ -11,6 +11,7 @@ import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import CodeIcon from '@mui/icons-material/Code';
 import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
+import { useTranslations } from 'next-intl';
 
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
@@ -90,6 +91,7 @@ const ProductContent: React.FC<{ block: IProductContentBlock }> = ({ block }) =>
 };
 
 const ProductPage: NextPage<IProductPageProps> = ({ product }) => {
+  const t = useTranslations('productPage');
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
@@ -146,7 +148,7 @@ const ProductPage: NextPage<IProductPageProps> = ({ product }) => {
           borderRadius={2}
         >
           <Typography variant="h3" component="h2" gutterBottom textAlign="center">
-            Galerie
+            {t('gallery')}
           </Typography>
           <Box
             sx={{

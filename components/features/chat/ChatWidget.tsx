@@ -14,6 +14,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import SendIcon from '@mui/icons-material/Send';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import PersonIcon from '@mui/icons-material/Person';
+import { useRouter } from 'next/router';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -21,6 +22,8 @@ interface Message {
 }
 
 export default function ChatWidget() {
+  const router = useRouter();
+  const [sessionId] = useState(() => 'sess-' + Math.random().toString(36).substr(2, 9));
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -48,7 +51,9 @@ export default function ChatWidget() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           message: input,
-          history: messages
+          history: messages,
+          locale: router.locale,
+          sessionId: sessionId
         }),
       });
 

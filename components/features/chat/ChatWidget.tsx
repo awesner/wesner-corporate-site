@@ -13,8 +13,8 @@ import ChatIcon from '@mui/icons-material/Chat';
 import CloseIcon from '@mui/icons-material/Close';
 import SendIcon from '@mui/icons-material/Send';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
-import PersonIcon from '@mui/icons-material/Person';
 import { useRouter } from 'next/router';
+import ReactMarkdown from 'react-markdown';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -129,7 +129,28 @@ export default function ChatWidget() {
                     borderRadius: 2
                   }}
                 >
-                  <Typography variant="body2">{msg.content}</Typography>
+                  <Box
+                    sx={{
+                      fontSize: '0.875rem',
+                      fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+                      lineHeight: 1.5,
+                      '& p': { m: 0, mb: 1 },
+                      '& p:last-child': { mb: 0 },
+                      '& ul, & ol': { m: 0, mb: 1, pl: 2.5 },
+                      '& li': { mb: 0.5 },
+                      '& strong': { fontWeight: 700 },
+                      '& h1, & h2, & h3, & h4': {
+                        fontSize: '1rem',
+                        fontWeight: 'bold',
+                        m: 0,
+                        mb: 1,
+                        mt: 1
+                      },
+                      '& a': { color: 'inherit', textDecoration: 'underline' }
+                    }}
+                  >
+                    <ReactMarkdown>{msg.content}</ReactMarkdown>
+                  </Box>
                 </Paper>
               </Box>
             ))}

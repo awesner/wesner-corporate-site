@@ -28,5 +28,13 @@
   "privacyPolicy": {
     "title": "Privacy Policy",
     "date": "Effective date: June 6, 2022"
+  },
+  "chatWidget": {
+    "header": "KI Assistent",
+    "welcomeBubble": "Hallo! Haben Sie Fragen zu unseren Produkten?",
+    "greeting": "Hallo! Wie kann ich Ihnen heute helfen?",
+    "placeholder": "Frage stellen...",
+    "errorConnection": "Entschuldigung, ich habe momentan Verbindungsprobleme.",
+    "errorSend": "Fehler beim Senden der Nachricht."
   }
 }

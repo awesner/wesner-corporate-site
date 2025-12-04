@@ -50,12 +50,13 @@ export default function Cookies({ open, setOpen }: IProps): JSX.Element {
     <Snackbar
       open={open}
       onClose={handleClose}
-      anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+      anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
     >
       <Box
         sx={{
           gap: 1,
-          width: 576,
+          width: 500,
+          height: 200,
           maxWidth: '90vw',
           p: 3,
           borderTop: `4px solid ${theme.palette.primary.main}`,

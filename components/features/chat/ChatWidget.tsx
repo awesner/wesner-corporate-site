@@ -7,7 +7,8 @@ import {
   IconButton,
   Typography,
   CircularProgress,
-  Avatar
+  Avatar,
+  Grow
 } from '@mui/material';
 import ChatIcon from '@mui/icons-material/Chat';
 import CloseIcon from '@mui/icons-material/Close';
@@ -15,6 +16,7 @@ import SendIcon from '@mui/icons-material/Send';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import { useRouter } from 'next/router';
 import ReactMarkdown from 'react-markdown';
+import { useTranslations } from 'next-intl';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -23,19 +25,46 @@ interface Message {
 
 export default function ChatWidget() {
   const router = useRouter();
+  const t = useTranslations('chatWidget');
+
   const [sessionId] = useState(() => 'sess-' + Math.random().toString(36).substr(2, 9));
   const [isOpen, setIsOpen] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(false);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'assistant', content: 'Hallo! Wie kann ich Ihnen heute helfen?' }
+    { role: 'assistant', content: t('greeting') }
   ]);
 
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (messages.length === 1 && messages[0].role === 'assistant') {
+      setMessages([{ role: 'assistant', content: t('greeting') }]);
+    }
+  }, [router.locale]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!isOpen) {
+        setShowWelcome(true);
+      }
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [isOpen]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
   }, [messages, isOpen]);
+
+  const toggleChat = () => {
+    setIsOpen(!isOpen);
+    setShowWelcome(false);
+  };
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -61,13 +90,13 @@ export default function ChatWidget() {
 
       const botMessage: Message = {
         role: 'assistant',
-        content: data.reply || "Entschuldigung, ich habe momentan Verbindungsprobleme."
+        content: data.reply || t('errorConnection')
       };
 
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
       console.error(error);
-      setMessages((prev) => [...prev, { role: 'assistant', content: "Fehler beim Senden der Nachricht." }]);
+      setMessages((prev) => [...prev, { role: 'assistant', content: t('errorSend') }]);
     } finally {
       setIsLoading(false);
     }
@@ -81,8 +110,45 @@ export default function ChatWidget() {
   };
 
   return (
-    <Box sx={{ position: 'fixed', bottom: 20, right: 20, zIndex: 1000 }}>
-      {isOpen && (
+    <Box sx={{ position: 'fixed', bottom: 30, right: 30, zIndex: 1000, display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+      <Grow in={showWelcome && !isOpen}>
+        <Paper
+          elevation={3}
+          sx={{
+            p: 2,
+            maxWidth: 250,
+            cursor: 'pointer',
+            bgcolor: 'white',
+            borderRadius: 2,
+            position: 'absolute',
+            bottom: 60,
+            right: 60,
+            zIndex: 1001,
+            mb: 0
+          }}
+          onClick={toggleChat}
+        >
+          <IconButton
+            size="small"
+            sx={{ position: 'absolute', top: 2, right: 2, width: 20, height: 20 }}
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowWelcome(false);
+            }}
+          >
+            <CloseIcon fontSize="small" />
+          </IconButton>
+
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Typography variant="body2" fontWeight="bold">👋 {t('header')}</Typography>
+          </Box>
+          <Typography variant="body2" sx={{ mt: 1 }}>
+            {t('welcomeBubble')}
+          </Typography>
+        </Paper>
+      </Grow>
+
+      <Grow in={isOpen} style={{ transformOrigin: 'bottom right' }}>
         <Paper
           elevation={4}
           sx={{
@@ -98,7 +164,7 @@ export default function ChatWidget() {
           <Box sx={{ p: 2, bgcolor: 'primary.main', color: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <SmartToyIcon />
-              <Typography variant="subtitle1" fontWeight="bold">AI Assistant</Typography>
+              <Typography variant="subtitle1" fontWeight="bold">{t('header')}</Typography>
             </Box>
             <IconButton size="small" onClick={() => setIsOpen(false)} sx={{ color: 'white' }}>
               <CloseIcon />
@@ -166,7 +232,7 @@ export default function ChatWidget() {
             <TextField
               fullWidth
               size="small"
-              placeholder="Frage stellen..."
+              placeholder={t('placeholder')}
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={handleKeyPress}
@@ -179,13 +245,12 @@ export default function ChatWidget() {
             </IconButton>
           </Box>
         </Paper>
-      )}
+      </Grow>
 
       <Fab
         color="primary"
         aria-label="chat"
-        onClick={() => setIsOpen(!isOpen)}
-        sx={{ float: 'right' }}
+        onClick={toggleChat}
       >
         {isOpen ? <CloseIcon /> : <ChatIcon />}
       </Fab>

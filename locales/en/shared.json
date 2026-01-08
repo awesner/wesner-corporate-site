@@ -32,9 +32,28 @@
   "chatWidget": {
     "header": "AI Assistant",
     "welcomeBubble": "Hi! Do you have questions about our products?",
-    "greeting": "Hello! How can I help you today?",
+    "greeting": "Hi! Do you have questions about our products?",
     "placeholder": "Ask a question...",
     "errorConnection": "Sorry, I am currently having connection problems.",
-    "errorSend": "Error sending message."
+    "errorSend": "Error sending message.",
+    "tabChat": "Chat",
+    "tabAppointment": "Meeting",
+    "appointmentTabTitle": "Would you like to schedule a meeting?",
+    "appointmentTabDesc": "Choose a suitable time for a personal conversation with us.",
+
+    "bookAppointment": "📅 Book Appointment",
+
+    "appointmentForm": {
+      "title": "Request Appointment",
+      "description": "Choose a date, and we will contact you to confirm the exact time.",
+      "name": "Name",
+      "email": "Email",
+      "date": "Preferred Date",
+      "message": "Message (Optional)",
+      "cancel": "Cancel",
+      "submit": "Send Request",
+      "success": "Request sent successfully! We will contact you soon.",
+      "error": "Error sending request. Please try again later."
+    }
   }
 }

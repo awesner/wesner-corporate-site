@@ -8,15 +8,18 @@ import {
   Typography,
   CircularProgress,
   Avatar,
-  Grow
+  Grow,
+  Button
 } from '@mui/material';
 import ChatIcon from '@mui/icons-material/Chat';
 import CloseIcon from '@mui/icons-material/Close';
 import SendIcon from '@mui/icons-material/Send';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import { useRouter } from 'next/router';
 import ReactMarkdown from 'react-markdown';
 import { useTranslations } from 'next-intl';
+import AppointmentDialog from './AppointmentDialog';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -30,8 +33,12 @@ export default function ChatWidget() {
   const [sessionId] = useState(() => 'sess-' + Math.random().toString(36).substr(2, 9));
   const [isOpen, setIsOpen] = useState(false);
   const [showWelcome, setShowWelcome] = useState(false);
+
+  const [activeTab, setActiveTab] = useState<'chat' | 'appointment'>('chat');
+
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
 
   const [messages, setMessages] = useState<Message[]>([
     { role: 'assistant', content: t('greeting') }
@@ -51,7 +58,6 @@ export default function ChatWidget() {
         setShowWelcome(true);
       }
     }, 3000);
-
     return () => clearTimeout(timer);
   }, [isOpen]);
 
@@ -59,7 +65,7 @@ export default function ChatWidget() {
     setTimeout(() => {
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, 100);
-  }, [messages, isOpen]);
+  }, [messages, isOpen, activeTab]);
 
   const toggleChat = () => {
     setIsOpen(!isOpen);
@@ -87,12 +93,10 @@ export default function ChatWidget() {
       });
 
       const data = await response.json();
-
       const botMessage: Message = {
         role: 'assistant',
         content: data.reply || t('errorConnection')
       };
-
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
       console.error(error);
@@ -111,6 +115,8 @@ export default function ChatWidget() {
 
   return (
     <Box sx={{ position: 'fixed', bottom: 30, right: 30, zIndex: 1000, display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+
+      {/* Hallo Fenster */}
       <Grow in={showWelcome && !isOpen}>
         <Paper
           elevation={3}
@@ -138,7 +144,6 @@ export default function ChatWidget() {
           >
             <CloseIcon fontSize="small" />
           </IconButton>
-
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <Typography variant="body2" fontWeight="bold">👋 {t('header')}</Typography>
           </Box>
@@ -148,6 +153,7 @@ export default function ChatWidget() {
         </Paper>
       </Grow>
 
+      {/* Hauptfenster */}
       <Grow in={isOpen} style={{ transformOrigin: 'bottom right' }}>
         <Paper
           elevation={4}
@@ -158,9 +164,11 @@ export default function ChatWidget() {
             display: 'flex',
             flexDirection: 'column',
             overflow: 'hidden',
-            borderRadius: 2
+            borderRadius: 2,
+            bgcolor: '#f5f5f5'
           }}
         >
+          {/* 1. Futter */}
           <Box sx={{ p: 2, bgcolor: 'primary.main', color: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <SmartToyIcon />
@@ -171,89 +179,179 @@ export default function ChatWidget() {
             </IconButton>
           </Box>
 
-          <Box sx={{ flex: 1, p: 2, overflowY: 'auto', bgcolor: '#f5f5f5', display: 'flex', flexDirection: 'column', gap: 2 }}>
-            {messages.map((msg, index) => (
-              <Box
-                key={index}
-                sx={{
-                  display: 'flex',
-                  justifyContent: msg.role === 'user' ? 'flex-end' : 'flex-start',
-                  gap: 1
-                }}
-              >
-                {msg.role === 'assistant' && (
-                  <Avatar sx={{ width: 32, height: 32, bgcolor: 'primary.main' }}>
-                    <SmartToyIcon fontSize="small" />
-                  </Avatar>
-                )}
-                <Paper
-                  sx={{
-                    p: 1.5,
-                    maxWidth: '80%',
-                    bgcolor: msg.role === 'user' ? 'primary.light' : 'white',
-                    color: msg.role === 'user' ? 'white' : 'text.primary',
-                    borderRadius: 2
-                  }}
-                >
-                  <Box
-                    sx={{
-                      fontSize: '0.875rem',
-                      fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-                      lineHeight: 1.5,
-                      '& p': { m: 0, mb: 1 },
-                      '& p:last-child': { mb: 0 },
-                      '& ul, & ol': { m: 0, mb: 1, pl: 2.5 },
-                      '& li': { mb: 0.5 },
-                      '& strong': { fontWeight: 700 },
-                      '& h1, & h2, & h3, & h4': {
-                        fontSize: '1rem',
-                        fontWeight: 'bold',
-                        m: 0,
-                        mb: 1,
-                        mt: 1
-                      },
-                      '& a': { color: 'inherit', textDecoration: 'underline' }
-                    }}
-                  >
-                    <ReactMarkdown>{msg.content}</ReactMarkdown>
-                  </Box>
-                </Paper>
-              </Box>
-            ))}
-            {isLoading && (
-              <Box sx={{ display: 'flex', justifyContent: 'flex-start', ml: 5 }}>
-                <CircularProgress size={20} />
-              </Box>
-            )}
-            <div ref={messagesEndRef} />
+          {/* 2. Tabs */}
+          <Box sx={{ display: 'flex', bgcolor: 'white', borderBottom: '1px solid #eee' }}>
+            <Box
+              onClick={() => setActiveTab('chat')}
+              sx={{
+                flex: 1,
+                p: 1.5,
+                textAlign: 'center',
+                cursor: 'pointer',
+                borderBottom: activeTab === 'chat' ? '3px solid' : '3px solid transparent',
+                borderColor: activeTab === 'chat' ? 'primary.main' : 'transparent',
+                color: activeTab === 'chat' ? 'primary.main' : 'text.secondary',
+                fontWeight: activeTab === 'chat' ? 'bold' : 'normal',
+                '&:hover': { bgcolor: '#f9f9f9' }
+              }}
+            >
+              {t('tabChat')}
+            </Box>
+            <Box
+              onClick={() => setActiveTab('appointment')}
+              sx={{
+                flex: 1,
+                p: 1.5,
+                textAlign: 'center',
+                cursor: 'pointer',
+                borderBottom: activeTab === 'appointment' ? '3px solid' : '3px solid transparent',
+                borderColor: activeTab === 'appointment' ? 'primary.main' : 'transparent',
+                color: activeTab === 'appointment' ? 'primary.main' : 'text.secondary',
+                fontWeight: activeTab === 'appointment' ? 'bold' : 'normal',
+                '&:hover': { bgcolor: '#f9f9f9' }
+              }}
+            >
+              {t('tabAppointment')}
+            </Box>
           </Box>
 
-          <Box sx={{ p: 2, bgcolor: 'white', borderTop: '1px solid #eee', display: 'flex', gap: 1 }}>
-            <TextField
-              fullWidth
-              size="small"
-              placeholder={t('placeholder')}
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyPress={handleKeyPress}
-              disabled={isLoading}
-              multiline
-              maxRows={2}
-            />
-            <IconButton color="primary" onClick={handleSend} disabled={!input.trim() || isLoading}>
-              <SendIcon />
-            </IconButton>
-          </Box>
+          {/* 3. Kontent */}
+
+          {/* --- Chat --- */}
+          {activeTab === 'chat' && (
+            <>
+              <Box sx={{ flex: 1, p: 2, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 2 }}>
+                {messages.map((msg, index) => {
+                  const hasBookingButton = msg.content.includes('{{BOOKING_BUTTON}}');
+                  const cleanContent = msg.content.replace('{{BOOKING_BUTTON}}', '').trim();
+                  return (
+                    <Box
+                      key={index}
+                      sx={{
+                        display: 'flex',
+                        justifyContent: msg.role === 'user' ? 'flex-end' : 'flex-start',
+                        gap: 1
+                      }}
+                    >
+                      {msg.role === 'assistant' && (
+                        <Avatar sx={{ width: 32, height: 32, bgcolor: 'primary.main' }}>
+                          <SmartToyIcon fontSize="small" />
+                        </Avatar>
+                      )}
+                      <Paper
+                        sx={{
+                          p: 1.5,
+                          maxWidth: '80%',
+                          bgcolor: msg.role === 'user' ? 'primary.light' : 'white',
+                          color: msg.role === 'user' ? 'white' : 'text.primary',
+                          borderRadius: 2
+                        }}
+                      >
+                        <Box sx={{
+                          fontSize: '0.875rem',
+                          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+                          lineHeight: 1.5,
+                          '& p': { m: 0, mb: 1 },
+                          '& p:last-child': { mb: 0 },
+                          '& ul, & ol': { m: 0, mb: 1, pl: 2.5 },
+                          '& li': { mb: 0.5 },
+                          '& strong': { fontWeight: 700 },
+                          '& h1, & h2': { fontSize: '1rem', fontWeight: 'bold', m: 0, mb: 1, mt: 1 },
+                          '& a': { color: 'inherit', textDecoration: 'underline' }
+                        }}>
+                          <ReactMarkdown>{cleanContent}</ReactMarkdown>
+                        </Box>
+                        {hasBookingButton && msg.role === 'assistant' && (
+                          <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%', mt: 2 }}>
+                            <Button
+                              variant="contained"
+                              color="secondary"
+                              size="small"
+                              sx={{ textTransform: 'none', fontWeight: 'bold' }}
+                              onClick={() => setIsAppointmentOpen(true)}
+                            >
+                              {t('bookAppointment')}
+                            </Button>
+                          </Box>
+                        )}
+                      </Paper>
+                    </Box>
+                  );
+                })}
+                {isLoading && (
+                  <Box sx={{ display: 'flex', justifyContent: 'flex-start', ml: 5 }}>
+                    <CircularProgress size={20} />
+                  </Box>
+                )}
+                <div ref={messagesEndRef} />
+              </Box>
+
+              {/* Feld für Nachricht */}
+              <Box sx={{ p: 2, bgcolor: 'white', borderTop: '1px solid #eee', display: 'flex', gap: 1 }}>
+                <TextField
+                  fullWidth
+                  size="small"
+                  placeholder={t('placeholder')}
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  disabled={isLoading}
+                  multiline
+                  maxRows={2}
+                />
+                <IconButton color="primary" onClick={handleSend} disabled={!input.trim() || isLoading}>
+                  <SendIcon />
+                </IconButton>
+              </Box>
+            </>
+          )}
+
+          {/* --- Termin --- */}
+          {activeTab === 'appointment' && (
+            <Box sx={{
+              flex: 1,
+              p: 3,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textAlign: 'center',
+              bgcolor: 'white'
+            }}>
+              <EventAvailableIcon sx={{ fontSize: 60, color: 'primary.main', mb: 2 }} />
+
+              <Typography variant="h6" gutterBottom>
+                {t('appointmentTabTitle')}
+              </Typography>
+
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 4 }}>
+                {t('appointmentTabDesc')}
+              </Typography>
+
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                fullWidth
+                onClick={() => setIsAppointmentOpen(true)}
+                sx={{ textTransform: 'none', fontWeight: 'bold', py: 1.5 }}
+              >
+                {t('bookAppointment')}
+              </Button>
+            </Box>
+          )}
+
         </Paper>
       </Grow>
 
-      <Fab
-        color="primary"
-        aria-label="chat"
-        onClick={toggleChat}
-      >
+      <Fab color="primary" aria-label="chat" onClick={toggleChat}>
         {isOpen ? <CloseIcon /> : <ChatIcon />}
       </Fab>
+
+      <AppointmentDialog
+        open={isAppointmentOpen}
+        onClose={() => setIsAppointmentOpen(false)}
+      />
     </Box>
   );
 }

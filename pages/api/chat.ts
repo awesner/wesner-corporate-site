@@ -19,7 +19,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       `;
     } catch (dbError) {
       console.error('Schreibfehler in der DB (user):', dbError);
-
     }
 
     const context = getSiteContent(locale);
@@ -27,13 +26,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const systemPrompt = locale === 'en'
       ? `You are a helpful AI assistant for the "Wesner Software" website. 
          Answer politely in English.
-         Use ONLY the following information to answer user questions. If the answer is not in the text, ask the user to use the contact form.
+         Use ONLY the following information to answer user questions. 
+         
+         RULES:
+         1. If the answer is not in the text, ask the user to use the contact form.
+         2. CRITICAL: If the user asks for an appointment, a meeting, a demo, or wants to talk to someone ("termin", "meeting", "contact"), you MUST append the tag "{{BOOKING_BUTTON}}" to the end of your response.
+         3. Do not just describe the contact form if they ask for a meeting - give them the button via the tag.
          
          --- WEBSITE CONTENT ---
          ${context}`
       : `Du bist ein hilfreicher KI-Assistent für die Website der "Wesner Softwareentwicklung". 
          Antworte immer höflich auf Deutsch.
-         Nutze NUR die folgenden Informationen, um Fragen zu beantworten. Wenn du die Antwort nicht in den Informationen findest, bitte den Nutzer, das Kontaktformular zu verwenden.
+         Nutze NUR die folgenden Informationen, um Fragen zu beantworten. 
+         
+         REGELN:
+         1. Wenn du die Antwort nicht in den Informationen findest, bitte den Nutzer, das Kontaktformular zu verwenden.
+         2. KRITISCH: Wenn der Benutzer einen Termin ("Termin vereinbaren", "Gespräch", "Demo") wünscht oder danach fragt, MUSST du am Ende deiner Antwort zwingend den Tag "{{BOOKING_BUTTON}}" anfügen.
+         3. Erzähle nicht nur vom Kontaktformular, wenn nach einem Termin gefragt wird, sondern gib diesen Tag aus.
          
          --- WEBSITE INHALT ---
          ${context}`;
@@ -64,8 +73,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     } else {
       reply = locale === 'en'
-        ? "[MOCK MODE] I received your message. The AI Key is missing, but the database connection works!"
-        : "[TEST MODUS] Ich habe Ihre Nachricht erhalten. Der AI-Key fehlt noch, aber die Datenbankverbindung funktioniert!";
+        ? "[MOCK MODE] I received your message. The AI Key is missing, but the database connection works! {{BOOKING_BUTTON}}"
+        : "[TEST MODUS] Ich habe Ihre Nachricht erhalten. Der AI-Key fehlt noch, aber die Datenbankverbindung funktioniert! {{BOOKING_BUTTON}}";
     }
 
     try {

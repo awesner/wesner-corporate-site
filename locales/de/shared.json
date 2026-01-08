@@ -32,9 +32,28 @@
   "chatWidget": {
     "header": "KI Assistent",
     "welcomeBubble": "Hallo! Haben Sie Fragen zu unseren Produkten?",
-    "greeting": "Hallo! Wie kann ich Ihnen heute helfen?",
+    "greeting": "Hallo! Haben Sie Fragen zu unseren Produkten?",
     "placeholder": "Frage stellen...",
     "errorConnection": "Entschuldigung, ich habe momentan Verbindungsprobleme.",
-    "errorSend": "Fehler beim Senden der Nachricht."
+    "errorSend": "Fehler beim Senden der Nachricht.",
+    "tabChat": "Chat",
+    "tabAppointment": "Termin",
+    "appointmentTabTitle": "Möchten Sie einen Termin vereinbaren?",
+    "appointmentTabDesc": "Wählen Sie einen passenden Zeitpunkt für ein persönliches Gespräch mit uns.",
+
+    "bookAppointment": "📅 Termin vereinbaren",
+
+    "appointmentForm": {
+      "title": "Termin anfragen",
+      "description": "Wählen Sie ein Datum, und wir melden uns zur Bestätigung der genauen Uhrzeit.",
+      "name": "Name",
+      "email": "E-Mail",
+      "date": "Wunschdatum",
+      "message": "Nachricht (Optional)",
+      "cancel": "Abbrechen",
+      "submit": "Absenden",
+      "success": "Anfrage erfolgreich gesendet! Wir melden uns bald.",
+      "error": "Fehler beim Senden. Bitte versuchen Sie es später."
+    }
   }
 }

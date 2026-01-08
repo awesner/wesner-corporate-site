@@ -31,8 +31,8 @@
   },
   "chatWidget": {
     "header": "AI Assistant",
-    "welcomeBubble": "Hi! Do you have questions about our products?",
-    "greeting": "Hi! Do you have questions about our products?",
+    "welcomeBubble": "Hello! How can I help you today?",
+    "greeting": "Hello! How can I help you today?",
     "placeholder": "Ask a question...",
     "errorConnection": "Sorry, I am currently having connection problems.",
     "errorSend": "Error sending message.",

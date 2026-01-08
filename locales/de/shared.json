@@ -31,8 +31,8 @@
   },
   "chatWidget": {
     "header": "KI Assistent",
-    "welcomeBubble": "Hallo! Haben Sie Fragen zu unseren Produkten?",
-    "greeting": "Hallo! Haben Sie Fragen zu unseren Produkten?",
+    "welcomeBubble": "Hallo! Wie kann ich Ihnen heute helfen?",
+    "greeting": "Hallo! Wie kann ich Ihnen heute helfen?",
     "placeholder": "Frage stellen...",
     "errorConnection": "Entschuldigung, ich habe momentan Verbindungsprobleme.",
     "errorSend": "Fehler beim Senden der Nachricht.",

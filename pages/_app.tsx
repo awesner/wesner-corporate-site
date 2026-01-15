@@ -10,6 +10,7 @@ import Cookies from '@components/Cookies';
 import { useEffect, useState } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import Script from 'next/script';
+import { SessionProvider } from 'next-auth/react';
 
 import '@styles/globals.css';
 import { getCookie } from 'utils/cookies';
@@ -29,6 +30,7 @@ function MyApp({ Component, pageProps }: AppLayoutProps) {
 
   return (
     <Transition>
+      <SessionProvider session={pageProps.session}>
       <NextIntlProvider pageProps={pageProps}>
         <Head>
           <title>Wesner-Softwareentwicklung</title>
@@ -83,6 +85,7 @@ function MyApp({ Component, pageProps }: AppLayoutProps) {
         <Analytics />
         <ChatWidget />
       </NextIntlProvider>
+      </SessionProvider>
     </Transition>
   );
 }

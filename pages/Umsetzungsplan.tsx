@@ -1,0 +1,268 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { GetServerSideProps } from 'next';
+import { getSession, signOut, useSession, signIn } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import {
+  Container, Typography, Box, Button, Paper, Alert, Chip, Divider,
+  TextField, Card, Grid
+} from '@mui/material';
+import Head from 'next/head';
+import { sql } from '@vercel/postgres';
+import ReactMarkdown from 'react-markdown';
+import { BaseLayout } from '@components/layouts/base-layout';
+
+interface Comment { id: number; message: string; created_at: string; author_name: string; author_role: string; is_me: boolean; }
+interface ProjectData { id: number; title: string; content?: string; status: string; created_at: string; client_name?: string; }
+interface PageProps { viewMode: 'admin_list' | 'project_detail'; project: ProjectData | null; projectsList?: ProjectData[]; comments?: Comment[]; }
+
+const InlineLoginForm = () => {
+  const router = useRouter();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    const res = await signIn('credentials', { email, password, redirect: false });
+
+    if (res?.error) {
+      setError('E-Mail oder Passwort ist falsch.');
+      setLoading(false);
+    } else {
+      router.replace(router.asPath);
+    }
+  };
+
+  return (
+    <Box component="form" onSubmit={handleSubmit} textAlign="center" p={3} bgcolor="#f0f7ff" borderRadius={2} mb={3}>
+      <Typography gutterBottom variant="h6" fontWeight="bold">Jetzt anmelden um zu kommentieren</Typography>
+      <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+        Geben Sie Ihre Zugangsdaten ein, um eine Nachricht zu hinterlassen.
+      </Typography>
+      {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
+      <Box display="flex" flexDirection="column" gap={2} maxWidth={400} mx="auto">
+        <TextField label="E-Mail" type="email" size="small" required value={email} onChange={(e) => setEmail(e.target.value)} />
+        <TextField label="Passwort" type="password" size="small" required value={password} onChange={(e) => setPassword(e.target.value)} />
+        <Button type="submit" variant="contained" disabled={loading}>{loading ? 'Wird angemeldet...' : 'Anmelden'}</Button>
+      </Box>
+    </Box>
+  );
+};
+
+export default function Umsetzungsplan({ viewMode, project, projectsList, comments }: PageProps) {
+  const { data: session } = useSession();
+  const router = useRouter();
+
+  const loginFormRef = useRef<HTMLDivElement>(null);
+
+  const [msgList, setMsgList] = useState<Comment[]>(comments || []);
+  const [newMessage, setNewMessage] = useState('');
+  const [isSending, setIsSending] = useState(false);
+
+  useEffect(() => {
+    if (comments) setMsgList(comments);
+  }, [comments]);
+
+  const handleSendMessage = async () => {
+    if (!newMessage.trim() || !project || !session?.user) return;
+    setIsSending(true);
+
+    try {
+      const res = await fetch('/api/projects/comment', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ projectId: project.id, message: newMessage }),
+      });
+
+      if (res.ok) {
+        const newMsgObj: Comment = {
+          id: Date.now(), message: newMessage, created_at: new Date().toISOString(),
+          author_name: session.user.name || 'User', author_role: session.user.role, is_me: true
+        };
+        setMsgList((prev) => [...prev, newMsgObj]);
+        setNewMessage('');
+      } else {
+        alert('Fehler beim Senden.');
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsSending(false);
+    }
+  };
+
+  const handleLogout = () => signOut({ callbackUrl: '/de/auth/signin' });
+
+  if (viewMode === 'admin_list') {
+    return (<BaseLayout> <Head><title>Admin Dashboard</title></Head> <Container maxWidth="lg" sx={{ py: 8 }}> <Box
+      display="flex" justifyContent="space-between" mb={4}> <Typography variant="h4"
+                                                                        fontWeight="bold">Kundenprojekte</Typography>
+      <Button variant="outlined" color="error" onClick={handleLogout}>Abmelden</Button> </Box> <Grid container
+                                                                                                     spacing={3}> {projectsList?.map((p) => (
+      <Grid item xs={12} md={6} key={p.id}> <Card elevation={3}
+                                                  sx={{ p: 3, cursor: 'pointer', '&:hover': { boxShadow: 6 } }}
+                                                  onClick={() => router.push(`/de/Umsetzungsplan?id=${p.id}`)}> <Box
+        display="flex" justifyContent="space-between" mb={1}> <Chip label={p.status} color="primary" size="small"
+                                                                    variant="outlined" /> <Typography variant="caption"
+                                                                                                      color="text.secondary">ID:
+        #{p.id}</Typography> </Box> <Typography variant="h6" fontWeight="bold" gutterBottom>{p.title}</Typography>
+        <Typography color="text.secondary">Kunde: {p.client_name}</Typography> <Button sx={{ mt: 2 }}
+                                                                                       variant="text">Öffnen &rarr;</Button>
+      </Card> </Grid>))} </Grid> </Container> </BaseLayout>);
+  }
+
+  const formattedContent = project?.content ? project.content.replace(/\\n/g, '\n') : '';
+  const isLoggedIn = !!session;
+
+  return (
+    <BaseLayout>
+      <Head><title>Projektplan | Wesner Software</title></Head>
+      <Container maxWidth="md" sx={{ py: 8 }}>
+        <Paper elevation={3} sx={{ p: 4, borderRadius: 2 }}>
+
+          <Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={4}>
+            <Box>
+              {session?.user?.role === 'admin' && (
+                <Button size="small" onClick={() => router.push('/de/Umsetzungsplan')}
+                        sx={{ mb: 1, p: 0, justifyContent: 'flex-start' }}>&larr; Zurück zur Übersicht</Button>
+              )}
+              <Typography variant="h4" fontWeight="bold">Projektplan</Typography>
+              <Typography variant="subtitle1" color="text.secondary">
+                {isLoggedIn ? `Angemeldet als: ${session.user?.name}` : 'Gastzugang (Schreibgeschützt)'}
+              </Typography>
+            </Box>
+
+            {isLoggedIn ? (
+              <Button variant="outlined" color="error" onClick={handleLogout}>Abmelden</Button>
+            ) : (
+              <Button variant="contained"
+                      onClick={() => loginFormRef.current?.scrollIntoView({ behavior: 'smooth' })}>Anmelden</Button>
+            )}
+          </Box>
+
+          {!project ? (<Alert severity="warning" sx={{ color: '#663c00' }}>Projekt nicht gefunden.</Alert>) : (
+            <>
+              <Box mb={4}>
+                <Box display="flex" gap={1} mb={2}>
+                  <Chip label={`Status: ${project.status}`} color="success" variant="outlined" />
+                  <Chip label={`ID: #${project.id}`} variant="outlined" />
+                </Box>
+                <Typography variant="h5" fontWeight="bold" color="primary">{project.title}</Typography>
+                <Box
+                  sx={{ mt: 3, p: 3, bgcolor: '#f8ffa', borderRadius: 2, '& h1, & h2': { mb: 1 }, '& ul': { pl: 3 } }}>
+                  <ReactMarkdown>{formattedContent}</ReactMarkdown>
+                </Box>
+              </Box>
+
+              <Divider sx={{ my: 4 }} />
+              <Typography variant="h6" gutterBottom fontWeight="bold">Kommentare & Fragen</Typography>
+
+              {isLoggedIn ? (
+                <Box
+                  component="form"
+                  onSubmit={(e: React.FormEvent) => {
+                    e.preventDefault();
+                    handleSendMessage();
+                  }}
+                  display="flex" gap={2} alignItems="flex-start"
+                  sx={{ position: 'relative', zIndex: 9999, mb: 3 }}
+                >
+                  <TextField
+                    fullWidth
+                    placeholder="Schreiben Sie einen Kommentar..."
+                    size="small"
+                    multiline
+                    maxRows={4}
+                    value={newMessage}
+                    onChange={(e) => setNewMessage(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        handleSendMessage();
+                      }
+                    }}
+                    sx={{ bgcolor: 'white' }}
+                  />
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    disabled={!newMessage.trim() || isSending}
+                    sx={{
+                      minWidth: 100,
+                      fontWeight: 'bold',
+                      height: '40px',
+                      position: 'relative',
+                      zIndex: 10000
+                    }}
+                  >
+                    {isSending ? '...' : 'Senden'}
+                  </Button>
+                </Box>
+              ) : (
+                <Box ref={loginFormRef}>
+                  <InlineLoginForm />
+                </Box>
+              )}
+
+              <Box sx={{
+                bgcolor: '#fff',
+                border: '1px solid #eee',
+                borderRadius: 2,
+                p: 2,
+                height: 400,
+                overflowY: 'auto'
+              }}>
+                {msgList.length > 0 ? (
+                  msgList.map((msg) => (
+                    <Box key={msg.id} sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: msg.is_me ? 'flex-end' : 'flex-start',
+                      mb: 2
+                    }}>
+                      <Box sx={{
+                        maxWidth: '80%',
+                        bgcolor: msg.is_me ? '#e3f2fd' : '#f5f5f5',
+                        p: 2,
+                        borderRadius: 2,
+                        borderTopRightRadius: msg.is_me ? 0 : 8,
+                        borderTopLeftRadius: msg.is_me ? 8 : 0
+                      }}>
+                        <Typography variant="caption" display="block" color="text.secondary"
+                                    mb={0.5}>{msg.author_name} ({msg.author_role === 'admin' ? 'Admin' : 'Kunde'})</Typography>
+                        <Typography variant="body2">{msg.message}</Typography>
+                      </Box>
+                      <Typography variant="caption" color="text.secondary"
+                                  sx={{ mt: 0.5 }}>{new Date(msg.created_at).toLocaleString('de-DE')}</Typography>
+                    </Box>
+                  ))
+                ) : (<Typography color="text.secondary" align="center" py={4}>Noch keine Nachrichten.</Typography>)}
+              </Box>
+            </>
+          )}
+        </Paper>
+      </Container>
+    </BaseLayout>
+  );
+}
+
+// --- SERVER SIDE ---
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { id } = context.query;
+  if (context.locale !== 'de') { const queryParams = id ? `?id=${id}` : ''; return { redirect: { destination: `/de/Umsetzungsplan${queryParams}`, permanent: false } }; }
+  const session = await getSession(context);
+  const queryProjectId = id ? Number(id) : null;
+  let viewMode: 'admin_list' | 'project_detail' = 'project_detail';
+  let project: ProjectData | null = null;
+  let projectsList: ProjectData[] = [];
+  let comments: Comment[] = [];
+  if (queryProjectId) { viewMode = 'project_detail'; const pRes = await sql`SELECT * FROM projects WHERE id = ${queryProjectId}`; if (pRes.rows.length > 0) project = { ...pRes.rows[0], created_at: pRes.rows[0].created_at.toISOString() } as ProjectData; }
+  else if (session?.user?.role === 'admin') { viewMode = 'admin_list'; const listRes = await sql`SELECT p.id, p.title, p.status, p.created_at, u.first_name || ' ' || u.last_name as client_name FROM projects p JOIN users u ON p.user_id = u.id ORDER BY p.created_at DESC`; projectsList = listRes.rows.map((r: any) => ({ id: r.id, title: r.title, status: r.status, client_name: r.client_name, created_at: r.created_at.toISOString() })); }
+  else if (session?.user) { viewMode = 'project_detail'; const userId = Number(session.user.id); const pRes = await sql`SELECT * FROM projects WHERE user_id = ${userId} LIMIT 1`; if (pRes.rows.length > 0) project = { ...pRes.rows[0], created_at: pRes.rows[0].created_at.toISOString() } as ProjectData; }
+  else { return { redirect: { destination: '/de/auth/signin', permanent: false } }; }
+  if (project) { const cRes = await sql`SELECT c.id, c.message, c.created_at, u.first_name || ' ' || u.last_name as author_name, u.role as author_role, c.user_id FROM project_comments c JOIN users u ON c.user_id = u.id WHERE c.project_id = ${project.id} ORDER BY c.created_at ASC`; const currentUserId = session ? Number(session.user.id) : -1; comments = cRes.rows.map((c: any) => ({ id: c.id, message: c.message, created_at: c.created_at.toISOString(), author_name: c.author_name, author_role: c.author_role, is_me: c.user_id === currentUserId })); }
+  return { props: { session, messages: require(`../locales/de/shared.json`), locale: 'de', viewMode, project, projectsList, comments } };
+};

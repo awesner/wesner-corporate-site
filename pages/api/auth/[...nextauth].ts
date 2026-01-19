@@ -8,17 +8,17 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
-        email: { label: 'Email', type: 'text' },
+        username: { label: 'Benutzername', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
+        if (!credentials?.username || !credentials?.password) {
           throw new Error('Bitte geben Sie E-Mail und Passwort ein.');
         }
 
         try {
           const { rows } = await sql`
-            SELECT * FROM users WHERE email = ${credentials.email} LIMIT 1;
+            SELECT * FROM users WHERE username = ${credentials.username} LIMIT 1;
           `;
 
           const user = rows[0];
@@ -35,8 +35,8 @@ export const authOptions: NextAuthOptions = {
 
           return {
             id: user.id.toString(),
-            email: user.email,
-            name: user.first_name + ' ' + user.last_name,
+            email: null,
+            name: user.username,
             role: user.role,
           };
         } catch (error) {
@@ -54,6 +54,7 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         token.role = user.role;
         token.id = user.id;
+        token.name = user.name;
       }
       return token;
     },
@@ -61,6 +62,7 @@ export const authOptions: NextAuthOptions = {
       if (session.user) {
         (session.user as any).role = token.role;
         (session.user as any).id = token.id;
+        session.user.name = token.name;
       }
       return session;
     },

@@ -200,7 +200,7 @@ export default function Umsetzungsplan({ viewMode, project, projectsList, commen
                         <Typography variant="caption" display="block" color="text.secondary" mb={0.5}>{msg.author_name} ({msg.author_role === 'admin' ? 'Admin' : 'Kunde'})</Typography>
                         <Typography variant="body2">{msg.message}</Typography>
                       </Box>
-                      <Typography variant="caption" color="text.secondary" sx={{ mt: 0.5 }}>{new Date(msg.created_at).toLocaleString('de-DE')}</Typography>
+                      <Typography variant="caption" color="text.secondary" sx={{ mt: 0.5 }} suppressHydrationWarning>{new Date(msg.created_at).toLocaleString('de-DE')}</Typography>
                     </Box>
                   ))
                 ) : ( <Typography color="text.secondary" align="center" py={4}>Noch keine Nachrichten.</Typography> )}

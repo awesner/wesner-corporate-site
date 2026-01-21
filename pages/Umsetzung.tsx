@@ -170,9 +170,30 @@ const AdminPanel = ({ onDataChange }: { onDataChange: () => void }) => {
 
   const handleSaveCourse = async () => {
     if (!editingCourse.title) return;
+
+    const cleanTitle = editingCourse.title.trim();
+
+    if (!editingCourse.id) {
+      const { data: existingData } = await supabase
+        .from('courses')
+        .select('id')
+        .ilike('title', cleanTitle);
+
+      if (existingData && existingData.length > 0) {
+        alert(`Ein Kurs mit dem Namen "${cleanTitle}" existiert bereits! Bitte nutzen Sie den bestehenden Kurs.`);
+        return;
+      }
+    }
+
     const { course_sessions, ...courseData } = editingCourse as Course;
-    if (courseData.id) await supabase.from('courses').update(courseData).eq('id', courseData.id);
-    else await supabase.from('courses').insert([courseData]);
+
+    courseData.title = cleanTitle;
+
+    if (courseData.id) {
+      await supabase.from('courses').update(courseData).eq('id', courseData.id);
+    } else {
+      await supabase.from('courses').insert([courseData]);
+    }
 
     setCourseDialogOpen(false);
     await fetchCourses();

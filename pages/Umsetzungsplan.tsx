@@ -141,7 +141,7 @@ export default function Umsetzungsplan({ viewMode, project, projectsList, commen
           author_name: session.user.name || 'User',
           author_role: session.user.role, is_me: true
         };
-        setMsgList((prev) => [...prev, newMsgObj]);
+        setMsgList((prev) => [newMsgObj, ...prev]);
         setNewMessage('');
       } else { alert('Fehler beim Senden.'); }
     } catch (e) { console.error(e); } finally { setIsSending(false); }
@@ -192,7 +192,7 @@ export default function Umsetzungsplan({ viewMode, project, projectsList, commen
                 <Box ref={loginFormRef}><InlineLoginForm /></Box>
               )}
 
-              <Box sx={{ bgcolor: '#fff', border: '1px solid #eee', borderRadius: 2, p: 2, height: 400, overflowY: 'auto' }}>
+              <Box sx={{ mt: 2 }}>
                 {msgList.length > 0 ? (
                   msgList.map((msg) => (
                     <Box key={msg.id} sx={{ display: 'flex', flexDirection: 'column', alignItems: msg.is_me ? 'flex-end' : 'flex-start', mb: 2 }}>
@@ -214,36 +214,119 @@ export default function Umsetzungsplan({ viewMode, project, projectsList, commen
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  console.log('--- START REQUEST: Umsetzungsplan ---');
+  console.time('Total_Execution_Time');
+
   const { id } = context.query;
-  if (context.locale !== 'de') { const queryParams = id ? `?id=${id}` : ''; return { redirect: { destination: `/de/Umsetzungsplan${queryParams}`, permanent: false } }; }
+
+  if (context.locale !== 'de') {
+    const queryParams = id ? `?id=${id}` : '';
+    return { redirect: { destination: `/de/Umsetzungsplan${queryParams}`, permanent: false } };
+  }
+
+  console.time('1_Get_Session');
   const session = await getSession(context);
+  console.timeEnd('1_Get_Session');
+
   const queryProjectId = id ? Number(id) : null;
   let viewMode: 'admin_list' | 'project_detail' = 'project_detail';
   let project: ProjectData | null = null;
   let projectsList: ProjectData[] = [];
   let comments: Comment[] = [];
 
-  if (queryProjectId) { viewMode = 'project_detail'; const pRes = await sql`SELECT * FROM projects WHERE id = ${queryProjectId}`; if (pRes.rows.length > 0) project = { ...pRes.rows[0], created_at: pRes.rows[0].created_at.toISOString() } as ProjectData; }
-  else if (session?.user?.role === 'admin') { viewMode = 'admin_list'; const listRes = await sql`SELECT p.id, p.title, p.status, p.created_at, u.first_name || ' ' || u.last_name as client_name FROM projects p JOIN users u ON p.user_id = u.id ORDER BY p.created_at DESC`; projectsList = listRes.rows.map((r: any) => ({ id: r.id, title: r.title, status: r.status, client_name: r.client_name, created_at: r.created_at.toISOString() })); }
-  else if (session?.user) { viewMode = 'project_detail'; const userId = Number(session.user.id); const pRes = await sql`SELECT * FROM projects WHERE user_id = ${userId} LIMIT 1`; if (pRes.rows.length > 0) project = { ...pRes.rows[0], created_at: pRes.rows[0].created_at.toISOString() } as ProjectData; }
-  else { return { redirect: { destination: '/de/auth/signin', permanent: false } }; }
+  try {
+    if (queryProjectId) {
+      viewMode = 'project_detail';
+      console.time('2_Get_Project_By_ID');
+      const pRes = await sql`SELECT * FROM projects WHERE id = ${queryProjectId}`;
+      console.timeEnd('2_Get_Project_By_ID');
 
-  if (project) {
-    const cRes = await sql`
-      SELECT 
-        c.id, c.message, c.created_at, c.user_id,
-        u.role as author_role,
-        CASE
-          WHEN u.last_name IS NOT NULL THEN u.first_name || ' ' || u.last_name
-          ELSE u.username
-        END as author_name
-      FROM project_comments c 
-      JOIN users u ON c.user_id = u.id 
-      WHERE c.project_id = ${project.id} 
-      ORDER BY c.created_at ASC
-    `;
-    const currentUserId = session ? Number(session.user.id) : -1;
-    comments = cRes.rows.map((c: any) => ({ id: c.id, message: c.message, created_at: c.created_at.toISOString(), author_name: c.author_name, author_role: c.author_role, is_me: c.user_id === currentUserId }));
+      if (pRes.rows.length > 0) {
+        project = {
+          ...pRes.rows[0],
+          created_at: pRes.rows[0].created_at.toISOString()
+        } as ProjectData;
+      }
+    }
+    else if (session?.user?.role === 'admin') {
+      viewMode = 'admin_list';
+      console.time('2_Get_Admin_List');
+      const listRes = await sql`
+        SELECT p.id, p.title, p.status, p.created_at, u.first_name || ' ' || u.last_name as client_name
+        FROM projects p JOIN users u ON p.user_id = u.id ORDER BY p.created_at DESC
+      `;
+      console.timeEnd('2_Get_Admin_List');
+
+      projectsList = listRes.rows.map((r: any) => ({
+        id: r.id,
+        title: r.title,
+        status: r.status,
+        client_name: r.client_name,
+        created_at: r.created_at.toISOString(),
+      }));
+    }
+    else if (session?.user) {
+      viewMode = 'project_detail';
+      console.time('2_Get_Client_Project');
+      const userId = Number(session.user.id);
+      const pRes = await sql`SELECT * FROM projects WHERE user_id = ${userId} LIMIT 1`;
+      console.timeEnd('2_Get_Client_Project');
+
+      if (pRes.rows.length > 0) {
+        project = {
+          ...pRes.rows[0],
+          created_at: pRes.rows[0].created_at.toISOString()
+        } as ProjectData;
+      }
+    }
+    else {
+      return { redirect: { destination: '/de/auth/signin', permanent: false } };
+    }
+
+    if (project) {
+      console.time('3_Get_Comments');
+      const cRes = await sql`
+        SELECT 
+          c.id, c.message, c.created_at, c.user_id,
+          u.role as author_role,
+          CASE
+            WHEN u.last_name IS NOT NULL THEN u.first_name || ' ' || u.last_name
+            ELSE u.username
+          END as author_name
+        FROM project_comments c 
+        JOIN users u ON c.user_id = u.id 
+        WHERE c.project_id = ${project.id} 
+        ORDER BY c.created_at DESC  -- <--- ВАЖНО: Сортировка DESC (новые сверху)
+      `;
+      console.timeEnd('3_Get_Comments');
+
+      const currentUserId = session ? Number(session.user.id) : -1;
+      comments = cRes.rows.map((c: any) => ({
+        id: c.id,
+        message: c.message,
+        created_at: c.created_at.toISOString(),
+        author_name: c.author_name,
+        author_role: c.author_role,
+        is_me: c.user_id === currentUserId
+      }));
+    }
+
+  } catch (error) {
+    console.error('SERVER ERROR:', error);
   }
-  return { props: { session, messages: require(`../locales/de/shared.json`), locale: 'de', viewMode, project, projectsList, comments } };
+
+  console.timeEnd('Total_Execution_Time');
+  console.log('--- END REQUEST ---');
+
+  return {
+    props: {
+      session,
+      messages: require(`../locales/de/shared.json`),
+      locale: 'de',
+      viewMode,
+      project,
+      projectsList,
+      comments
+    }
+  };
 };

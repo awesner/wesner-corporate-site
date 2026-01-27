@@ -1,21 +1,34 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { GetServerSideProps } from 'next';
-import { getSession, signOut, useSession, signIn } from 'next-auth/react';
+import { GetStaticProps } from 'next';
+import { signOut, useSession, signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import {
   Container, Typography, Box, Button, Paper, Alert, Chip, Divider,
   TextField, Card, Grid, Dialog, DialogTitle, DialogContent, DialogActions,
-  InputAdornment, IconButton
+  InputAdornment, IconButton, CircularProgress
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import Head from 'next/head';
-import { sql } from '@vercel/postgres';
 import ReactMarkdown from 'react-markdown';
 import { BaseLayout } from '@components/layouts/base-layout';
 
-interface Comment { id: number; message: string; created_at: string; author_name: string; author_role: string; is_me: boolean; }
-interface ProjectData { id: number; title: string; content?: string; status: string; created_at: string; client_name?: string; }
-interface PageProps { viewMode: 'admin_list' | 'project_detail'; project: ProjectData | null; projectsList?: ProjectData[]; comments?: Comment[]; }
+interface Comment {
+  id: number;
+  message: string;
+  created_at: string;
+  author_name: string;
+  author_role: string;
+  is_me: boolean;
+}
+
+interface ProjectData {
+  id: number;
+  title: string;
+  content?: string;
+  status: string;
+  created_at: string;
+  client_name?: string;
+}
 
 const RegisterDialog = ({ open, onClose }: { open: boolean; onClose: () => void }) => {
   const [username, setUsername] = useState('');
@@ -90,7 +103,7 @@ const InlineLoginForm = () => {
     setLoading(true); setError('');
     const res = await signIn('credentials', { username, password, redirect: false });
     if (res?.error) { setError('Benutzername oder Passwort ist falsch.'); setLoading(false); }
-    else { router.replace(router.asPath); }
+    else { router.reload(); }
   };
 
   return (
@@ -117,15 +130,44 @@ const InlineLoginForm = () => {
   );
 };
 
-export default function Umsetzungsplan({ viewMode, project, projectsList, comments }: PageProps) {
-  const { data: session } = useSession();
+export default function Umsetzungsplan() {
+  const { data: session, status } = useSession();
   const router = useRouter();
-  const loginFormRef = useRef<HTMLDivElement>(null);
-  const [msgList, setMsgList] = useState<Comment[]>(comments || []);
+  const { id } = router.query;
+
+  const [loading, setLoading] = useState(true);
+  const [viewMode, setViewMode] = useState('project_detail');
+  const [project, setProject] = useState<ProjectData | null>(null);
+  const [projectsList, setProjectsList] = useState<ProjectData[]>([]);
+  const [comments, setComments] = useState<Comment[]>([]);
+
   const [newMessage, setNewMessage] = useState('');
   const [isSending, setIsSending] = useState(false);
+  const loginFormRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => { if (comments) setMsgList(comments); }, [comments]);
+  useEffect(() => {
+    if (!router.isReady) return;
+
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const queryParams = id ? `?id=${id}` : '';
+        const res = await fetch(`/api/projects/details${queryParams}`);
+        const data = await res.json();
+
+        setViewMode(data.viewMode);
+        setProject(data.project);
+        setProjectsList(data.projectsList || []);
+        setComments(data.comments || []);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    void fetchData();
+  }, [router.isReady, id, session]);
 
   const handleSendMessage = async () => {
     if (!newMessage.trim() || !project || !session?.user) return;
@@ -138,195 +180,143 @@ export default function Umsetzungsplan({ viewMode, project, projectsList, commen
       if (res.ok) {
         const newMsgObj: Comment = {
           id: Date.now(), message: newMessage, created_at: new Date().toISOString(),
-          author_name: session.user.name || 'User',
-          author_role: session.user.role, is_me: true
+          author_name: session.user.name || 'User', author_role: session.user.role, is_me: true
         };
-        setMsgList((prev) => [newMsgObj, ...prev]);
+        setComments((prev) => [newMsgObj, ...prev]);
         setNewMessage('');
       } else { alert('Fehler beim Senden.'); }
     } catch (e) { console.error(e); } finally { setIsSending(false); }
   };
 
   const handleLogout = () => signOut({ callbackUrl: '/de/auth/signin' });
+  const isLoggedIn = !!session;
 
-  if (viewMode === 'admin_list') {
-    return ( <BaseLayout> <Head><title>Admin Dashboard</title></Head> <Container maxWidth="lg" sx={{ py: 8 }}> <Box display="flex" justifyContent="space-between" mb={4}> <Typography variant="h4" fontWeight="bold">Kundenprojekte</Typography> <Button variant="outlined" color="error" onClick={handleLogout}>Abmelden</Button> </Box> <Grid container spacing={3}> {projectsList?.map((p) => ( <Grid item xs={12} md={6} key={p.id}> <Card elevation={3} sx={{ p: 3, cursor: 'pointer', '&:hover': { boxShadow: 6 } }} onClick={() => router.push(`/de/Umsetzungsplan?id=${p.id}`)}> <Box display="flex" justifyContent="space-between" mb={1}> <Chip label={p.status} color="primary" size="small" variant="outlined" /> <Typography variant="caption" color="text.secondary">ID: #{p.id}</Typography> </Box> <Typography variant="h6" fontWeight="bold" gutterBottom>{p.title}</Typography> <Typography color="text.secondary">Kunde: {p.client_name}</Typography> <Button sx={{ mt: 2 }} variant="text">Öffnen &rarr;</Button> </Card> </Grid> ))} </Grid> </Container> </BaseLayout> );
+  if (loading || status === 'loading') {
+    return (
+      <BaseLayout>
+        <Head><title>Laden... | Wesner Software</title></Head>
+        <Container sx={{ py: 15, textAlign: 'center' }}>
+          <CircularProgress />
+          <Typography sx={{ mt: 2, color: 'text.secondary' }}>Daten werden geladen...</Typography>
+        </Container>
+      </BaseLayout>
+    );
   }
 
-  const formattedContent = project?.content ? project.content.replace(/\\n/g, '\n') : '';
-  const isLoggedIn = !!session;
+  if (viewMode === 'admin_list') {
+    return (
+      <BaseLayout>
+        <Head><title>Admin Dashboard</title></Head>
+        <Container maxWidth="lg" sx={{ py: 8 }}>
+          <Box display="flex" justifyContent="space-between" mb={4}>
+            <Typography variant="h4" fontWeight="bold">Kundenprojekte</Typography>
+            <Button variant="outlined" color="error" onClick={handleLogout}>Abmelden</Button>
+          </Box>
+          <Grid container spacing={3}>
+            {projectsList?.map((p) => (
+              <Grid item xs={12} md={6} key={p.id}>
+                <Card elevation={3} sx={{ p: 3, cursor: 'pointer', '&:hover': { boxShadow: 6 } }} onClick={() => router.push(`/de/Umsetzungsplan?id=${p.id}`)}>
+                  <Box display="flex" justifyContent="space-between" mb={1}>
+                    <Chip label={p.status} color="primary" size="small" variant="outlined" />
+                    <Typography variant="caption" color="text.secondary">ID: #{p.id}</Typography>
+                  </Box>
+                  <Typography variant="h6" fontWeight="bold" gutterBottom>{p.title}</Typography>
+                  <Typography color="text.secondary">Kunde: {p.client_name}</Typography>
+                  <Button sx={{ mt: 2 }} variant="text">Öffnen &rarr;</Button>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </BaseLayout>
+    );
+  }
+
+  if (!project) {
+    return (
+      <BaseLayout>
+        <Head><title>Fehler | Wesner Software</title></Head>
+        <Container maxWidth="sm" sx={{ py: 10, textAlign: 'center' }}>
+          <Alert severity="warning" sx={{ mb: 3 }}>Projekt nicht gefunden oder Zugriff verweigert.</Alert>
+          {!isLoggedIn && <Button variant="contained" onClick={() => signIn()}>Anmelden</Button>}
+        </Container>
+      </BaseLayout>
+    );
+  }
+
+  const formattedContent = project.content ? project.content.replace(/\\n/g, '\n') : '';
 
   return (
     <BaseLayout>
       <Head><title>Projektplan | Wesner Software</title></Head>
       <Container maxWidth="md" sx={{ py: 8 }}>
         <Paper elevation={3} sx={{ p: 4, borderRadius: 2 }}>
+
           <Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={4}>
             <Box>
-              {session?.user?.role === 'admin' && ( <Button size="small" onClick={() => router.push('/de/Umsetzungsplan')} sx={{ mb: 1, p: 0, justifyContent: 'flex-start' }}>&larr; Zurück zur Übersicht</Button> )}
+              {session?.user?.role === 'admin' && (
+                <Button size="small" onClick={() => router.push('/de/Umsetzungsplan')} sx={{ mb: 1, p: 0, justifyContent: 'flex-start' }}>&larr; Zurück zur Übersicht</Button>
+              )}
               <Typography variant="h4" fontWeight="bold">Projektplan</Typography>
               <Typography variant="subtitle1" color="text.secondary">
                 {isLoggedIn ? `Angemeldet als: ${session.user?.name}` : 'Gastzugang (Schreibgeschützt)'}
               </Typography>
             </Box>
-            {isLoggedIn ? ( <Button variant="outlined" color="error" onClick={handleLogout}>Abmelden</Button> ) : ( <Button variant="contained" onClick={() => loginFormRef.current?.scrollIntoView({ behavior: 'smooth' })}>Anmelden</Button> )}
+            {isLoggedIn ? (
+              <Button variant="outlined" color="error" onClick={handleLogout}>Abmelden</Button>
+            ) : (
+              <Button variant="contained" onClick={() => loginFormRef.current?.scrollIntoView({ behavior: 'smooth' })}>Anmelden</Button>
+            )}
           </Box>
 
-          {!project ? ( <Alert severity="warning" sx={{ color: '#663c00' }}>Projekt nicht gefunden.</Alert> ) : (
-            <>
-              <Box mb={4}>
-                <Box display="flex" gap={1} mb={2}> <Chip label={`Status: ${project.status}`} color="success" variant="outlined" /> <Chip label={`ID: #${project.id}`} variant="outlined" /> </Box>
-                <Typography variant="h5" fontWeight="bold" color="primary">{project.title}</Typography>
-                <Box sx={{ mt: 3, p: 3, bgcolor: '#f8f9fa', borderRadius: 2, '& h1, & h2': { mb: 1 }, '& ul': { pl: 3 } }}><ReactMarkdown>{formattedContent}</ReactMarkdown></Box>
-              </Box>
+          <Box mb={4}>
+            <Box display="flex" gap={1} mb={2}>
+              <Chip label={`Status: ${project.status}`} color="success" variant="outlined" />
+              <Chip label={`ID: #${project.id}`} variant="outlined" />
+            </Box>
+            <Typography variant="h5" fontWeight="bold" color="primary">{project.title}</Typography>
+            <Box sx={{ mt: 3, p: 3, bgcolor: '#f8f9fa', borderRadius: 2, '& h1, & h2': { mb: 1 }, '& ul': { pl: 3 } }}>
+              <ReactMarkdown>{formattedContent}</ReactMarkdown>
+            </Box>
+          </Box>
 
-              <Divider sx={{ my: 4 }} />
-              <Typography variant="h6" gutterBottom fontWeight="bold">Kommentare & Fragen</Typography>
+          <Divider sx={{ my: 4 }} />
+          <Typography variant="h6" gutterBottom fontWeight="bold">Kommentare & Fragen</Typography>
 
-              {isLoggedIn ? (
-                <Box component="form" onSubmit={(e: React.FormEvent) => { e.preventDefault(); handleSendMessage(); }} display="flex" gap={2} alignItems="flex-start" sx={{ position: 'relative', zIndex: 9999, mb: 3 }}>
-                  <TextField fullWidth placeholder="Schreiben Sie einen Kommentar..." size="small" multiline maxRows={4} value={newMessage} onChange={(e) => setNewMessage(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSendMessage(); }}} sx={{ bgcolor: 'white' }} />
-                  <Button type="submit" variant="contained" disabled={!newMessage.trim() || isSending} sx={{ minWidth: 100, fontWeight: 'bold', height: '40px', position: 'relative', zIndex: 10000 }}>{isSending ? '...' : 'Senden'}</Button>
-                </Box>
-              ) : (
-                <Box ref={loginFormRef}><InlineLoginForm /></Box>
-              )}
-
-              <Box sx={{ mt: 2 }}>
-                {msgList.length > 0 ? (
-                  msgList.map((msg) => (
-                    <Box key={msg.id} sx={{ display: 'flex', flexDirection: 'column', alignItems: msg.is_me ? 'flex-end' : 'flex-start', mb: 2 }}>
-                      <Box sx={{ maxWidth: '80%', bgcolor: msg.is_me ? '#e3f2fd' : '#f5f5f5', p: 2, borderRadius: 2, borderTopRightRadius: msg.is_me ? 0 : 8, borderTopLeftRadius: msg.is_me ? 8 : 0 }}>
-                        <Typography variant="caption" display="block" color="text.secondary" mb={0.5}>{msg.author_name} ({msg.author_role === 'admin' ? 'Admin' : 'Kunde'})</Typography>
-                        <Typography variant="body2">{msg.message}</Typography>
-                      </Box>
-                      <Typography variant="caption" color="text.secondary" sx={{ mt: 0.5 }} suppressHydrationWarning>{new Date(msg.created_at).toLocaleString('de-DE')}</Typography>
-                    </Box>
-                  ))
-                ) : ( <Typography color="text.secondary" align="center" py={4}>Noch keine Nachrichten.</Typography> )}
-              </Box>
-            </>
+          {isLoggedIn ? (
+            <Box component="form" onSubmit={(e: React.FormEvent) => { e.preventDefault(); void handleSendMessage(); }} display="flex" gap={2} alignItems="flex-start" sx={{ position: 'relative', zIndex: 9999, mb: 3 }}>
+              <TextField fullWidth placeholder="Schreiben Sie einen Kommentar..." size="small" multiline maxRows={4} value={newMessage} onChange={(e) => setNewMessage(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); void handleSendMessage(); }}} sx={{ bgcolor: 'white' }} />
+              <Button type="submit" variant="contained" disabled={!newMessage.trim() || isSending} sx={{ minWidth: 100, fontWeight: 'bold', height: '40px', position: 'relative', zIndex: 10000 }}>{isSending ? '...' : 'Senden'}</Button>
+            </Box>
+          ) : (
+            <Box ref={loginFormRef}><InlineLoginForm /></Box>
           )}
+
+          <Box sx={{ bgcolor: '#fff', borderTop: '1px solid #eee', pt: 2 }}>
+            {comments.length > 0 ? (
+              comments.map((msg) => (
+                <Box key={msg.id} sx={{ display: 'flex', flexDirection: 'column', alignItems: msg.is_me ? 'flex-end' : 'flex-start', mb: 2 }}>
+                  <Box sx={{ maxWidth: '80%', bgcolor: msg.is_me ? '#e3f2fd' : '#f5f5f5', p: 2, borderRadius: 2, borderTopRightRadius: msg.is_me ? 0 : 8, borderTopLeftRadius: msg.is_me ? 8 : 0 }}>
+                    <Typography variant="caption" display="block" color="text.secondary" mb={0.5}>{msg.author_name} ({msg.author_role === 'admin' ? 'Admin' : 'Kunde'})</Typography>
+                    <Typography variant="body2">{msg.message}</Typography>
+                  </Box>
+                  <Typography variant="caption" color="text.secondary" sx={{ mt: 0.5 }} suppressHydrationWarning>{new Date(msg.created_at).toLocaleString('de-DE')}</Typography>
+                </Box>
+              ))
+            ) : ( <Typography color="text.secondary" align="center" py={4}>Noch keine Nachrichten.</Typography> )}
+          </Box>
+
         </Paper>
       </Container>
     </BaseLayout>
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  console.log('--- START REQUEST: Umsetzungsplan ---');
-  console.time('Total_Execution_Time');
-
-  const { id } = context.query;
-
-  if (context.locale !== 'de') {
-    const queryParams = id ? `?id=${id}` : '';
-    return { redirect: { destination: `/de/Umsetzungsplan${queryParams}`, permanent: false } };
-  }
-
-  console.time('1_Get_Session');
-  const session = await getSession(context);
-  console.timeEnd('1_Get_Session');
-
-  const queryProjectId = id ? Number(id) : null;
-  let viewMode: 'admin_list' | 'project_detail' = 'project_detail';
-  let project: ProjectData | null = null;
-  let projectsList: ProjectData[] = [];
-  let comments: Comment[] = [];
-
-  try {
-    if (queryProjectId) {
-      viewMode = 'project_detail';
-      console.time('2_Get_Project_By_ID');
-      const pRes = await sql`SELECT * FROM projects WHERE id = ${queryProjectId}`;
-      console.timeEnd('2_Get_Project_By_ID');
-
-      if (pRes.rows.length > 0) {
-        project = {
-          ...pRes.rows[0],
-          created_at: pRes.rows[0].created_at.toISOString()
-        } as ProjectData;
-      }
-    }
-    else if (session?.user?.role === 'admin') {
-      viewMode = 'admin_list';
-      console.time('2_Get_Admin_List');
-      const listRes = await sql`
-        SELECT p.id, p.title, p.status, p.created_at, u.first_name || ' ' || u.last_name as client_name
-        FROM projects p JOIN users u ON p.user_id = u.id ORDER BY p.created_at DESC
-      `;
-      console.timeEnd('2_Get_Admin_List');
-
-      projectsList = listRes.rows.map((r: any) => ({
-        id: r.id,
-        title: r.title,
-        status: r.status,
-        client_name: r.client_name,
-        created_at: r.created_at.toISOString(),
-      }));
-    }
-    else if (session?.user) {
-      viewMode = 'project_detail';
-      console.time('2_Get_Client_Project');
-      const userId = Number(session.user.id);
-      const pRes = await sql`SELECT * FROM projects WHERE user_id = ${userId} LIMIT 1`;
-      console.timeEnd('2_Get_Client_Project');
-
-      if (pRes.rows.length > 0) {
-        project = {
-          ...pRes.rows[0],
-          created_at: pRes.rows[0].created_at.toISOString()
-        } as ProjectData;
-      }
-    }
-    else {
-      return { redirect: { destination: '/de/auth/signin', permanent: false } };
-    }
-
-    if (project) {
-      console.time('3_Get_Comments');
-      const cRes = await sql`
-        SELECT 
-          c.id, c.message, c.created_at, c.user_id,
-          u.role as author_role,
-          CASE
-            WHEN u.last_name IS NOT NULL THEN u.first_name || ' ' || u.last_name
-            ELSE u.username
-          END as author_name
-        FROM project_comments c 
-        JOIN users u ON c.user_id = u.id 
-        WHERE c.project_id = ${project.id} 
-        ORDER BY c.created_at DESC  -- <--- ВАЖНО: Сортировка DESC (новые сверху)
-      `;
-      console.timeEnd('3_Get_Comments');
-
-      const currentUserId = session ? Number(session.user.id) : -1;
-      comments = cRes.rows.map((c: any) => ({
-        id: c.id,
-        message: c.message,
-        created_at: c.created_at.toISOString(),
-        author_name: c.author_name,
-        author_role: c.author_role,
-        is_me: c.user_id === currentUserId
-      }));
-    }
-
-  } catch (error) {
-    console.error('SERVER ERROR:', error);
-  }
-
-  console.timeEnd('Total_Execution_Time');
-  console.log('--- END REQUEST ---');
-
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
-      session,
-      messages: require(`../locales/de/shared.json`),
-      locale: 'de',
-      viewMode,
-      project,
-      projectsList,
-      comments
-    }
+      messages: require(`../locales/${locale || 'de'}/shared.json`),
+      locale: locale || 'de'
+    },
   };
 };

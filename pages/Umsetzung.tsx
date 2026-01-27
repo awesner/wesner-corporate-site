@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { GetServerSideProps } from 'next';
-import { getSession, useSession } from 'next-auth/react';
+import { GetStaticProps } from 'next';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import {
   Container, Grid, Paper, Typography, Box, Button, Table, TableBody, TableCell,
   TableHead, TableRow, IconButton, Dialog, DialogTitle, DialogContent,
-  TextField, DialogActions, Chip, Card, CardMedia, CardContent, Tooltip
+  TextField, DialogActions, Chip, Card, CardMedia, CardContent, Tooltip, CircularProgress
 } from '@mui/material';
 import {
   Delete, Edit, Add, Event,
@@ -47,9 +48,8 @@ const AppSimulator = ({ refreshTrigger }: { refreshTrigger: number }) => {
         .gte('start_time', now)
         .order('start_time', { ascending: true });
 
-      if (error) {
-        console.error('Simulator error:', error);
-      } else {
+      if (error) console.error(error);
+      else {
         const newSessions = (data as any) || [];
         setSessions(newSessions);
         if (selectedSession) {
@@ -59,7 +59,6 @@ const AppSimulator = ({ refreshTrigger }: { refreshTrigger: number }) => {
       }
       setLoading(false);
     };
-
     fetchAppContent();
   }, [refreshTrigger]);
 
@@ -170,34 +169,10 @@ const AdminPanel = ({ onDataChange }: { onDataChange: () => void }) => {
 
   const handleSaveCourse = async () => {
     if (!editingCourse.title) return;
-
-    const cleanTitle = editingCourse.title.trim();
-
-    if (!editingCourse.id) {
-      const { data: existingData } = await supabase
-        .from('courses')
-        .select('id')
-        .ilike('title', cleanTitle);
-
-      if (existingData && existingData.length > 0) {
-        alert(`Ein Kurs mit dem Namen "${cleanTitle}" existiert bereits! Bitte nutzen Sie den bestehenden Kurs.`);
-        return;
-      }
-    }
-
     const { course_sessions, ...courseData } = editingCourse as Course;
-
-    courseData.title = cleanTitle;
-
-    if (courseData.id) {
-      await supabase.from('courses').update(courseData).eq('id', courseData.id);
-    } else {
-      await supabase.from('courses').insert([courseData]);
-    }
-
-    setCourseDialogOpen(false);
-    await fetchCourses();
-    onDataChange();
+    if (courseData.id) await supabase.from('courses').update(courseData).eq('id', courseData.id);
+    else await supabase.from('courses').insert([courseData]);
+    setCourseDialogOpen(false); await fetchCourses(); onDataChange();
   };
 
   const handleDeleteCourse = async (id: number) => {
@@ -226,9 +201,7 @@ const AdminPanel = ({ onDataChange }: { onDataChange: () => void }) => {
       if (error) alert('Fehler: ' + error.message);
     }
     setSessionForm({ id: undefined, date: '', time: '10:00', seats: '10' });
-    await fetchSessionsForManager(selectedCourseId);
-    await fetchCourses();
-    onDataChange();
+    await fetchSessionsForManager(selectedCourseId); await fetchCourses(); onDataChange();
   };
 
   const handleEditSession = (session: CourseSession) => {
@@ -247,17 +220,14 @@ const AdminPanel = ({ onDataChange }: { onDataChange: () => void }) => {
     }
     await supabase.from('course_sessions').delete().eq('id', sessionId);
     if (selectedCourseId) await fetchSessionsForManager(selectedCourseId);
-    await fetchCourses();
-    onDataChange();
+    await fetchCourses(); onDataChange();
   };
 
   return (
     <Paper sx={{ p: 3, height: '100%' }}>
       <Box display="flex" justifyContent="space-between" mb={3}>
         <Typography variant="h5" fontWeight="bold">Kursverwaltung</Typography>
-        <Button variant="contained" startIcon={<Add />} onClick={() => { setEditingCourse({}); setCourseDialogOpen(true); }}>
-          Neuer Kurs
-        </Button>
+        <Button variant="contained" startIcon={<Add />} onClick={() => { setEditingCourse({}); setCourseDialogOpen(true); }}>Neuer Kurs</Button>
       </Box>
 
       <Table size="small">
@@ -275,9 +245,7 @@ const AdminPanel = ({ onDataChange }: { onDataChange: () => void }) => {
           {courses.map((course, index) => {
             const sessions = course.course_sessions || [];
             const now = new Date();
-            const futureSessions = sessions
-              .filter(s => new Date(s.start_time) >= now)
-              .sort((a, b) => new Date(a.start_time).getTime() - new Date(b.start_time).getTime());
+            const futureSessions = sessions.filter(s => new Date(s.start_time) >= now).sort((a, b) => new Date(a.start_time).getTime() - new Date(b.start_time).getTime());
             const nextSession = futureSessions[0];
             const hasAnySessions = sessions.length > 0;
 
@@ -304,27 +272,16 @@ const AdminPanel = ({ onDataChange }: { onDataChange: () => void }) => {
                         const booked = nextSession.bookings?.[0]?.count || 0;
                         const max = nextSession.max_participants;
                         const isFull = booked >= max;
-                        return (
-                          <>
-                            <Group fontSize="small" color={isFull ? "error" : "action"} />
-                            <Typography variant="body2" fontWeight={isFull ? "bold" : "regular"} color={isFull ? "error.main" : "text.primary"}>{booked} / {max}</Typography>
-                          </>
-                        );
+                        return (<><Group fontSize="small" color={isFull ? "error" : "action"} /><Typography variant="body2" fontWeight={isFull ? "bold" : "regular"} color={isFull ? "error.main" : "text.primary"}>{booked} / {max}</Typography></>);
                       })()}
                     </Box>
                   ) : '-'}
                 </TableCell>
                 <TableCell>{course.duration_min} min</TableCell>
                 <TableCell align="right">
-                  <Tooltip title={hasAnySessions ? "Termine verwalten" : "Termin hinzufügen"} arrow placement="bottom" componentsProps={{ tooltip: { sx: { bgcolor: '#333' } }, arrow: { sx: { color: '#333' } } }}>
-                    <IconButton color={hasAnySessions ? "primary" : "warning"} onClick={() => openSessionManager(course.id)}><Event /></IconButton>
-                  </Tooltip>
-                  <Tooltip title="Bearbeiten" arrow placement="bottom" componentsProps={{ tooltip: { sx: { bgcolor: '#333' } }, arrow: { sx: { color: '#333' } } }}>
-                    <IconButton onClick={() => { setEditingCourse(course); setCourseDialogOpen(true); }}><Edit /></IconButton>
-                  </Tooltip>
-                  <Tooltip title="Löschen" arrow placement="bottom" componentsProps={{ tooltip: { sx: { bgcolor: '#d32f2f' } }, arrow: { sx: { color: '#d32f2f' } } }}>
-                    <IconButton color="error" onClick={() => handleDeleteCourse(course.id)}><Delete /></IconButton>
-                  </Tooltip>
+                  <Tooltip title={hasAnySessions ? "Termine verwalten" : "Termin hinzufügen"} arrow placement="bottom" componentsProps={{ tooltip: { sx: { bgcolor: '#333' } }, arrow: { sx: { color: '#333' } } }}><IconButton color={hasAnySessions ? "primary" : "warning"} onClick={() => openSessionManager(course.id)}><Event /></IconButton></Tooltip>
+                  <Tooltip title="Bearbeiten" arrow placement="bottom" componentsProps={{ tooltip: { sx: { bgcolor: '#333' } }, arrow: { sx: { color: '#333' } } }}><IconButton onClick={() => { setEditingCourse(course); setCourseDialogOpen(true); }}><Edit /></IconButton></Tooltip>
+                  <Tooltip title="Löschen" arrow placement="bottom" componentsProps={{ tooltip: { sx: { bgcolor: '#d32f2f' } }, arrow: { sx: { color: '#d32f2f' } } }}><IconButton color="error" onClick={() => handleDeleteCourse(course.id)}><Delete /></IconButton></Tooltip>
                 </TableCell>
               </TableRow>
             );
@@ -339,25 +296,11 @@ const AdminPanel = ({ onDataChange }: { onDataChange: () => void }) => {
         </Box>
         <DialogContent sx={{ p: 3 }}>
           <Grid container spacing={3} mt={0}>
-            <Grid item xs={12} md={8}>
-              <TextField label="Kurstitel" fullWidth variant="outlined" value={editingCourse.title || ''} onChange={e => setEditingCourse({...editingCourse, title: e.target.value})} placeholder="z.B. Yoga für Anfänger" />
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <TextField label="Dauer (Minuten)" type="number" fullWidth variant="outlined" value={editingCourse.duration_min || ''} onChange={e => setEditingCourse({...editingCourse, duration_min: Number(e.target.value)})} />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField label="Beschreibung" multiline rows={4} fullWidth variant="outlined" value={editingCourse.description || ''} onChange={e => setEditingCourse({...editingCourse, description: e.target.value})} placeholder="Beschreiben Sie den Inhalt des Kurses..." />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <TextField label="Bild URL" fullWidth variant="outlined" value={editingCourse.image_url || ''} onChange={e => setEditingCourse({...editingCourse, image_url: e.target.value})} helperText="Link zu einem Bild (z.B. https://example.com/image.jpg)" />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Box sx={{ width: '100%', height: 120, bgcolor: '#f5f5f5', borderRadius: 2, border: '1px dashed #ccc', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-                {editingCourse.image_url ? (
-                  <img src={editingCourse.image_url} alt="Vorschau" style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => (e.currentTarget.style.display = 'none')} />
-                ) : ( <Typography variant="caption" color="text.secondary">Bildvorschau</Typography> )}
-              </Box>
-            </Grid>
+            <Grid item xs={12} md={8}><TextField label="Kurstitel" fullWidth variant="outlined" value={editingCourse.title || ''} onChange={e => setEditingCourse({...editingCourse, title: e.target.value})} placeholder="z.B. Yoga für Anfänger" /></Grid>
+            <Grid item xs={12} md={4}><TextField label="Dauer (Minuten)" type="number" fullWidth variant="outlined" value={editingCourse.duration_min || ''} onChange={e => setEditingCourse({...editingCourse, duration_min: Number(e.target.value)})} /></Grid>
+            <Grid item xs={12}><TextField label="Beschreibung" multiline rows={4} fullWidth variant="outlined" value={editingCourse.description || ''} onChange={e => setEditingCourse({...editingCourse, description: e.target.value})} placeholder="Beschreiben Sie den Inhalt des Kurses..." /></Grid>
+            <Grid item xs={12} md={6}><TextField label="Bild URL" fullWidth variant="outlined" value={editingCourse.image_url || ''} onChange={e => setEditingCourse({...editingCourse, image_url: e.target.value})} helperText="Link zu einem Bild (z.B. https://example.com/image.jpg)" /></Grid>
+            <Grid item xs={12} md={6}><Box sx={{ width: '100%', height: 120, bgcolor: '#f5f5f5', borderRadius: 2, border: '1px dashed #ccc', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>{editingCourse.image_url ? (<img src={editingCourse.image_url} alt="Vorschau" style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => (e.currentTarget.style.display = 'none')} />) : ( <Typography variant="caption" color="text.secondary">Bildvorschau</Typography> )}</Box></Grid>
           </Grid>
         </DialogContent>
         <DialogActions sx={{ p: 3, pt: 0 }}>
@@ -372,32 +315,13 @@ const AdminPanel = ({ onDataChange }: { onDataChange: () => void }) => {
           <Grid container spacing={3}>
             <Grid item xs={12} md={7}>
               <Typography variant="subtitle2" gutterBottom fontWeight="bold">Existierende Termine:</Typography>
-              {courseSessionsList.length === 0 ? (
-                <Typography variant="body2" color="text.secondary">Noch keine Termine erstellt.</Typography>
-              ) : (
-                <Table size="small">
-                  <TableHead><TableRow><TableCell>Datum</TableCell><TableCell>Zeit</TableCell><TableCell>Plätze</TableCell><TableCell align="right"></TableCell></TableRow></TableHead>
-                  <TableBody>
-                    {courseSessionsList.map(s => (
-                      <TableRow key={s.id} selected={sessionForm.id === s.id}>
-                        <TableCell>{new Date(s.start_time).toLocaleDateString('de-DE')}</TableCell>
-                        <TableCell>{new Date(s.start_time).toLocaleTimeString('de-DE', {hour:'2-digit', minute:'2-digit'})}</TableCell>
-                        <TableCell>{s.max_participants}</TableCell>
-                        <TableCell align="right">
-                          <IconButton size="small" onClick={() => handleEditSession(s)}><Edit fontSize="small" /></IconButton>
-                          <IconButton size="small" color="error" onClick={() => handleDeleteSession(s.id)}><Delete fontSize="small" /></IconButton>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              )}
+              {courseSessionsList.length === 0 ? <Typography variant="body2" color="text.secondary">Noch keine Termine erstellt.</Typography> :
+                <Table size="small"><TableHead><TableRow><TableCell>Datum</TableCell><TableCell>Zeit</TableCell><TableCell>Plätze</TableCell><TableCell align="right"></TableCell></TableRow></TableHead><TableBody>{courseSessionsList.map(s => (<TableRow key={s.id} selected={sessionForm.id === s.id}><TableCell>{new Date(s.start_time).toLocaleDateString('de-DE')}</TableCell><TableCell>{new Date(s.start_time).toLocaleTimeString('de-DE', {hour:'2-digit', minute:'2-digit'})}</TableCell><TableCell>{s.max_participants}</TableCell><TableCell align="right"><IconButton size="small" onClick={() => handleEditSession(s)}><Edit fontSize="small" /></IconButton><IconButton size="small" color="error" onClick={() => handleDeleteSession(s.id)}><Delete fontSize="small" /></IconButton></TableCell></TableRow>))}</TableBody></Table>
+              }
             </Grid>
             <Grid item xs={12} md={5}>
               <Paper sx={{ p: 2, bgcolor: '#f9f9f9' }} variant="outlined">
-                <Typography variant="subtitle2" gutterBottom fontWeight="bold">
-                  {sessionForm.id ? 'Termin bearbeiten' : 'Neuen Termin hinzufügen'}
-                </Typography>
+                <Typography variant="subtitle2" gutterBottom fontWeight="bold">{sessionForm.id ? 'Termin bearbeiten' : 'Neuen Termin hinzufügen'}</Typography>
                 <Box display="flex" flexDirection="column" gap={2} mt={2}>
                   <TextField type="date" label="Datum" InputLabelProps={{ shrink: true }} size="small" fullWidth value={sessionForm.date} onChange={e => setSessionForm({...sessionForm, date: e.target.value})} />
                   <TextField type="time" label="Uhrzeit" InputLabelProps={{ shrink: true }} size="small" fullWidth value={sessionForm.time} onChange={e => setSessionForm({...sessionForm, time: e.target.value})} />
@@ -411,18 +335,37 @@ const AdminPanel = ({ onDataChange }: { onDataChange: () => void }) => {
             </Grid>
           </Grid>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setSessionManagerOpen(false)}>Schließen</Button>
-        </DialogActions>
+        <DialogActions><Button onClick={() => setSessionManagerOpen(false)}>Schließen</Button></DialogActions>
       </Dialog>
     </Paper>
   );
 };
 
 export default function Umsetzung() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const [refreshTrigger, setRefreshTrigger] = useState(0);
+  const router = useRouter();
+
   const triggerUpdate = () => setRefreshTrigger(prev => prev + 1);
+
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      router.replace('/de/auth/signin');
+    }
+  }, [status, router]);
+
+  if (status === 'loading') {
+    return (
+      <BaseLayout>
+        <Container sx={{ py: 15, textAlign: 'center' }}>
+          <CircularProgress />
+          <Typography sx={{ mt: 2 }}>Laden...</Typography>
+        </Container>
+      </BaseLayout>
+    );
+  }
+
+  if (!session) return null;
 
   return (
     <BaseLayout>
@@ -441,9 +384,11 @@ export default function Umsetzung() {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  if (context.locale !== 'de') return { redirect: { destination: '/de/Umsetzung', permanent: false } };
-  const session = await getSession(context);
-  if (!session) return { redirect: { destination: '/de/auth/signin', permanent: false } };
-  return { props: { session, messages: require(`../locales/de/shared.json`), locale: 'de' } };
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      messages: require(`../locales/${locale || 'de'}/shared.json`),
+      locale: locale || 'de'
+    },
+  };
 };

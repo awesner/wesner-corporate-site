@@ -51,6 +51,7 @@ export default function Cookies({ open, setOpen }: IProps): JSX.Element {
       open={open}
       onClose={handleClose}
       anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+      sx={{ zIndex: 10001 }}
     >
       <Box
         sx={{

@@ -4,12 +4,13 @@ import { signOut, useSession, signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import {
   Container, Typography, Box, Button, Paper, Alert, Chip, Divider,
-  TextField, Card, Grid, Dialog, DialogTitle, DialogContent, DialogActions,
-  InputAdornment, IconButton, CircularProgress
+  TextField, Checkbox, Dialog, DialogTitle, DialogContent, DialogActions,
+  InputAdornment, IconButton, CircularProgress, Grid, Card
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import Head from 'next/head';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { BaseLayout } from '@components/layouts/base-layout';
 
 interface Comment {
@@ -145,9 +146,11 @@ export default function Umsetzungsplan() {
   const [isSending, setIsSending] = useState(false);
   const loginFormRef = useRef<HTMLDivElement>(null);
 
+  const isAdmin = session?.user?.role === 'admin';
+  const isLoggedIn = !!session;
+
   useEffect(() => {
     if (!router.isReady) return;
-
     const fetchData = async () => {
       setLoading(true);
       try {
@@ -165,7 +168,6 @@ export default function Umsetzungsplan() {
         setLoading(false);
       }
     };
-
     void fetchData();
   }, [router.isReady, id, session]);
 
@@ -178,18 +180,12 @@ export default function Umsetzungsplan() {
         body: JSON.stringify({ projectId: project.id, message: newMessage }),
       });
       if (res.ok) {
-        const newMsgObj: Comment = {
-          id: Date.now(), message: newMessage, created_at: new Date().toISOString(),
-          author_name: session.user.name || 'User', author_role: session.user.role, is_me: true
-        };
-        setComments((prev) => [newMsgObj, ...prev]);
-        setNewMessage('');
+        router.reload();
       } else { alert('Fehler beim Senden.'); }
     } catch (e) { console.error(e); } finally { setIsSending(false); }
   };
 
   const handleLogout = () => signOut({ callbackUrl: '/de/auth/signin' });
-  const isLoggedIn = !!session;
 
   if (loading || status === 'loading') {
     return (
@@ -254,7 +250,7 @@ export default function Umsetzungsplan() {
 
           <Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={4}>
             <Box>
-              {session?.user?.role === 'admin' && (
+              {isAdmin && (
                 <Button size="small" onClick={() => router.push('/de/Umsetzungsplan')} sx={{ mb: 1, p: 0, justifyContent: 'flex-start' }}>&larr; Zurück zur Übersicht</Button>
               )}
               <Typography variant="h4" fontWeight="bold">Projektplan</Typography>
@@ -270,13 +266,46 @@ export default function Umsetzungsplan() {
           </Box>
 
           <Box mb={4}>
-            <Box display="flex" gap={1} mb={2}>
+            <Box display="flex" gap={1} mb={2} alignItems="center">
               <Chip label={`Status: ${project.status}`} color="success" variant="outlined" />
               <Chip label={`ID: #${project.id}`} variant="outlined" />
             </Box>
             <Typography variant="h5" fontWeight="bold" color="primary">{project.title}</Typography>
-            <Box sx={{ mt: 3, p: 3, bgcolor: '#f8f9fa', borderRadius: 2, '& h1, & h2': { mb: 1 }, '& ul': { pl: 3 } }}>
-              <ReactMarkdown>{formattedContent}</ReactMarkdown>
+
+            <Box sx={{
+              mt: 3, p: 3, bgcolor: '#f8f9fa', borderRadius: 2,
+              '& h1': { fontSize: '1.8rem', borderBottom: '1px solid #ddd', pb: 1, mt: 3 },
+              '& h2': { fontSize: '1.4rem', mt: 3, mb: 1, color: '#444' },
+              '& ul': { listStyle: 'none', pl: 0, m: 0 },
+              '& li': { display: 'flex', alignItems: 'flex-start', mb: 1, lineHeight: 1.6 },
+              '& input[type="checkbox"]': { display: 'none' }
+            }}>
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm as any]}
+                components={{
+                  li: ({children, ...props}) => <li {...props}>{children}</li>,
+                  input: (props) => {
+                    if (props.type === 'checkbox') {
+                      return (
+                        <Checkbox
+                          checked={props.checked || false}
+                          readOnly={true}
+                          size="small"
+                          sx={{
+                            p: 0, mr: 1.5, mt: 0.3,
+                            color: props.checked ? 'success.main' : 'text.disabled',
+                            '&.Mui-checked': { color: 'success.main' },
+                            pointerEvents: 'none'
+                          }}
+                        />
+                      );
+                    }
+                    return <input {...props} />;
+                  }
+                }}
+              >
+                {formattedContent}
+              </ReactMarkdown>
             </Box>
           </Box>
 

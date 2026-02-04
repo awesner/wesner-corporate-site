@@ -96,9 +96,25 @@ const SignInPage = () => {
     setLoading(true);
     setError('');
 
-    const res = await signIn('credentials', { username, password, redirect: false });
-    if (res?.error) { setError('Benutzername oder Passwort ist falsch.'); setLoading(false); }
-    else { router.push('/de/Umsetzungsplan'); }
+    const res = await signIn('credentials', {
+      username,
+      password,
+      redirect: false
+    });
+
+    if (res?.error) {
+      setError('Benutzername oder Passwort ist falsch.');
+      setLoading(false);
+    }
+    else {
+      const callbackUrl = router.query.callbackUrl as string;
+
+      if (callbackUrl) {
+        router.push(callbackUrl);
+      } else {
+        router.push('/de/Umsetzungsplan');
+      }
+    }
   };
 
   return (

@@ -53,6 +53,13 @@ export default function ChatWidget() {
   }, [router.locale]);
 
   useEffect(() => {
+    const closedDate = localStorage.getItem('chat_bubble_closed_date');
+    const today = new Date().toLocaleDateString();
+
+    if (closedDate === today) {
+      return;
+    }
+
     const timer = setTimeout(() => {
       if (!isOpen) {
         setShowWelcome(true);
@@ -70,6 +77,13 @@ export default function ChatWidget() {
   const toggleChat = () => {
     setIsOpen(!isOpen);
     setShowWelcome(false);
+  };
+
+  const handleCloseWelcome = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setShowWelcome(false);
+    const today = new Date().toLocaleDateString();
+    localStorage.setItem('chat_bubble_closed_date', today);
   };
 
   const handleSend = async () => {
@@ -137,10 +151,7 @@ export default function ChatWidget() {
           <IconButton
             size="small"
             sx={{ position: 'absolute', top: 2, right: 2, width: 20, height: 20 }}
-            onClick={(e) => {
-              e.stopPropagation();
-              setShowWelcome(false);
-            }}
+            onClick={handleCloseWelcome}
           >
             <CloseIcon fontSize="small" />
           </IconButton>

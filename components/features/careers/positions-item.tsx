@@ -31,12 +31,22 @@ export default function PositionsItem({ position }: IProps): JSX.Element {
           sx={{
             width: 1,
             position: 'relative',
-            p: { xs: theme.spacing(5, 3, 8), lg: theme.spacing(5, 3, 8) },
+            p: { xs: theme.spacing(5, 3, 8), lg: theme.spacing(6, 4, 9) },
             height: 1,
+            minHeight: { xs: 290, md: 260 },
+            display: 'flex',
+            flexDirection: 'column',
           }}
         >
-          <Stack justifyContent="space-between" gap={1} height={1}>
-            <Typography component="h3" variant="h4">
+          <Stack justifyContent="space-between" gap={1} height={1} flexGrow={1}>
+            <Typography
+              component="h3"
+              variant="h4"
+              sx={{
+                wordBreak: 'break-word',
+                hyphens: 'auto',
+              }}
+            >
               {title}
             </Typography>
             <Typography color={theme.palette.grey[800]}>{location}</Typography>

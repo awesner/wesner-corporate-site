@@ -32,7 +32,7 @@ export default function Positions({ positions }: IProps): JSX.Element {
         {!!positions?.length && (
           <Grid container spacing={{ xs: 2, md: 3 }}>
             {positions.map((position, index) => (
-              <Grid key={index} item xs={12} lg={4}>
+              <Grid key={index} item xs={12} md={5} lg={5}>
                 <PositionsItem position={position} />
               </Grid>
             ))}

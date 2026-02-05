@@ -1,6 +1,7 @@
 import fs from 'fs';
 import { GetStaticProps, NextPage } from 'next';
 import Link from 'next/link';
+import { Link as MuiLink } from '@mui/material';
 import { ReactElement } from 'react';
 import { BaseLayout } from '@components/layouts/base-layout';
 import path from 'path';
@@ -39,16 +40,36 @@ const BlogIndexPage: NextPage<IBlogIndexPageProps> = ({ articles }) => {
           <div key={article.slug}
                style={{ marginBottom: '2rem', borderBottom: '1px solid #ccc', paddingBottom: '1rem' }}>
             <h2>
-              <Link href={`/blog/${article.slug}`}>
-                <a style={{ textDecoration: 'none', color: '#0070f3' }}>{article.title}</a>
+              <Link href={`/blog/${article.slug}`} passHref>
+                <MuiLink
+                  underline="none"
+                  sx={{
+                    color: '#0070f3',
+                    cursor: 'pointer',
+                    '&:hover': { textDecoration: 'underline' }
+                  }}
+                >
+                  {article.title}
+                </MuiLink>
               </Link>
             </h2>
             <p style={{ color: '#555' }}>
               {t('publishedOn')}: {new Date(article.date).toLocaleDateString(locale)}
             </p>
             <p>{article.summary}</p>
-            <Link href={`/blog/${article.slug}`}>
-              <a style={{ fontWeight: 'bold', color: '#0070f3' }}>{t('readMore')}</a>
+
+            <Link href={`/blog/${article.slug}`} passHref>
+              <MuiLink
+                underline="none"
+                sx={{
+                  fontWeight: 'bold',
+                  color: '#0070f3',
+                  cursor: 'pointer',
+                  '&:hover': { textDecoration: 'underline' }
+                }}
+              >
+                {t('readMore')}
+              </MuiLink>
             </Link>
           </div>
         ))}

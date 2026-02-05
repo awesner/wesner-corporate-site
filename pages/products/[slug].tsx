@@ -12,6 +12,7 @@ import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import CodeIcon from '@mui/icons-material/Code';
 import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
 import { useTranslations } from 'next-intl';
+import ContactUs from 'components/shared/contact-us/contact-us';
 
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
@@ -194,6 +195,8 @@ const ProductPage: NextPage<IProductPageProps> = ({ product }) => {
           index={lightboxIndex}
         />
       </Box>
+
+      <ContactUs />
     </>
   );
 };

@@ -21,7 +21,7 @@ export default function FooterBottom(): JSX.Element {
         }}
       >
         <Typography variant="caption">
-          ©2022 Wesner-Softwareentwicklung GmbH
+          © {new Date().getFullYear()} Wesner-Softwareentwicklung GmbH
         </Typography>
         <Stack
           direction="row"

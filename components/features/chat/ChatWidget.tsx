@@ -30,7 +30,7 @@ export default function ChatWidget() {
   const router = useRouter();
   const t = useTranslations('chatWidget');
 
-  const [sessionId] = useState(() => 'sess-' + Math.random().toString(36).substr(2, 9));
+  const [sessionId] = useState(() => 'sess-' + Math.random().toString(36).substring(2, 11));
   const [isOpen, setIsOpen] = useState(false);
   const [showWelcome, setShowWelcome] = useState(false);
 
@@ -50,7 +50,7 @@ export default function ChatWidget() {
     if (messages.length === 1 && messages[0].role === 'assistant') {
       setMessages([{ role: 'assistant', content: t('greeting') }]);
     }
-  }, [router.locale]);
+  }, [router.locale, t]);
 
   useEffect(() => {
     const closedDate = localStorage.getItem('chat_bubble_closed_date');
@@ -123,12 +123,23 @@ export default function ChatWidget() {
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      handleSend();
+      void handleSend();
     }
   };
 
   return (
-    <Box sx={{ position: 'fixed', bottom: 30, right: 30, zIndex: 1000, display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+    <Box
+      sx={{
+        position: 'fixed',
+        bottom: 30,
+        right: 30,
+        zIndex: 1000,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-end',
+        pointerEvents: 'none'
+      }}
+    >
 
       {/* Hallo Fenster */}
       <Grow in={showWelcome && !isOpen}>
@@ -144,7 +155,8 @@ export default function ChatWidget() {
             bottom: 60,
             right: 60,
             zIndex: 1001,
-            mb: 0
+            mb: 0,
+            pointerEvents: 'auto'
           }}
           onClick={toggleChat}
         >
@@ -176,7 +188,8 @@ export default function ChatWidget() {
             flexDirection: 'column',
             overflow: 'hidden',
             borderRadius: 2,
-            bgcolor: '#f5f5f5'
+            bgcolor: '#f5f5f5',
+            pointerEvents: 'auto'
           }}
         >
           {/* 1. Futter */}
@@ -355,7 +368,12 @@ export default function ChatWidget() {
         </Paper>
       </Grow>
 
-      <Fab color="primary" aria-label="chat" onClick={toggleChat}>
+      <Fab
+        color="primary"
+        aria-label="chat"
+        onClick={toggleChat}
+        sx={{ pointerEvents: 'auto' }}
+      >
         {isOpen ? <CloseIcon /> : <ChatIcon />}
       </Fab>
 

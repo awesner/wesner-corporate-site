@@ -1,6 +1,7 @@
 import { GetStaticProps, NextPage } from 'next';
 import { ReactElement } from 'react';
 import Link from 'next/link';
+import { Link as MuiLink } from '@mui/material';
 import { useTranslations } from 'next-intl';
 import fs from 'fs';
 import path from 'path';
@@ -35,14 +36,36 @@ const ProductsIndexPage: NextPage<IProductsIndexPageProps> = ({ products }) => {
       <div style={{ marginTop: '3rem', display: 'grid', gap: '2rem' }}>
         {products.map((product) => (
           <div key={product.slug} style={{ border: '1px solid #eee', borderRadius: '8px', padding: '1.5rem', transition: 'box-shadow 0.3s' }}>
-            <Link href={`/products/${product.slug}`}>
-              <a style={{ textDecoration: 'none', color: 'inherit' }}>
+
+            <Link href={`/products/${product.slug}`} passHref>
+              <MuiLink
+                underline="none"
+                sx={{
+                  cursor: 'pointer',
+                  '&:hover h2': { textDecoration: 'underline' }
+                }}
+              >
                 <h2 style={{ marginTop: 0, color: '#0070f3' }}>{product.name}</h2>
-                <h3 style={{ fontStyle: 'italic', color: '#555', fontWeight: 'normal' }}>{product.tagline}</h3>
-                <p>{product.summary}</p>
-                <p style={{ fontWeight: 'bold', color: '#0070f3' }}>{t('learnMore')}</p>
-              </a>
+              </MuiLink>
             </Link>
+
+            <h3 style={{ fontStyle: 'italic', color: '#555', fontWeight: 'normal' }}>{product.tagline}</h3>
+            <p>{product.summary}</p>
+
+            <Link href={`/products/${product.slug}`} passHref>
+              <MuiLink
+                underline="none"
+                sx={{
+                  fontWeight: 'bold',
+                  color: '#0070f3',
+                  cursor: 'pointer',
+                  '&:hover': { textDecoration: 'underline' }
+                }}
+              >
+                {t('learnMore')}
+              </MuiLink>
+            </Link>
+
           </div>
         ))}
       </div>

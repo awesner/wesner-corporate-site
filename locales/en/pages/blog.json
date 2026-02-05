@@ -1,4 +1,8 @@
 {
+  "meta": {
+    "title": "Our Blog",
+    "description": "Read our latest articles on software development, database migrations, and IT trends. Expert knowledge from practice."
+  },
   "blogIndex": {
     "title": "Our Blog",
     "description": "Here you will find articles on topics related to software development and IT.",

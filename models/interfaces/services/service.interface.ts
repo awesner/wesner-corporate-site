@@ -24,6 +24,11 @@ export interface IResidualService extends IService {
   whiteIconUrl?: string;
 }
 
+export interface IServiceMeta {
+  title: string;
+  description: string;
+}
+
 export interface IServiceFull extends IResidualService {
   bannerUrl: string;
   description: string;
@@ -31,4 +36,5 @@ export interface IServiceFull extends IResidualService {
   mainTexts: IServiceFeatureParagraph[];
   features: IServiceFeature[];
   benefits: IServiceBenefit[];
+  meta?: IServiceMeta;
 }

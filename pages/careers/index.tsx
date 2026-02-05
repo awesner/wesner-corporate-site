@@ -4,23 +4,26 @@ import { ReactElement } from 'react';
 import ContactUs from 'components/shared/contact-us/contact-us';
 import BannerSection from 'components/features/careers/banner-section';
 import Benefits from 'components/features/careers/benefits';
-import WhyJoin from 'components/features/careers/why-join';
 import Positions from 'components/features/careers/positions';
 import { getShortenPositionsList } from 'data-utils/careers';
 import { IPosition } from 'models/interfaces/careers/position.interface';
 import Head from 'next/head';
+import { useTranslations } from 'next-intl';
 
 interface ICareersProps {
   positions?: IPosition[];
 }
 
 const Careers: NextPage<ICareersProps> = ({ positions }) => {
+  const t = useTranslations('meta');
+
   return (
     <>
       <Head>
+        <title>{t('title')}</title>
         <meta
           name="description"
-          content="Place the meta description text here."
+          content={t('description')}
         />
       </Head>
       <BannerSection />

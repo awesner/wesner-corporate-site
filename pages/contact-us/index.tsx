@@ -8,9 +8,10 @@ import Image from 'next/image';
 import StartDecoration from 'public/images/contact-us/start-decoration.png';
 import Success from 'components/features/contact-us/success';
 import ContactUsForm from '@components/features/contact-us/contact-us-form';
-import { FieldValues, set } from 'react-hook-form';
+import { FieldValues } from 'react-hook-form';
 import axios from 'axios';
 import Head from 'next/head';
+import { useTranslations } from 'next-intl';
 
 const ContactUs: NextPage = () => {
   const [isSubmited, setIsSubmited] = useState(false);
@@ -19,6 +20,8 @@ const ContactUs: NextPage = () => {
     open: false,
     message: '',
   });
+
+  const t = useTranslations('meta');
 
   const handleClose = (_?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
@@ -49,9 +52,10 @@ const ContactUs: NextPage = () => {
   return (
     <>
       <Head>
+        <title>{t('title')}</title>
         <meta
           name="description"
-          content="Place the meta description text here."
+          content={t('description')}
         />
       </Head>
       <Container fixed>

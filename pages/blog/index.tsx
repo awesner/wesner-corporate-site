@@ -6,6 +6,7 @@ import { BaseLayout } from '@components/layouts/base-layout';
 import path from 'path';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 interface IArticleSummary {
   slug: string;
@@ -19,12 +20,17 @@ interface IBlogIndexPageProps {
 }
 
 const BlogIndexPage: NextPage<IBlogIndexPageProps> = ({ articles }) => {
-
   const t = useTranslations('blogIndex');
+  const tMeta = useTranslations('meta');
   const { locale } = useRouter();
 
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '2rem' }}>
+      <Head>
+        <title>{tMeta('title')}</title>
+        <meta name="description" content={tMeta('description')} />
+      </Head>
+
       <h1>{t('title')}</h1>
       <p>{t('description')}</p>
 

@@ -1,4 +1,8 @@
 {
+    "meta": {
+        "title": "Kontaktieren Sie uns",
+        "description": "Haben Sie Fragen oder eine Projektidee? Kontaktieren Sie unser Expertenteam für Softwareentwicklung und Systemintegration."
+    },
     "contactUsPage": {
         "title": "Wir würden uns freuen, mit Ihnen in Kontakt zu treten",
         "description": "Lassen Sie uns Ihre Produktziele besprechen und wie wir Ihnen helfen können, sie zu erreichen.",

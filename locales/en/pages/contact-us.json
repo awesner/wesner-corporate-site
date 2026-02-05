@@ -1,4 +1,8 @@
 {
+    "meta": {
+        "title": "Contact Us",
+        "description": "Do you have questions or a project idea? Get in touch with our expert team for software engineering and system integration."
+    },
     "contactUsPage": {
         "title": "We Would Love to Connect With You",
         "description": "Let’s discuss your product goals and how we can help you reach them.",

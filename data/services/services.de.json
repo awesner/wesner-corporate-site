@@ -2,6 +2,10 @@
   {
     "path": "enterprise",
     "name": "Unternehmensintegration",
+    "meta": {
+      "title": "Unternehmensintegration und Systemintegration | Wesner-Softwareentwicklung",
+      "description": "Verbinden Sie Ihre Systeme effizient mit unseren Enterprise Integration Lösungen. Von Punkt-zu-Punkt bis zur hybriden Integration."
+    },
     "shortDescription": "Punkt-zu-Punkt-Verbindungen zwischen den zu integrierenden Systemen.",
     "iconUrl": "/services/enterprise.png",
     "whiteIconUrl": "/services/enterprise-white.png",
@@ -57,6 +61,10 @@
   {
     "path": "ekaer",
     "name": "EKAER",
+    "meta": {
+      "title": "EKAER Softwarelösungen für Ungarn | Wesner-Softwareentwicklung",
+      "description": "Spezialisierte Software für das Elektronische Straßen-Frachtkontrollsystem (EKAER) in Ungarn. Automatisierte Meldungen und Compliance."
+    },
     "shortDescription": "Elektronisches Straßen-Frachtkontrollsystem in Ungarn.",
     "iconUrl": "/services/development.png",
     "whiteIconUrl": "/services/development-white.png",

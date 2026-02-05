@@ -2,6 +2,10 @@
   {
     "path": "enterprise",
     "name": "Enterprise Integration",
+    "meta": {
+      "title": "Enterprise Integration Services | Wesner-Softwareentwicklung",
+      "description": "Connect your systems efficiently with our Enterprise Integration solutions. From point-to-point to hybrid integration strategies."
+    },
     "shortDescription": "Point-to-point connections between the systems to be integrated.",
     "iconUrl": "/services/enterprise.png",
     "whiteIconUrl": "/services/enterprise-white.png",
@@ -57,6 +61,10 @@
   {
     "path": "ekaer",
     "name": "EKAER",
+    "meta": {
+      "title": "EKAER Compliance Software Solutions | Wesner-Softwareentwicklung",
+      "description": "Custom software for EKAER compliance in Hungary. Automated reporting and seamless system integration for your logistics."
+    },
     "shortDescription": "Individual tailor-made software solutions that integrate seamlessly.",
     "iconUrl": "/services/development.png",
     "whiteIconUrl": "/services/development-white.png",

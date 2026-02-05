@@ -2,10 +2,10 @@ import { GetStaticProps, NextPage } from 'next';
 import { ReactElement } from 'react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { useRouter } from 'next/router';
 import fs from 'fs';
 import path from 'path';
 import { BaseLayout } from '@components/layouts/base-layout';
+import Head from 'next/head';
 
 interface IProductSummary {
   slug: string;
@@ -20,9 +20,15 @@ interface IProductsIndexPageProps {
 
 const ProductsIndexPage: NextPage<IProductsIndexPageProps> = ({ products }) => {
   const t = useTranslations('productsIndex');
+  const tMeta = useTranslations('meta');
 
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto', padding: '2rem' }}>
+      <Head>
+        <title>{tMeta('title')}</title>
+        <meta name="description" content={tMeta('description')} />
+      </Head>
+
       <h1>{t('title')}</h1>
       <p>{t('description')}</p>
 

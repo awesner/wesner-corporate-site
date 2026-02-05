@@ -25,9 +25,10 @@ const Service: NextPage<IServicePage> = ({ services, service }) => {
   return (
     <>
       <Head>
+        <title>{service.meta?.title || service.name}</title>
         <meta
           name="description"
-          content="Place the meta description text here."
+          content={service.meta?.description || service.shortDescription}
         />
       </Head>
       <ServiceBanner service={service} />

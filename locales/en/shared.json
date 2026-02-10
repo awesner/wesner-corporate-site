@@ -17,6 +17,10 @@
       "enterprise": "Enterprise Integration",
       "ekaer": "EKAER",
       "support": "Support Services"
+    },
+    "productsChildren": {
+      "monitoring": "Process Monitoring Tool",
+      "chatbot": "Smart AI Chatbot"
     }
   },
   "contactUs": {

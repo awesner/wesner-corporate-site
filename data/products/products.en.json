@@ -88,5 +88,86 @@
         ]
       }
     ]
+  },
+  {
+    "slug": "ai-chatbot",
+    "name": "Smart AI Chatbot",
+    "tagline": "Automate your customer service with an intelligent assistant",
+    "summary": "A custom-tailored AI chatbot that analyzes your website content, answers customer queries precisely, and forwards contact requests directly via email.",
+    "image_hero": "/products/chatbot/image_hero.jpeg",
+    "gallery_images": [
+      {
+        "original": "/products/chatbot/chat-1.jpg",
+        "thumbnail": "/products/chatbot/chat-1.jpg"
+      },
+      {
+        "original": "/products/chatbot/chat-2.jpg",
+        "thumbnail": "/products/chatbot/chat-2.jpg"
+      },
+      {
+        "original": "/products/chatbot/chat-3.jpg",
+        "thumbnail": "/products/chatbot/chat-3.jpg"
+      }
+    ],
+    "features": [
+      {
+        "title": "Smart Scanning & Answering",
+        "description": "The bot scans your website and uses the found information to answer customer questions immediately and in context.",
+        "icon": "dashboard"
+      },
+      {
+        "title": "Automatic Appointment Booking",
+        "description": "Turn visitors into customers. The bot checks availability and helps users book appointments directly.",
+        "icon": "steps"
+      },
+      {
+        "title": "Full Customization",
+        "description": "We configure the bot's personality, design, and functions exactly according to your business requirements.",
+        "icon": "filter"
+      }
+    ],
+    "content": [
+      {
+        "type": "heading",
+        "text": "Why an AI Chatbot from Wesner Softwareentwicklung?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Classic chatbots often frustrate customers with rigid processes. Our solution is based on state-of-the-art AI technology (like ChatGPT, Claude) that we configure specifically for your company. The bot acts as an intelligent assistant on your site."
+      },
+      {
+        "type": "subheading",
+        "text": "Overview of capabilities:"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "title": "Precise Information",
+            "description": "The bot accesses your documents and website content in real-time without hallucinating. It knows exactly what is written on your site."
+          },
+          {
+            "title": "Email Notifications",
+            "description": "The bot captures visitor contact details and sends them to you immediately via email using pre-defined templates."
+          },
+          {
+            "title": "Seamless Integration",
+            "description": "Integration as a widget on your website, connected to your existing systems."
+          },
+          {
+            "title": "Privacy Compliant",
+            "description": "We set up the bot to comply with your data protection guidelines and operate securely."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Experience it yourself"
+      },
+      {
+        "type": "paragraph",
+        "text": "The chatbot you see at the bottom right of this page is our own product. It knows our services, answers questions based on our website texts, and helps you get in touch. We can realize exactly such a solution for you."
+      }
+    ]
   }
 ]

@@ -88,5 +88,86 @@
         ]
       }
     ]
+  },
+  {
+    "slug": "ai-chatbot",
+    "name": "Intelligenter KI-Chatbot",
+    "tagline": "Automatisieren Sie Ihren Kundenservice durch einen intelligenten Assistenten",
+    "summary": "Ein maßgeschneiderter KI-Chatbot, der Ihre Website-Inhalte analysiert, Kundenanfragen präzise beantwortet und Kontaktanfragen direkt per E-Mail weiterleitet.",
+    "image_hero": "/products/chatbot/image_hero.jpeg",
+    "gallery_images": [
+      {
+        "original": "/products/chatbot/chat-1.jpg",
+        "thumbnail": "/products/chatbot/chat-1.jpg"
+      },
+      {
+        "original": "/products/chatbot/chat-2.jpg",
+        "thumbnail": "/products/chatbot/chat-2.jpg"
+      },
+      {
+        "original": "/products/chatbot/chat-3.jpg",
+        "thumbnail": "/products/chatbot/chat-3.jpg"
+      }
+    ],
+    "features": [
+      {
+        "title": "Smartes Scannen & Antworten",
+        "description": "Der Bot scannt Ihre Webseite und nutzt die gefundenen Informationen, um Fragen Ihrer Kunden sofort und kontextbezogen zu beantworten.",
+        "icon": "dashboard"
+      },
+      {
+        "title": "Automatische Terminbuchung",
+        "description": "Verwandeln Sie Besucher in Kunden. Der Bot prüft Verfügbarkeiten und hilft Nutzern, direkt Termine zu vereinbaren.",
+        "icon": "steps"
+      },
+      {
+        "title": "Volle Anpassbarkeit",
+        "description": "Wir konfigurieren Persönlichkeit, Design und Funktionen des Bots exakt nach Ihren geschäftlichen Anforderungen.",
+        "icon": "filter"
+      }
+    ],
+    "content": [
+      {
+        "type": "heading",
+        "text": "Warum einen KI-Chatbot von Wesner Softwareentwicklung?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Klassische Chatbots frustrieren Kunden oft mit starren Abläufen. Unsere Lösung basiert auf modernster KI-Technologie (wie ChatGPT, Claude), die wir speziell für Ihr Unternehmen konfigurieren. Der Bot agiert als intelligenter Assistent auf Ihrer Seite."
+      },
+      {
+        "type": "subheading",
+        "text": "Unsere Leistungen im Überblick:"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "title": "Präzise Informationen",
+            "description": "Der Bot greift in Echtzeit auf Ihre Dokumente und Website-Inhalte zu, ohne Halluzinationen zu erzeugen. Er weiß genau das, was auf Ihrer Seite steht."
+          },
+          {
+            "title": "E-Mail Benachrichtigungen",
+            "description": "Der Bot erfasst Kontaktdaten Ihrer Besucher und sendet Ihnen diese sofort strukturiert per E-Mail über vordefinierte Vorlagen zu."
+          },
+          {
+            "title": "Nahtlose Integration",
+            "description": "Einbindung als Widget auf Ihrer Webseite, verknüpft mit Ihren bestehenden Systemen."
+          },
+          {
+            "title": "Datenschutzkonform",
+            "description": "Wir richten den Bot so ein, dass er Ihre Datenschutzrichtlinien einhält und sicher arbeitet."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Erleben Sie es selbst"
+      },
+      {
+        "type": "paragraph",
+        "text": "Der Chatbot, den Sie unten rechts auf dieser Seite sehen, ist unser eigenes Produkt. Er kennt unsere Dienstleistungen, beantwortet Fragen basierend auf unseren Website-Texten und hilft Ihnen bei der Kontaktaufnahme. Genau so eine Lösung können wir für Sie realisieren."
+      }
+    ]
   }
 ]

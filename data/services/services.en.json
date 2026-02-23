@@ -10,14 +10,14 @@
     "iconUrl": "/services/enterprise.png",
     "whiteIconUrl": "/services/enterprise-white.png",
     "bannerUrl": "/services/enterprise-banner.png",
-    "description": "Today there are several challenges and opportunities to connect people and systems and processes that are important and valuable for us. So that we can choose the right integration techniques.",
+    "description": "Today, there are numerous challenges and opportunities in connecting people, systems, and processes that are vital to your business. We help you choose the right integration techniques to meet these needs.",
     "subtitle": "Point-to-point Integration",
     "mainTexts": [
       {
-        "text": "Point-to-point integration between integrating systems is a traditional solution for integration requirements that is still used today."
+        "text": "Point-to-point integration between systems to be integrated is a traditional solution for integration requirements that is still widely used today."
       },
       {
-        "text": "The advantage of such direct connections is that they can be created easily and quickly when needed. but as a disadvantage, scalability is poorly. With point-to-point connections, the complexity of the overall system increases exponentially with each additional individual connection (spaghetti integration dilemma)."
+        "text": "The advantage of such direct connections is that they can be established quickly and easily. However, a significant disadvantage is poor scalability. With point-to-point connections, the complexity of the overall system increases exponentially with each additional individual connection (the spaghetti integration dilemma)."
       }
     ],
     "features": [

@@ -60,7 +60,7 @@ export default function Umsetzung() {
         >
           <Box>
             <Typography variant="h4" fontWeight="bold">
-              {isAdmin ? 'Admin-Panel & App Simulator' : 'Willkommen im Mitgliederbereich'}
+              {isAdmin ? 'Internetseite & App Simulator' : 'Willkommen im Mitgliederbereich'}
             </Typography>
             <Typography color="text.secondary" sx={{ mt: 1 }}>
               {isAdmin

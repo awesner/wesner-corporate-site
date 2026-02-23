@@ -10,11 +10,11 @@
     "iconUrl": "/services/enterprise.png",
     "whiteIconUrl": "/services/enterprise-white.png",
     "bannerUrl": "/services/enterprise-banner.png",
-    "description": "Es gibt Heutezutag mehrere Herausforderungen und Möglichkeiten, um Menschen und Systemen sowie Prozessen zu verbinden, die für uns wicthig und wertvoll sind. Damit werden die richtigen Integrationstechniken wählen können.",
+    "description": "Es gibt heutzutage mehrere Herausforderungen und Möglichkeiten, um Menschen, Systeme sowie Prozesse zu verbinden, die für uns wichtig und wertvoll sind. Dadurch können Sie die richtigen Integrationstechniken wählen können.",
     "subtitle": "Punkt-zu-Punkt-Integration",
     "mainTexts": [
       {
-        "text": "Die Punkt-zu-Punkt-Integration zwischen integrierenden Systemen ist eine herkömmliche Lösung für Integrationsanforderungen, die bis Heute noch genutzt wird."
+        "text": "Die Punkt-zu-Punkt-Integration zwischen zu integrierenden Systemen ist eine herkömmliche Lösung für Integrationsanforderungen, die bis heute noch genutzt wird."
       },
       {
         "text": "Der Vorteil solcher Direktverbindungen ist, dass sie bei Bedarf einfach und schnell erstellt werden können. aber als Nachteil wird die Skalierbarkeit schlecht. Bei Punkt-zu-Punkt-Verbindungen steigt die Komplexität des Gesamtsystems mit jeder zusätzlichen Einzelverbindung exponentiell an."

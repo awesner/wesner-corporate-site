@@ -12,7 +12,7 @@
     "blog": "Blog",
     "products": "Unsere Produkte",
     "terms": "Geschäftsbedingungen",
-    "policy": "Datenschutz-Bestimmungen",
+    "policy": "Datenschutzbestimmungen",
     "servicesChildren": {
       "enterprise": "Unternehmensintegration",
       "ekaer": "EKAER",
@@ -24,7 +24,7 @@
     }
   },
   "contactUs": {
-    "title": "Lass uns zusammen arbeiten",
+    "title": "Lass uns zusammenarbeiten",
     "description": "Wenn Sie es brauchen, können wir es bauen. Unsere Mitarbeiter liefern maximalen Mehrwert durch Flexibilität, Vielseitigkeit und Einstellung.",
     "button": "Kontaktiere uns",
     "applyNow": "Jetzt bewerben"

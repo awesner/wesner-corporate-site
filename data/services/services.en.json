@@ -66,8 +66,8 @@
       "description": "Custom software for EKAER compliance in Hungary. Automated reporting and seamless system integration for your logistics."
     },
     "shortDescription": "Individual tailor-made software solutions that integrate seamlessly.",
-    "iconUrl": "/services/development.png",
-    "whiteIconUrl": "/services/development-white.png",
+    "iconUrl": "/careers/benefits/benefit2.png",
+    "whiteIconUrl": "/services/enterprise-white.png",
     "bannerUrl": "/services/development-banner.png",
     "description": "There are no redundancies in our individual software developments. We get the necessary data for processing in our solutions.",
     "subtitle": "Your Individual Solution",
@@ -116,5 +116,533 @@
         "text": "Seamlessly integrated"
       }
     ]
+  },
+  {
+    "path": "individuelle-softwareentwicklung",
+    "name": "Custom Software Development",
+    "meta": {
+      "title": "Custom Software Development | Tailor-made Solutions | Wesner-Softwareentwicklung",
+      "description": "Tailor-made software for your business processes. We develop custom solutions that fit perfectly, scale, and secure your competitive advantage."
+    },
+    "shortDescription": "Tailor-made software solutions perfectly aligned with your business processes.",
+    "iconUrl": "/services/development.png",
+    "whiteIconUrl": "/services/development-white.png",
+    "bannerUrl": "/services/individuelle-softwareentwicklung-banner.png",
+    "description": "Standard software often forces you to compromise. Our custom solutions adapt to your processes – not the other way around. Get the maximum out of your business.",
+    "subtitle": "Software as Unique as Your Company",
+    "mainTexts": [
+      {
+        "text": "Every company has its own recipes for success and workflows. Off-the-shelf solutions often reflect these inadequately or are overloaded with unnecessary functions. Custom software bridges this gap."
+      },
+      {
+        "text": "We develop applications that meet your exact requirements. The result is lean, powerful software that relieves your employees, reduces error rates, and integrates seamlessly into your existing IT landscape."
+      }
+    ],
+    "features": [
+      {
+        "title": "Requirements Analysis & Design",
+        "paragraphs": [
+          {
+            "text": "We listen. Before we write a single line of code, we understand your business challenges and define the optimal solution together."
+          }
+        ]
+      },
+      {
+        "title": "Agile Implementation",
+        "paragraphs": [
+          {
+            "text": "Through agile methods (Scrum/Kanban), you remain involved at all times. You see initial results early and can provide feedback, ensuring the final product meets your expectations."
+          }
+        ]
+      },
+      {
+        "title": "Sustainable Tech Stack",
+        "paragraphs": [
+          {
+            "text": "We rely on proven, future-proof technologies (Java, .NET, Node.js, React) that ensure maintainability and extensibility for years to come."
+          }
+        ]
+      }
+    ],
+    "benefits": [
+      {
+        "imgUrl": "/services/development/benefit1.png",
+        "text": "100% fit for your specific workflows"
+      },
+      {
+        "imgUrl": "/services/development/benefit2.png",
+        "text": "Independence from licensing models of large providers"
+      },
+      {
+        "imgUrl": "/services/development/benefit3.png",
+        "text": "Competitive advantage through exclusive functionalities"
+      }
+    ]
+  },
+  {
+    "path": "webentwicklung",
+    "name": "Web Development",
+    "meta": {
+      "title": "Web Development & Web Apps | React, Angular, Vue | Wesner-Softwareentwicklung",
+      "description": "Modern web applications and portals. We develop scalable, secure, and fast web solutions for your business success."
+    },
+    "shortDescription": "Scalable and secure web applications, portals, and cloud solutions.",
+    "iconUrl": "/services/development.png",
+    "whiteIconUrl": "/services/development-white.png",
+    "bannerUrl": "/services/webentwicklung-banner.png",
+    "description": "The web is the most important software platform today. We don't just build websites; we build complex, high-performance web applications that feel like native apps.",
+    "subtitle": "More than just a Website",
+    "mainTexts": [
+      {
+        "text": "Modern web development means speed, interactivity, and availability on all devices. We use technologies like React or Angular to create user interfaces that delight."
+      },
+      {
+        "text": "Whether it's a customer portal, internal dashboard, or SaaS platform – we ensure that your application is secure, loads quickly, and runs stably even with high user numbers."
+      }
+    ],
+    "features": [
+      {
+        "title": "Single Page Applications (SPA)",
+        "paragraphs": [
+          {
+            "text": "We develop fluid applications without annoying loading times when changing pages. This provides a user experience usually only known from desktop software."
+          }
+        ]
+      },
+      {
+        "title": "Responsive & Mobile-First",
+        "paragraphs": [
+          {
+            "text": "Your application must work everywhere. We guarantee perfect display and usability on smartphones, tablets, and large desktop monitors."
+          }
+        ]
+      },
+      {
+        "title": "Secure Backend & API",
+        "paragraphs": [
+          {
+            "text": "A beautiful frontend needs a strong backend. We develop robust APIs (REST/GraphQL) that securely process your data and seamlessly connect third-party systems."
+          }
+        ]
+      }
+    ],
+    "benefits": [
+      {
+        "imgUrl": "/services/development/benefit1.png",
+        "text": "Platform independence (runs in any browser)"
+      },
+      {
+        "imgUrl": "/services/development/benefit2.png",
+        "text": "Easy maintenance and central updates without installation"
+      },
+      {
+        "imgUrl": "/services/development/benefit3.png",
+        "text": "High performance"
+      }
+    ]
+  },
+  {
+    "path": "mobile-app-entwicklung",
+    "name": "Mobile App Development",
+    "meta": {
+      "title": "Mobile App Development | iOS & Android | Wesner-Softwareentwicklung",
+      "description": "We develop high-performance native and cross-platform apps. From idea to App Store release."
+    },
+    "shortDescription": "Native and cross-platform mobile apps for iOS and Android.",
+    "iconUrl": "/services/mobile.png",
+    "whiteIconUrl": "/services/support-white.png",
+    "bannerUrl": "/services/mobile-app-entwicklung-banner.png",
+    "description": "Mobile applications are the most direct way to reach your customers today. We turn your ideas into intuitive and high-performance apps that delight users on any device.",
+    "subtitle": "Your Vision on the Smartphone",
+    "mainTexts": [
+      {
+        "text": "Whether iOS or Android, we develop solutions perfectly tailored to your target audience. We rely on modern technologies that combine performance and cost efficiency."
+      },
+      {
+        "text": "Our approach covers the entire lifecycle: from initial conception and UI/UX design to development, App Store publication, and ongoing maintenance."
+      }
+    ],
+    "features": [
+      {
+        "title": "Cross-Platform Development",
+        "paragraphs": [
+          {
+            "text": "One codebase for both platforms (iOS & Android) using modern frameworks like React Native or Flutter. This saves development time and costs without compromising quality."
+          }
+        ]
+      },
+      {
+        "title": "Native Development",
+        "paragraphs": [
+          {
+            "text": "For maximum performance and access to specific hardware features, we also develop natively in Swift (iOS) and Kotlin (Android)."
+          }
+        ]
+      },
+      {
+        "title": "UI/UX Design",
+        "paragraphs": [
+          {
+            "text": "An app must not only work but also be easy to use. We place the highest value on intuitive and appealing design."
+          }
+        ]
+      }
+    ],
+    "benefits": [
+      {
+        "imgUrl": "/services/development/benefit1.png",
+        "text": "Faster time-to-market through efficient processes"
+      },
+      {
+        "imgUrl": "/services/development/benefit2.png",
+        "text": "Scalable solutions that grow with your business"
+      },
+      {
+        "imgUrl": "/services/development/benefit3.png",
+        "text": "Full support from concept to App Store"
+      }
+    ]
+  },
+  {
+    "path": "softwarearchitektur",
+    "name": "Software Architecture",
+    "meta": {
+      "title": "Software Architecture & System Design | Scalable Solutions | Wesner-Softwareentwicklung",
+      "description": "Future-proof IT architectures for your business. We design scalable, secure, and maintainable software systems."
+    },
+    "shortDescription": "Future-proof and resilient architecture concepts for complex IT systems.",
+    "iconUrl": "/services/development/benefit3.png",
+    "whiteIconUrl": "/services/development-white.png",
+    "bannerUrl": "/services/softwarearchitektur-banner-en.png",
+    "description": "Solid software architecture is the foundation for long-lasting and successful applications. We help you avoid technical debt and build systems that grow with your company.",
+    "subtitle": "The Foundation for Your Success",
+    "mainTexts": [
+      {
+        "text": "Software needs to be able to change. Good architecture allows you to integrate new features quickly without endangering the entire system. We rely on proven patterns and modern approaches."
+      },
+      {
+        "text": "Whether you are planning a greenfield platform or want to break down an existing monolith into microservices – we support you from analysis to implementation."
+      }
+    ],
+    "features": [
+      {
+        "title": "Cloud-Native & Microservices",
+        "paragraphs": [
+          {
+            "text": "We design distributed systems that make optimal use of cloud benefits. Scalability, resilience, and flexibility are our core focus."
+          }
+        ]
+      },
+      {
+        "title": "Modernization & Refactoring",
+        "paragraphs": [
+          {
+            "text": "We analyze your legacy systems and develop strategies for gradual modernization to make them fit for the future without disrupting ongoing operations."
+          }
+        ]
+      },
+      {
+        "title": "Technology Consulting",
+        "paragraphs": [
+          {
+            "text": "Choosing the right tech stack is crucial. We advise you objectively on the selection of databases, frameworks, and infrastructure components."
+          }
+        ]
+      }
+    ],
+    "benefits": [
+      {
+        "imgUrl": "/services/development/benefit1.png",
+        "text": "Reduction of technical debt and maintenance costs"
+      },
+      {
+        "imgUrl": "/services/development/benefit2.png",
+        "text": "Higher development speed through modular design"
+      },
+      {
+        "imgUrl": "/services/development/benefit3.png",
+        "text": "Investment security through future-proof standards"
+      }
+    ]
+  },
+  {
+    "path": "embedded-entwicklung",
+    "name": "Embedded Development",
+    "meta": {
+      "title": "Embedded Software Development & IoT Solutions | Wesner-Softwareentwicklung",
+      "description": "Hardware-level programming, firmware, and IoT development. We connect your physical devices securely and efficiently to the digital world."
+    },
+    "shortDescription": "Hardware-level programming and IoT solutions for smart devices.",
+    "iconUrl": "/careers/benefits/benefit2.png",
+    "whiteIconUrl": "/services/enterprise-white.png",
+    "bannerUrl": "/services/embedded-entwicklung-banner.png",
+    "description": "Smart devices require smart software. We develop hardware-level solutions and firmware that make your physical products secure, high-performing, and reliable.",
+    "subtitle": "Intelligence for Your Hardware",
+    "mainTexts": [
+      {
+        "text": "From wearables and smart sensors to industrial control systems (IIoT) – the demands on embedded systems are growing rapidly. We master the complexity of limited hardware resources combined with the highest demands for reliability."
+      },
+      {
+        "text": "With our expertise in hardware-level languages like C/C++ and Real-Time Operating Systems (RTOS), we develop software tailored exactly to your microcontroller architecture."
+      }
+    ],
+    "features": [
+      {
+        "title": "Firmware & Microcontrollers",
+        "paragraphs": [
+          {
+            "text": "Development of robust software for various architectures (ARM Cortex, ESP32, etc.). We optimize the code for minimal power consumption and maximum performance."
+          }
+        ]
+      },
+      {
+        "title": "Internet of Things (IoT)",
+        "paragraphs": [
+          {
+            "text": "We securely connect your hardware to the cloud. Implementation of modern communication protocols such as MQTT, CoAP, LoRaWAN, or Bluetooth Low Energy (BLE)."
+          }
+        ]
+      },
+      {
+        "title": "Real-Time Systems (RTOS)",
+        "paragraphs": [
+          {
+            "text": "When every millisecond counts: Development of deterministic systems for time-critical applications in industry, automation, or medical technology."
+          }
+        ]
+      }
+    ],
+    "benefits": [
+      {
+        "imgUrl": "/services/development/benefit1.png",
+        "text": "Maximum hardware efficiency and optimized power consumption"
+      },
+      {
+        "imgUrl": "/services/development/benefit2.png",
+        "text": "Seamless and secure integration into existing IoT ecosystems"
+      },
+      {
+        "imgUrl": "/services/development/benefit3.png",
+        "text": "High reliability for mission-critical applications"
+      }
+    ]
+  },
+  {
+    "path": "softwareberatung",
+    "name": "IT Consulting",
+    "meta": {
+      "title": "IT Consulting & Software Strategy | Digital Transformation | Wesner-Softwareentwicklung",
+      "description": "Professional IT consulting for your business. We analyze your processes, optimize your software landscape, and guide your digital transformation."
+    },
+    "shortDescription": "Strategic IT consulting for your digital transformation and technology selection.",
+    "iconUrl": "/services/support.png",
+    "whiteIconUrl": "/services/support-white.png",
+    "bannerUrl": "/services/softwareberatung-banner.png",
+    "description": "The technology world turns fast. We help you keep an overview, make the right decisions, and maximize the effectiveness of your IT investments.",
+    "subtitle": "Clarity in a Complex World",
+    "mainTexts": [
+      {
+        "text": "Software projects often fail not because of coding, but due to unclear requirements or the wrong strategy. Our consulting starts exactly here: We bridge the gap between your business goals and technical possibilities."
+      },
+      {
+        "text": "We act vendor-independently and objectively. Our goal is not to sell you a specific technology, but to find the solution that sustainably solves your problems and promotes your growth."
+      }
+    ],
+    "features": [
+      {
+        "title": "IT Audit & Analysis",
+        "paragraphs": [
+          {
+            "text": "We examine your existing software infrastructure and processes, identify bottlenecks, and uncover hidden risks as well as optimization potential."
+          }
+        ]
+      },
+      {
+        "title": "Digitalization Roadmap",
+        "paragraphs": [
+          {
+            "text": "Together, we develop a concrete step-by-step plan for your digital transformation. From idea to implementation, with clear milestones."
+          }
+        ]
+      },
+      {
+        "title": "Technology Selection",
+        "paragraphs": [
+          {
+            "text": "Make or Buy? Cloud or On-Premise? Monolith or Microservices? We support you in making well-founded decisions that save costs in the long run."
+          }
+        ]
+      }
+    ],
+    "benefits": [
+      {
+        "imgUrl": "/services/development/benefit1.png",
+        "text": "Avoidance of expensive bad investments through neutral advice"
+      },
+      {
+        "imgUrl": "/services/development/benefit2.png",
+        "text": "Acceleration of your business processes through digitalization"
+      },
+      {
+        "imgUrl": "/services/development/benefit3.png",
+        "text": "Objective expertise from experienced software architects"
+      }
+    ]
+  },
+  {
+    "path": "produktberatung",
+    "name": "Product Consulting",
+    "meta": {
+      "title": "Product Consulting & Strategy | MVP & Product-Market-Fit | Wesner-Softwareentwicklung",
+      "description": "We turn your idea into a successful digital product. Strategic consulting from vision to MVP and market success."
+    },
+    "shortDescription": "We help you shape user-centric and marketable digital products.",
+    "iconUrl": "/services/development/benefit2.png",
+    "whiteIconUrl": "/services/support-white.png",
+    "bannerUrl": "/services/produktberatung-banner-en.png",
+    "description": "Successful software is more than just code. It solves real problems. We guide you in sharpening your vision and developing products that your customers will love.",
+    "subtitle": "From Concept to Market Success",
+    "mainTexts": [
+      {
+        "text": "Many digital products fail because they are developed without market fit. We help you minimize this risk. Together, we validate your assumptions, define the target audience, and prioritize features that truly add value."
+      },
+      {
+        "text": "Our approach combines technological feasibility with methodical product management. We ask the hard questions early on so that you invest your budget efficiently in what matters."
+      }
+    ],
+    "features": [
+      {
+        "title": "Product Discovery & Workshops",
+        "paragraphs": [
+          {
+            "text": "In intensive workshops, we work out the core of your product. We define User Personas, User Journeys, and the central Value Proposition."
+          }
+        ]
+      },
+      {
+        "title": "MVP Strategy (Minimum Viable Product)",
+        "paragraphs": [
+          {
+            "text": "Think big, but start focused. We define the minimum set of features to go to market quickly, gather feedback, and iterate based on real data."
+          }
+        ]
+      },
+      {
+        "title": "Roadmap & Prioritization",
+        "paragraphs": [
+          {
+            "text": "We create a realistic product roadmap that aligns business goals with technical implementation and creates transparency for all stakeholders."
+          }
+        ]
+      }
+    ],
+    "benefits": [
+      {
+        "imgUrl": "/services/development/benefit1.png",
+        "text": "Minimization of investment risk through early validation"
+      },
+      {
+        "imgUrl": "/services/development/benefit2.png",
+        "text": "Faster time-to-market by focusing on the essentials"
+      },
+      {
+        "imgUrl": "/services/development/benefit3.png",
+        "text": "Higher user acceptance through User-Centric Design"
+      }
+    ]
+  },
+  {
+    "path": "requirements-engineering",
+    "name": "Requirements Engineering",
+    "meta": {
+      "title": "Requirements Engineering & Analysis | Wesner-Softwareentwicklung",
+      "description": "Precise requirements analysis as a solid foundation for your software project. We translate your business processes into clear technical specifications."
+    },
+    "shortDescription": "Precise requirements analysis as a solid foundation for your software project.",
+    "iconUrl": "/services/support.png",
+    "whiteIconUrl": "/services/support-white.png",
+    "bannerUrl": "/services/requirements-engineering-banner.png",
+    "description": "A software project stands or falls on the quality of its requirements. We ensure that everyone involved has the same goal in mind before the first line of code is written.",
+    "subtitle": "The Foundation for Successful Software",
+    "mainTexts": [
+      {
+        "text": "Misunderstandings in the planning phase are the most common cause of expensive wrong developments and project delays. Our requirements engineering closes this gap. We act as translators between your business departments and the development teams."
+      },
+      {
+        "text": "We elicit, structure, and document your requirements methodically. This results in clear Use Cases, detailed User Stories, and precise process models that serve as a reliable basis for architecture and development."
+      }
+    ],
+    "features": [
+      {
+        "title": "Requirements Elicitation",
+        "paragraphs": [
+          {
+            "text": "In interviews and interactive workshops, we systematically gather the needs of all stakeholders to get a holistic picture of your project."
+          }
+        ]
+      },
+      {
+        "title": "Modeling & Use Cases",
+        "paragraphs": [
+          {
+            "text": "We visualize complex relationships using UML diagrams, flowcharts, and mockups. This makes abstract processes understandable and tangible for everyone."
+          }
+        ]
+      },
+      {
+        "title": "Specification & Backlog",
+        "paragraphs": [
+          {
+            "text": "We transfer the gathered requirements into a structured format (requirements specification or agile Product Backlog) that can be implemented directly by the developers."
+          }
+        ]
+      }
+    ],
+    "benefits": [
+      {
+        "imgUrl": "/services/development/benefit1.png",
+        "text": "Avoidance of expensive rework through clear goals"
+      },
+      {
+        "imgUrl": "/services/development/benefit2.png",
+        "text": "High transparency and planning security for all stakeholders"
+      },
+      {
+        "imgUrl": "/services/development/benefit3.png",
+        "text": "More efficient development phases without friction losses"
+      }
+    ]
+  },
+  {
+    "path": "ui-ux-design",
+    "name": "UI/UX Design",
+    "meta": { "title": "UI/UX Design", "description": "User experience and interface design" },
+    "shortDescription": "Intuitive user interfaces and outstanding user experiences.",
+    "iconUrl": "/careers/benefits/benefit2.png", "whiteIconUrl": "/services/enterprise-white.png", "bannerUrl": "/services/development-banner.png",
+    "description": "Coming soon.", "subtitle": "Your Solution", "mainTexts": [{"text": "Content coming soon."}], "features": [{"title": "Feature", "paragraphs": [{"text": "Text"}]}], "benefits": [{"imgUrl": "/services/development/benefit1.png", "text": "Benefit"}]
+  },
+  {
+    "path": "ki-forschung-entwicklung",
+    "name": "AI Research & Development",
+    "meta": { "title": "AI Research & Development", "description": "Artificial Intelligence and ML" },
+    "shortDescription": "Integration of Artificial Intelligence and Machine Learning into your processes.",
+    "iconUrl": "/services/development/benefit3.png", "whiteIconUrl": "/services/development-white.png", "bannerUrl": "/services/development-banner.png",
+    "description": "Coming soon.", "subtitle": "Your Solution", "mainTexts": [{"text": "Content coming soon."}], "features": [{"title": "Feature", "paragraphs": [{"text": "Text"}]}], "benefits": [{"imgUrl": "/services/development/benefit1.png", "text": "Benefit"}]
+  },
+  {
+    "path": "sprachassistenten",
+    "name": "Voice Assistants",
+    "meta": { "title": "Voice Assistants", "description": "Voice bots and voice control" },
+    "shortDescription": "Intelligent voice bots and voice-controlled systems for your business.",
+    "iconUrl": "/services/support.png", "whiteIconUrl": "/services/support-white.png", "bannerUrl": "/services/development-banner.png",
+    "description": "Coming soon.", "subtitle": "Your Solution", "mainTexts": [{"text": "Content coming soon."}], "features": [{"title": "Feature", "paragraphs": [{"text": "Text"}]}], "benefits": [{"imgUrl": "/services/development/benefit1.png", "text": "Benefit"}]
+  },
+  {
+    "path": "produktbausteine",
+    "name": "Product Modules",
+    "meta": { "title": "Product Modules", "description": "Pre-built software modules" },
+    "shortDescription": "Pre-built software modules for faster and cost-efficient development.",
+    "iconUrl": "/services/development.png", "whiteIconUrl": "/services/development-white.png", "bannerUrl": "/services/development-banner.png",
+    "description": "Coming soon.", "subtitle": "Your Solution", "mainTexts": [{"text": "Content coming soon."}], "features": [{"title": "Feature", "paragraphs": [{"text": "Text"}]}], "benefits": [{"imgUrl": "/services/development/benefit1.png", "text": "Benefit"}]
   }
 ]

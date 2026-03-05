@@ -1,4 +1,4 @@
-import { Link, MenuItem, SxProps, Tooltip } from '@mui/material';
+import { Box, MenuItem, SxProps, Tooltip, Typography } from '@mui/material';
 import { IMainNavItem } from 'models/configs/main-nav.config';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
@@ -13,39 +13,101 @@ export default function NavigationMenuItem({
                                              sx,
                                            }: INavMenuItem): JSX.Element {
   const router = useRouter();
+  const { name, children } = item;
 
-  const { name, path, children } = item;
+  const hasSubCategories = children?.some(
+    (child) => child.children && child.children.length > 0
+  );
 
   return (
     <Tooltip
+      key={router.asPath}
+      disableFocusListener
       placement="bottom-start"
       title={
-        <>
-          {(children || []).map(({ name, path }) => {
-            const isActive = router.asPath.includes(path);
+        <Box
+          sx={{
+            p: 1,
+            display: hasSubCategories ? 'grid' : 'flex',
+            gridTemplateColumns: hasSubCategories ? 'repeat(2, 1fr)' : 'none',
+            flexDirection: hasSubCategories ? 'unset' : 'column',
+            gap: hasSubCategories ? 2 : 0,
+            maxWidth: hasSubCategories ? 600 : 'auto',
+          }}
+        >
+          {(children || []).map((child) => {
+            if (child.children && child.children.length > 0) {
+              return (
+                <Box key={child.name} sx={{ display: 'flex', flexDirection: 'column', mb: 1 }}>
+                  <Typography
+                    variant="overline"
+                    sx={{
+                      px: 2,
+                      color: 'primary.main',
+                      fontWeight: 'bold',
+                      lineHeight: 2,
+                      pointerEvents: 'none',
+                    }}
+                  >
+                    {child.name}
+                  </Typography>
+                  {child.children.map((subChild) => {
+                    const isActive = router.asPath.includes(subChild.path);
+                    return (
+                      <NextLink key={subChild.name} href={subChild.path} passHref prefetch={false}>
+                        <MenuItem
+                          component="a"
+                          sx={{
+                            color: isActive ? 'primary.main' : 'grey.800',
+                            py: 0.5,
+                            minHeight: 'auto',
+                            textDecoration: 'none',
+                          }}
+                        >
+                          {subChild.name}
+                        </MenuItem>
+                      </NextLink>
+                    );
+                  })}
+                </Box>
+              );
+            }
+
+            const isActive = router.asPath.includes(child.path);
             return (
-              <NextLink key={name} href={path} prefetch={false}>
+              <NextLink key={child.name} href={child.path} passHref prefetch={false}>
                 <MenuItem
-                  autoFocus={false}
+                  component="a"
                   sx={{
                     color: isActive ? 'primary.main' : 'grey.800',
+                    textDecoration: 'none',
                   }}
                 >
-                  {name}
+                  {child.name}
                 </MenuItem>
               </NextLink>
             );
           })}
-        </>
+        </Box>
       }
+      componentsProps={{
+        tooltip: {
+          sx: {
+            bgcolor: 'common.white',
+            boxShadow: 3,
+            p: 0,
+            maxWidth: 'none',
+            pointerEvents: 'auto',
+            '& .MuiMenuItem-root': {
+              fontSize: '0.875rem',
+            },
+          },
+        },
+      }}
     >
-      <span style={{ display: 'inline-block' }}>
-        <NextLink href={path} passHref>
-          <Link sx={sx} style={{ cursor: 'pointer' }}>
-            {name}
-          </Link>
-        </NextLink>
-      </span>
+      <Box component="span" sx={{ ...sx, cursor: 'default' }}>
+        {name}
+      </Box>
     </Tooltip>
   );
 }

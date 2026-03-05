@@ -66,8 +66,8 @@
       "description": "Spezialisierte Software für das Elektronische Straßen-Frachtkontrollsystem (EKAER) in Ungarn. Automatisierte Meldungen und Compliance."
     },
     "shortDescription": "Elektronisches Straßen-Frachtkontrollsystem in Ungarn.",
-    "iconUrl": "/services/development.png",
-    "whiteIconUrl": "/services/development-white.png",
+    "iconUrl": "/careers/benefits/benefit2.png",
+    "whiteIconUrl": "/services/enterprise-white.png",
     "bannerUrl": "/services/development-banner.png",
     "description": "Das Elektronische Straßen-Frachtkontrollsystem (EKAER) in Ungarn erfordert eine Meldepflicht für bestimmte Gütertransporte auf öffentlichen Straßen.",
     "subtitle": "Elektronisches Straßen-Frachtkontrollsystem in Ungarn",
@@ -86,7 +86,6 @@
       {
         "text": "Bitte beachten Sie zudem, dass das Kennzeichen des LKW im EKAER-Antrag eingetragen werden muss."
       }
-
     ],
     "features": [
       {
@@ -128,5 +127,533 @@
         "text": "Individuelle Anpassung an Ihre Geschäftsprozesse"
       }
     ]
+  },
+  {
+    "path": "individuelle-softwareentwicklung",
+    "name": "Individuelle Softwareentwicklung",
+    "meta": {
+      "title": "Individuelle Softwareentwicklung | Maßgeschneiderte Lösungen | Wesner-Softwareentwicklung",
+      "description": "Software nach Maß für Ihre Geschäftsprozesse. Wir entwickeln individuelle Lösungen, die perfekt passen, skalieren und Ihnen einen Wettbewerbsvorteil sichern."
+    },
+    "shortDescription": "Maßgeschneiderte Softwarelösungen, die exakt auf Ihre Geschäftsprozesse abgestimmt sind.",
+    "iconUrl": "/services/development.png",
+    "whiteIconUrl": "/services/development-white.png",
+    "bannerUrl": "/services/individuelle-softwareentwicklung-banner.png",
+    "description": "Standardsoftware zwingt Sie oft zu Kompromissen. Unsere individuellen Lösungen passen sich Ihren Prozessen an – nicht umgekehrt. Holen Sie das Maximum aus Ihrem Business heraus.",
+    "subtitle": "Software, die so einzigartig ist wie Ihr Unternehmen",
+    "mainTexts": [
+      {
+        "text": "Jedes Unternehmen hat seine eigenen Erfolgsrezepte und Abläufe. Standardlösungen von der Stange bilden diese oft nur unzureichend ab oder sind mit unnötigen Funktionen überladen. Individuelle Software schließt diese Lücke."
+      },
+      {
+        "text": "Wir entwickeln Anwendungen, die exakt Ihre Anforderungen erfüllen. Das Ergebnis ist eine schlanke, leistungsfähige Software, die Ihre Mitarbeiter entlastet, Fehlerquoten senkt und sich nahtlos in Ihre bestehende IT-Landschaft integriert."
+      }
+    ],
+    "features": [
+      {
+        "title": "Bedarfsanalyse & Konzeption",
+        "paragraphs": [
+          {
+            "text": "Wir hören zu. Bevor wir eine Zeile Code schreiben, verstehen wir Ihre geschäftlichen Herausforderungen und definieren gemeinsam die optimale Lösung."
+          }
+        ]
+      },
+      {
+        "title": "Agile Umsetzung",
+        "paragraphs": [
+          {
+            "text": "Durch agile Methoden (Scrum/Kanban) bleiben Sie jederzeit involviert. Sie sehen früh erste Ergebnisse und können Feedback geben, sodass das Endprodukt garantiert Ihren Vorstellungen entspricht."
+          }
+        ]
+      },
+      {
+        "title": "Nachhaltiger Tech-Stack",
+        "paragraphs": [
+          {
+            "text": "Wir setzen auf bewährte, zukunftssichere Technologien (Java, .NET, Node.js, React), die Wartbarkeit und Erweiterbarkeit für die kommenden Jahre sichern."
+          }
+        ]
+      }
+    ],
+    "benefits": [
+      {
+        "imgUrl": "/services/development/benefit1.png",
+        "text": "100% Passgenauigkeit für Ihre spezifischen Workflows"
+      },
+      {
+        "imgUrl": "/services/development/benefit2.png",
+        "text": "Unabhängigkeit von Lizenzmodellen großer Anbieter"
+      },
+      {
+        "imgUrl": "/services/development/benefit3.png",
+        "text": "Wettbewerbsvorteil durch exklusive Funktionalitäten"
+      }
+    ]
+  },
+  {
+    "path": "webentwicklung",
+    "name": "Webentwicklung",
+    "meta": {
+      "title": "Webentwicklung & Web-Apps | React, Angular, Vue | Wesner-Softwareentwicklung",
+      "description": "Moderne Webanwendungen und Portale. Wir entwickeln skalierbare, sichere und schnelle Web-Lösungen für Ihren Geschäftserfolg."
+    },
+    "shortDescription": "Skalierbare und sichere Webanwendungen, Portale und Cloud-Lösungen.",
+    "iconUrl": "/services/development.png",
+    "whiteIconUrl": "/services/development-white.png",
+    "bannerUrl": "/services/webentwicklung-banner.png",
+    "description": "Das Web ist heute die wichtigste Plattform für Software. Wir bauen keine einfachen Webseiten, sondern komplexe, leistungsstarke Webanwendungen, die sich wie native Apps anfühlen.",
+    "subtitle": "Mehr als nur eine Website",
+    "mainTexts": [
+      {
+        "text": "Moderne Webentwicklung bedeutet Geschwindigkeit, Interaktivität und Verfügbarkeit auf allen Geräten. Wir nutzen Technologien wie React oder Angular, um Benutzeroberflächen zu schaffen, die begeistern."
+      },
+      {
+        "text": "Ob Kundenportal, internes Dashboard oder SaaS-Plattform – wir sorgen dafür, dass Ihre Anwendung sicher ist, schnell lädt und auch bei hohen Nutzerzahlen stabil läuft."
+      }
+    ],
+    "features": [
+      {
+        "title": "Single Page Applications (SPA)",
+        "paragraphs": [
+          {
+            "text": "Wir entwickeln flüssige Anwendungen ohne störende Ladezeiten beim Seitenwechsel. Das sorgt für eine User Experience, die man sonst nur von Desktop-Software kennt."
+          }
+        ]
+      },
+      {
+        "title": "Responsive & Mobile-First",
+        "paragraphs": [
+          {
+            "text": "Ihre Anwendung muss überall funktionieren. Wir garantieren eine perfekte Darstellung und Bedienbarkeit auf Smartphones, Tablets und großen Desktop-Monitoren."
+          }
+        ]
+      },
+      {
+        "title": "Sicheres Backend & API",
+        "paragraphs": [
+          {
+            "text": "Ein schönes Frontend braucht ein starkes Backend. Wir entwickeln robuste APIs (REST/GraphQL), die Ihre Daten sicher verarbeiten und Drittsysteme nahtlos anbinden."
+          }
+        ]
+      }
+    ],
+    "benefits": [
+      {
+        "imgUrl": "/services/development/benefit1.png",
+        "text": "Plattformunabhängigkeit (läuft in jedem Browser)"
+      },
+      {
+        "imgUrl": "/services/development/benefit2.png",
+        "text": "Einfache Wartung und zentrale Updates ohne Installation"
+      },
+      {
+        "imgUrl": "/services/development/benefit3.png",
+        "text": "Hohe Performance"
+      }
+    ]
+  },
+  {
+    "path": "mobile-app-entwicklung",
+    "name": "Mobile App Entwicklung",
+    "meta": {
+      "title": "Mobile App Entwicklung | iOS & Android | Wesner-Softwareentwicklung",
+      "description": "Wir entwickeln leistungsstarke native und plattformübergreifende Apps. Von der Idee bis zum App Store Release."
+    },
+    "shortDescription": "Native und plattformübergreifende Apps für iOS und Android.",
+    "iconUrl": "/services/mobile.png",
+    "whiteIconUrl": "/services/support-white.png",
+    "bannerUrl": "/services/mobile-app-entwicklung-banner.png",
+    "description": "Mobile Anwendungen sind heute der direkteste Weg zu Ihren Kunden. Wir verwandeln Ihre Ideen in intuitive und leistungsstarke Apps, die auf jedem Gerät begeistern.",
+    "subtitle": "Ihre Vision auf dem Smartphone",
+    "mainTexts": [
+      {
+        "text": "Ob iOS oder Android – wir entwickeln Lösungen, die perfekt auf Ihre Zielgruppe zugeschnitten sind. Dabei setzen wir auf moderne Technologien, die Performance und Kosteneffizienz vereinen."
+      },
+      {
+        "text": "Unser Ansatz umfasst den gesamten Lebenszyklus: von der ersten Konzeption und dem UI/UX-Design über die Entwicklung bis hin zur Veröffentlichung in den App Stores und der anschließenden Wartung."
+      }
+    ],
+    "features": [
+      {
+        "title": "Cross-Platform Entwicklung",
+        "paragraphs": [
+          {
+            "text": "Eine Codebasis für beide Plattformen (iOS & Android) dank moderner Frameworks wie React Native oder Flutter. Das spart Entwicklungszeit und Kosten ohne Abstriche bei der Qualität."
+          }
+        ]
+      },
+      {
+        "title": "Native Entwicklung",
+        "paragraphs": [
+          {
+            "text": "Für maximale Performance und Zugriff auf spezifische Hardware-Funktionen entwickeln wir auch nativ in Swift (iOS) und Kotlin (Android)."
+          }
+        ]
+      },
+      {
+        "title": "UI/UX Design",
+        "paragraphs": [
+          {
+            "text": "Eine App muss nicht nur funktionieren, sondern auch einfach zu bedienen sein. Wir legen höchsten Wert auf ein intuitives und ansprechendes Design."
+          }
+        ]
+      }
+    ],
+    "benefits": [
+      {
+        "imgUrl": "/services/development/benefit1.png",
+        "text": "Schnellere Markteinführung durch effiziente Prozesse"
+      },
+      {
+        "imgUrl": "/services/development/benefit2.png",
+        "text": "Skalierbare Lösungen, die mit Ihrem Business wachsen"
+      },
+      {
+        "imgUrl": "/services/development/benefit3.png",
+        "text": "Vollständiger Support von der Idee bis zum Store"
+      }
+    ]
+  },
+  {
+    "path": "softwarearchitektur",
+    "name": "Softwarearchitektur",
+    "meta": {
+      "title": "Softwarearchitektur & Systemdesign | Skalierbare Lösungen | Wesner-Softwareentwicklung",
+      "description": "Zukunftsfähige IT-Architekturen für Ihr Unternehmen. Wir entwerfen skalierbare, sichere und wartbare Software-Systeme."
+    },
+    "shortDescription": "Zukunftsfähige und belastbare Architekturkonzepte für komplexe IT-Systeme.",
+    "iconUrl": "/services/development/benefit3.png",
+    "whiteIconUrl": "/services/development-white.png",
+    "bannerUrl": "/services/softwarearchitektur-banner-de.png",
+    "description": "Eine solide Softwarearchitektur ist das Fundament für langlebige und erfolgreiche Anwendungen. Wir helfen Ihnen, technische Schulden zu vermeiden und Systeme zu bauen, die mit Ihrem Unternehmen wachsen.",
+    "subtitle": "Das Fundament für Ihren Erfolg",
+    "mainTexts": [
+      {
+        "text": "Software muss sich verändern können. Eine gute Architektur ermöglicht es Ihnen, neue Features schnell zu integrieren, ohne das gesamte System zu gefährden. Wir setzen auf bewährte Patterns und moderne Ansätze."
+      },
+      {
+        "text": "Egal ob Sie eine neue Plattform auf der Grünen Wiese planen oder einen bestehenden Monolithen in Microservices aufbrechen wollen – wir begleiten Sie von der Analyse bis zur Umsetzung."
+      }
+    ],
+    "features": [
+      {
+        "title": "Cloud-Native & Microservices",
+        "paragraphs": [
+          {
+            "text": "Wir entwerfen verteilte Systeme, die die Vorteile der Cloud optimal nutzen. Skalierbarkeit, Ausfallsicherheit und Flexibilität stehen dabei im Mittelpunkt."
+          }
+        ]
+      },
+      {
+        "title": "Modernisierung & Refactoring",
+        "paragraphs": [
+          {
+            "text": "Wir analysieren Ihre Legacy-Systeme und entwickeln Strategien zur schrittweisen Modernisierung, um sie fit für die Zukunft zu machen, ohne den laufenden Betrieb zu stören."
+          }
+        ]
+      },
+      {
+        "title": "Technologie-Beratung",
+        "paragraphs": [
+          {
+            "text": "Die Wahl des richtigen Tech-Stacks ist entscheidend. Wir beraten Sie objektiv bei der Auswahl von Datenbanken, Frameworks und Infrastruktur-Komponenten."
+          }
+        ]
+      }
+    ],
+    "benefits": [
+      {
+        "imgUrl": "/services/development/benefit1.png",
+        "text": "Reduzierung technischer Schulden und Wartungskosten"
+      },
+      {
+        "imgUrl": "/services/development/benefit2.png",
+        "text": "Höhere Entwicklungsgeschwindigkeit durch modularen Aufbau"
+      },
+      {
+        "imgUrl": "/services/development/benefit3.png",
+        "text": "Investitionssicherheit durch zukunftsfähige Standards"
+      }
+    ]
+  },
+  {
+    "path": "embedded-entwicklung",
+    "name": "Embedded Entwicklung",
+    "meta": {
+      "title": "Embedded Softwareentwicklung & IoT-Lösungen | Wesner-Softwareentwicklung",
+      "description": "Hardwarenahe Programmierung, Firmware und IoT-Entwicklung. Wir verbinden Ihre physischen Geräte sicher und effizient mit der digitalen Welt."
+    },
+    "shortDescription": "Hardwarenahe Programmierung und IoT-Lösungen für smarte Geräte.",
+    "iconUrl": "/careers/benefits/benefit2.png",
+    "whiteIconUrl": "/services/enterprise-white.png",
+    "bannerUrl": "/services/embedded-entwicklung-banner.png",
+    "description": "Intelligente Geräte erfordern intelligente Software. Wir entwickeln hardwarenahe Lösungen und Firmware, die Ihre physischen Produkte sicher, performant und zuverlässig machen.",
+    "subtitle": "Intelligenz für Ihre Hardware",
+    "mainTexts": [
+      {
+        "text": "Vom Wearable über smarte Sensoren bis hin zu industriellen Steuerungsanlagen (IIoT) – die Anforderungen an Embedded Systems wachsen rasant. Wir beherrschen die Komplexität begrenzter Hardware-Ressourcen bei gleichzeitig höchsten Ansprüchen an Ausfallsicherheit."
+      },
+      {
+        "text": "Mit unserer Expertise in hardwarenahen Sprachen wie C/C++ und Echtzeitbetriebssystemen (RTOS) entwickeln wir Software, die exakt auf Ihre Mikrocontroller-Architektur abgestimmt ist."
+      }
+    ],
+    "features": [
+      {
+        "title": "Firmware & Mikrocontroller",
+        "paragraphs": [
+          {
+            "text": "Entwicklung von robuster Software für diverse Architekturen (ARM Cortex, ESP32 etc.). Wir optimieren den Code auf minimalen Stromverbrauch und maximale Leistung."
+          }
+        ]
+      },
+      {
+        "title": "Internet of Things (IoT)",
+        "paragraphs": [
+          {
+            "text": "Wir binden Ihre Hardware sicher an die Cloud an. Implementierung moderner Kommunikationsprotokolle wie MQTT, CoAP, LoRaWAN oder Bluetooth Low Energy (BLE)."
+          }
+        ]
+      },
+      {
+        "title": "Echtzeitsysteme (RTOS)",
+        "paragraphs": [
+          {
+            "text": "Wenn jede Millisekunde zählt: Entwicklung deterministischer Systeme für zeitkritische Anwendungen in der Industrie, Automatisierung oder Medizintechnik."
+          }
+        ]
+      }
+    ],
+    "benefits": [
+      {
+        "imgUrl": "/services/development/benefit1.png",
+        "text": "Maximale Hardware-Effizienz und optimierter Energieverbrauch"
+      },
+      {
+        "imgUrl": "/services/development/benefit2.png",
+        "text": "Nahtlose und sichere Integration in bestehende IoT-Ökosysteme"
+      },
+      {
+        "imgUrl": "/services/development/benefit3.png",
+        "text": "Hohe Ausfallsicherheit für geschäftskritische Anwendungen"
+      }
+    ]
+  },
+  {
+    "path": "softwareberatung",
+    "name": "Softwareberatung",
+    "meta": {
+      "title": "Softwareberatung & IT-Strategie | Digitale Transformation | Wesner-Softwareentwicklung",
+      "description": "Professionelle IT-Beratung für Ihr Unternehmen. Wir analysieren Ihre Prozesse, optimieren Ihre Software-Landschaft und begleiten Ihre digitale Transformation."
+    },
+    "shortDescription": "Strategische IT-Beratung für Ihre digitale Transformation und Technologieauswahl.",
+    "iconUrl": "/services/support.png",
+    "whiteIconUrl": "/services/support-white.png",
+    "bannerUrl": "/services/softwareberatung-banner.png",
+    "description": "Die Technologiewelt dreht sich schnell. Wir helfen Ihnen, den Überblick zu behalten, die richtigen Entscheidungen zu treffen und Ihre IT-Investitionen maximal wirksam einzusetzen.",
+    "subtitle": "Klarheit in einer komplexen Welt",
+    "mainTexts": [
+      {
+        "text": "Oft scheitern Softwareprojekte nicht an der Programmierung, sondern an unklaren Anforderungen oder der falschen Strategie. Unsere Beratung setzt genau hier an: Wir schlagen die Brücke zwischen Ihren geschäftlichen Zielen und den technischen Möglichkeiten."
+      },
+      {
+        "text": "Wir agieren herstellerunabhängig und objektiv. Unser Ziel ist nicht, Ihnen eine bestimmte Technologie zu verkaufen, sondern die Lösung zu finden, die Ihre Probleme nachhaltig löst und Ihr Wachstum fördert."
+      }
+    ],
+    "features": [
+      {
+        "title": "IT-Audit & Analyse",
+        "paragraphs": [
+          {
+            "text": "Wir durchleuchten Ihre bestehende Software-Infrastruktur und Prozesse, identifizieren Flaschenhälse und decken versteckte Risiken sowie Optimierungspotenziale auf."
+          }
+        ]
+      },
+      {
+        "title": "Digitalisierungs-Roadmap",
+        "paragraphs": [
+          {
+            "text": "Gemeinsam entwickeln wir einen konkreten Schritt-für-Schritt-Plan für Ihre digitale Transformation. Von der Idee bis zur Implementierung, mit klaren Meilensteinen."
+          }
+        ]
+      },
+      {
+        "title": "Technologie-Auswahl",
+        "paragraphs": [
+          {
+            "text": "Make or Buy? Cloud oder On-Premise? Monolith oder Microservices? Wir unterstützen Sie bei fundierten Entscheidungen, die langfristig Kosten sparen."
+          }
+        ]
+      }
+    ],
+    "benefits": [
+      {
+        "imgUrl": "/services/development/benefit1.png",
+        "text": "Vermeidung teurer Fehlinvestitionen durch neutrale Beratung"
+      },
+      {
+        "imgUrl": "/services/development/benefit2.png",
+        "text": "Beschleunigung Ihrer Geschäftsprozesse durch Digitalisierung"
+      },
+      {
+        "imgUrl": "/services/development/benefit3.png",
+        "text": "Objektive Expertise von erfahrenen Software-Architekten"
+      }
+    ]
+  },
+  {
+    "path": "produktberatung",
+    "name": "Produktberatung",
+    "meta": {
+      "title": "Produktberatung & Strategie | MVP & Product-Market-Fit | Wesner-Softwareentwicklung",
+      "description": "Wir verwandeln Ihre Idee in ein erfolgreiches digitales Produkt. Strategische Beratung von der Vision über das MVP bis zum Markterfolg."
+    },
+    "shortDescription": "Wir helfen Ihnen, nutzerzentrierte und marktfähige digitale Produkte zu formen.",
+    "iconUrl": "/services/development/benefit2.png",
+    "whiteIconUrl": "/services/support-white.png",
+    "bannerUrl": "/services/produktberatung-banner-de.png",
+    "description": "Erfolgreiche Software ist mehr als nur Code. Sie löst echte Probleme. Wir begleiten Sie dabei, Ihre Vision zu schärfen und Produkte zu entwickeln, die Ihre Kunden lieben.",
+    "subtitle": "Vom Konzept zum Markterfolg",
+    "mainTexts": [
+      {
+        "text": "Viele digitale Produkte scheitern, weil sie am Markt vorbei entwickelt werden. Wir helfen Ihnen, dieses Risiko zu minimieren. Gemeinsam validieren wir Ihre Annahmen, definieren die Zielgruppe und priorisieren Features, die wirklich Wert stiften."
+      },
+      {
+        "text": "Unser Ansatz verbindet technologisches Machbarkeitsdenken mit methodischem Produktmanagement. Wir stellen die schwierigen Fragen frühzeitig, damit Sie Ihr Budget effizient in das investieren, was zählt."
+      }
+    ],
+    "features": [
+      {
+        "title": "Product Discovery & Workshops",
+        "paragraphs": [
+          {
+            "text": "In intensiven Workshops erarbeiten wir den Kern Ihres Produkts. Wir definieren User Personas, User Journeys und das zentrale Wertversprechen (Value Proposition)."
+          }
+        ]
+      },
+      {
+        "title": "MVP-Strategie (Minimum Viable Product)",
+        "paragraphs": [
+          {
+            "text": "Denken Sie groß, aber starten Sie fokussiert. Wir definieren den minimalen Funktionsumfang, um schnell an den Markt zu gehen, Feedback zu sammeln und darauf basierend zu iterieren."
+          }
+        ]
+      },
+      {
+        "title": "Roadmap & Priorisierung",
+        "paragraphs": [
+          {
+            "text": "Wir erstellen eine realistische Produkt-Roadmap, die Geschäftsziele und technische Umsetzung in Einklang bringt und Transparenz für alle Stakeholder schafft."
+          }
+        ]
+      }
+    ],
+    "benefits": [
+      {
+        "imgUrl": "/services/development/benefit1.png",
+        "text": "Minimierung des Investitionsrisikos durch frühe Validierung"
+      },
+      {
+        "imgUrl": "/services/development/benefit2.png",
+        "text": "Schnellerer Time-to-Market durch Fokus auf das Wesentliche"
+      },
+      {
+        "imgUrl": "/services/development/benefit3.png",
+        "text": "Höhere Nutzerakzeptanz durch User-Centric Design"
+      }
+    ]
+  },
+  {
+    "path": "requirements-engineering",
+    "name": "Requirements Engineering",
+    "meta": {
+      "title": "Requirements Engineering & Anforderungsanalyse | Wesner-Softwareentwicklung",
+      "description": "Präzise Anforderungsanalyse als solides Fundament für Ihr Softwareprojekt. Wir übersetzen Ihre Geschäftsprozesse in klare technische Spezifikationen."
+    },
+    "shortDescription": "Präzise Anforderungsanalyse als solides Fundament für Ihr Softwareprojekt.",
+    "iconUrl": "/services/support.png",
+    "whiteIconUrl": "/services/support-white.png",
+    "bannerUrl": "/services/requirements-engineering-banner.png",
+    "description": "Ein Softwareprojekt steht und fällt mit der Qualität seiner Anforderungen. Wir sorgen dafür, dass alle Beteiligten das gleiche Ziel vor Augen haben, bevor die erste Zeile Code geschrieben wird.",
+    "subtitle": "Das Fundament für erfolgreiche Software",
+    "mainTexts": [
+      {
+        "text": "Missverständnisse in der Planungsphase sind die häufigste Ursache für teure Fehlentwicklungen und Projektverzögerungen. Unser Requirements Engineering schließt diese Lücke. Wir fungieren als Übersetzer zwischen Ihren Fachabteilungen und den Entwicklerteams."
+      },
+      {
+        "text": "Wir ermitteln, strukturieren und dokumentieren Ihre Anforderungen methodisch fundiert. Dabei entstehen klare Use Cases, detaillierte User Stories und präzise Prozessmodelle, die als verlässliche Basis für die Architektur und Entwicklung dienen."
+      }
+    ],
+    "features": [
+      {
+        "title": "Anforderungsermittlung",
+        "paragraphs": [
+          {
+            "text": "In Interviews und interaktiven Workshops sammeln wir systematisch die Bedürfnisse aller Stakeholder ein, um ein ganzheitliches Bild Ihres Vorhabens zu erhalten."
+          }
+        ]
+      },
+      {
+        "title": "Modellierung & Use Cases",
+        "paragraphs": [
+          {
+            "text": "Wir visualisieren komplexe Zusammenhänge durch UML-Diagramme, Flowcharts und Mockups. Das macht abstrakte Prozesse für jeden verständlich und greifbar."
+          }
+        ]
+      },
+      {
+        "title": "Spezifikation & Backlog",
+        "paragraphs": [
+          {
+            "text": "Wir überführen die gesammelten Anforderungen in ein strukturiertes Format (Lastenheft oder agiles Product Backlog), das direkt von den Entwicklern umgesetzt werden kann."
+          }
+        ]
+      }
+    ],
+    "benefits": [
+      {
+        "imgUrl": "/services/development/benefit1.png",
+        "text": "Vermeidung von teuren Nachbesserungen durch klare Ziele"
+      },
+      {
+        "imgUrl": "/services/development/benefit2.png",
+        "text": "Hohe Transparenz und Planungssicherheit für alle Stakeholder"
+      },
+      {
+        "imgUrl": "/services/development/benefit3.png",
+        "text": "Effizientere Entwicklungsphasen ohne Reibungsverluste"
+      }
+    ]
+  },
+  {
+    "path": "ui-ux-design",
+    "name": "UI/UX Design",
+    "meta": { "title": "UI/UX Design", "description": "Benutzererlebnis und Interface Design" },
+    "shortDescription": "Intuitive Benutzeroberflächen und herausragende Nutzererlebnisse.",
+    "iconUrl": "/careers/benefits/benefit2.png", "whiteIconUrl": "/services/enterprise-white.png", "bannerUrl": "/services/development-banner.png",
+    "description": "Beschreibung folgt.", "subtitle": "Ihre Lösung", "mainTexts": [{"text": "Inhalt folgt."}], "features": [{"title": "Feature", "paragraphs": [{"text": "Text"}]}], "benefits": [{"imgUrl": "/services/development/benefit1.png", "text": "Benefit"}]
+  },
+  {
+    "path": "ki-forschung-entwicklung",
+    "name": "KI-Forschung und Entwicklung",
+    "meta": { "title": "KI-Forschung und Entwicklung", "description": "Künstliche Intelligenz und ML" },
+    "shortDescription": "Integration von Künstlicher Intelligenz und Machine Learning in Ihre Prozesse.",
+    "iconUrl": "/services/development/benefit3.png", "whiteIconUrl": "/services/development-white.png", "bannerUrl": "/services/development-banner.png",
+    "description": "Beschreibung folgt.", "subtitle": "Ihre Lösung", "mainTexts": [{"text": "Inhalt folgt."}], "features": [{"title": "Feature", "paragraphs": [{"text": "Text"}]}], "benefits": [{"imgUrl": "/services/development/benefit1.png", "text": "Benefit"}]
+  },
+  {
+    "path": "sprachassistenten",
+    "name": "Sprachassistenten",
+    "meta": { "title": "Sprachassistenten", "description": "Voice-Bots und Sprachsteuerung" },
+    "shortDescription": "Intelligente Voice-Bots und sprachgesteuerte Systeme für Ihr Unternehmen.",
+    "iconUrl": "/services/support.png", "whiteIconUrl": "/services/support-white.png", "bannerUrl": "/services/development-banner.png",
+    "description": "Beschreibung folgt.", "subtitle": "Ihre Lösung", "mainTexts": [{"text": "Inhalt folgt."}], "features": [{"title": "Feature", "paragraphs": [{"text": "Text"}]}], "benefits": [{"imgUrl": "/services/development/benefit1.png", "text": "Benefit"}]
+  },
+  {
+    "path": "produktbausteine",
+    "name": "Produktbausteine",
+    "meta": { "title": "Produktbausteine", "description": "Vorgefertigte Softwaremodule" },
+    "shortDescription": "Vorgefertigte Softwaremodule für eine schnellere und kosteneffiziente Entwicklung.",
+    "iconUrl": "/services/development.png", "whiteIconUrl": "/services/development-white.png", "bannerUrl": "/services/development-banner.png",
+    "description": "Beschreibung folgt.", "subtitle": "Ihre Lösung", "mainTexts": [{"text": "Inhalt folgt."}], "features": [{"title": "Feature", "paragraphs": [{"text": "Text"}]}], "benefits": [{"imgUrl": "/services/development/benefit1.png", "text": "Benefit"}]
   }
 ]

@@ -31,10 +31,13 @@
     "projects": "Projekte abgeschlossen"
   },
   "services": {
-    "title": "Unsere Leistungen"
+    "title": "Unsere Leistungen",
+    "showMore": "Mehr anzeigen",
+    "showLess": "Weniger anzeigen"
   },
   "banner": {
     "title": "Integrationskraft für Ihr Unternehmen",
-    "description": "Von der einfachen Systemintegration bis hin zur unternehmensweiten hybriden Integrationsplattform – durchgängige Lösungen vom Backend bis zum IoT."
+    "description": "Von der einfachen Systemintegration bis hin zur unternehmensweiten hybriden Integrationsplattform – durchgängige Lösungen vom Backend bis zum IoT.",
+    "freeConsultation": "Kostenlose Beratung"
   }
 }

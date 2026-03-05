@@ -57,7 +57,7 @@ export default function Banner(): JSX.Element {
             {t('banner.description')}
           </Typography>
           <Link href={ERoutes.ContactUs}>
-            <Button color="secondary">{t('contactUs.button')}</Button>
+            <Button color="secondary">{t('banner.freeConsultation')}</Button>
           </Link>
         </Stack>
         <Box pr={2.5} maxWidth={{ md: 600, lg: 'none' }}>

@@ -1,5 +1,5 @@
-import { useTranslations } from 'use-intl';
-import { ERoutes, EServicesRoutes } from './../enums/routes.enum';
+import { useTranslations } from 'next-intl';
+import { ERoutes } from '../enums/routes.enum';
 
 export interface IMainNavItem {
   name: string;
@@ -16,23 +16,45 @@ export const useGetMainNavConfig = () => {
       path: ERoutes.Services,
       children: [
         {
-          name: t('navigation.servicesChildren.enterprise'),
-          path: `${ERoutes.Services}${EServicesRoutes.Enterprise}`,
+          name: t('navigation.categories.integration'),
+          path: '#',
+          children: [
+            { name: t('navigation.servicesChildren.enterprise'), path: `${ERoutes.Services}/enterprise` },
+            { name: t('navigation.servicesChildren.ekaer'), path: `${ERoutes.Services}/ekaer` },
+          ],
         },
         {
-          name: t('navigation.servicesChildren.ekaer'),
-          path: `${ERoutes.Services}${EServicesRoutes.Ekaer}`,
+          name: t('navigation.categories.development'),
+          path: '#',
+          children: [
+            { name: t('navigation.servicesChildren.individuelle'), path: `${ERoutes.Services}/individuelle-softwareentwicklung` },
+            { name: t('navigation.servicesChildren.web'), path: `${ERoutes.Services}/webentwicklung` },
+            { name: t('navigation.servicesChildren.mobile'), path: `${ERoutes.Services}/mobile-app-entwicklung` },
+            { name: t('navigation.servicesChildren.embedded'), path: `${ERoutes.Services}/embedded-entwicklung` },
+          ],
         },
-        // {
-        //   name: t('navigation.servicesChildren.support'),
-        //   path: `${ERoutes.Services}${EServicesRoutes.Support}`,
-        // },
+        {
+          name: t('navigation.categories.architecture'),
+          path: '#',
+          children: [
+            { name: t('navigation.servicesChildren.architecture'), path: `${ERoutes.Services}/softwarearchitektur` },
+            { name: t('navigation.servicesChildren.consulting'), path: `${ERoutes.Services}/softwareberatung` },
+            { name: t('navigation.servicesChildren.productConsulting'), path: `${ERoutes.Services}/produktberatung` },
+            { name: t('navigation.servicesChildren.requirements'), path: `${ERoutes.Services}/requirements-engineering` },
+          ],
+        },
+        {
+          name: t('navigation.categories.innovation'),
+          path: '#',
+          children: [
+            { name: t('navigation.servicesChildren.uiux'), path: `${ERoutes.Services}/ui-ux-design` },
+            { name: t('navigation.servicesChildren.ai'), path: `${ERoutes.Services}/ki-forschung-entwicklung` },
+            { name: t('navigation.servicesChildren.voice'), path: `${ERoutes.Services}/sprachassistenten` },
+            { name: t('navigation.servicesChildren.modules'), path: `${ERoutes.Services}/produktbausteine` },
+          ],
+        },
       ],
     },
-    // {
-    //   name: t('navigation.caseStudies'),
-    //   path: ERoutes.CaseStudies,
-    // },
     {
       name: t('navigation.careers'),
       path: ERoutes.Careers,

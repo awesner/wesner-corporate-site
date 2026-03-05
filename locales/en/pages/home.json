@@ -31,10 +31,13 @@
     "projects": "Projects Completed"
   },
   "services": {
-    "title": "Our Services"
+    "title": "Our Services",
+    "showMore": "Show more",
+    "showLess": "Show less"
   },
   "banner": {
     "title": "Power of Integration for Your Business",
-    "description": "From simple system integration to a company-wide hybrid integration platform – seamless solutions from the back-end to the IoT."
+    "description": "From simple system integration to a company-wide hybrid integration platform – seamless solutions from the back-end to the IoT.",
+    "freeConsultation": "Free Consultation"
   }
 }

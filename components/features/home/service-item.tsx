@@ -37,7 +37,7 @@ export default function ServiceItem({
         <Card
           sx={{
             position: 'relative',
-            pt: { xs: 3, md: 5 },
+            pt: { xs: 3, md: 3 },
             pb: { xs: 6, md: 8 },
             height: 1,
           }}
@@ -48,6 +48,10 @@ export default function ServiceItem({
               component="h3"
               variant={getFontVariants({ medium: 'h5', large: 'h4' })}
               mt={{ xs: 1, md: 3, lg: 5 }}
+              sx={{
+                wordBreak: 'break-word',
+                hyphens: 'auto',
+              }}
             >
               {title}
             </Typography>

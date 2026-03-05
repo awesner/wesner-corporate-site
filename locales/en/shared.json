@@ -13,9 +13,27 @@
     "products": "Our Products",
     "terms": "Terms and Conditions",
     "policy": "Privacy Policy",
+    "categories": {
+      "integration": "Integration & Special Solutions",
+      "development": "Software Development",
+      "architecture": "Architecture & Consulting",
+      "innovation": "Design & Innovation"
+    },
     "servicesChildren": {
       "enterprise": "Enterprise Integration",
       "ekaer": "EKAER",
+      "individuelle": "Custom Software Development",
+      "web": "Web Development",
+      "mobile": "Mobile App Development",
+      "embedded": "Embedded Development",
+      "architecture": "Software Architecture",
+      "consulting": "IT Consulting",
+      "productConsulting": "Product Consulting",
+      "requirements": "Requirements Engineering",
+      "uiux": "UI/UX Design",
+      "ai": "AI Research & Development",
+      "voice": "Voice Assistants",
+      "modules": "Product Modules",
       "support": "Support Services"
     },
     "productsChildren": {

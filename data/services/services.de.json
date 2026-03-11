@@ -260,7 +260,7 @@
       "description": "Wir entwickeln leistungsstarke native und plattformübergreifende Apps. Von der Idee bis zum App Store Release."
     },
     "shortDescription": "Native und plattformübergreifende Apps für iOS und Android.",
-    "iconUrl": "/services/mobile.png",
+    "iconUrl": "/services/support.png",
     "whiteIconUrl": "/services/support-white.png",
     "bannerUrl": "/services/mobile-app-entwicklung-banner.png",
     "description": "Mobile Anwendungen sind heute der direkteste Weg zu Ihren Kunden. Wir verwandeln Ihre Ideen in intuitive und leistungsstarke Apps, die auf jedem Gerät begeistern.",
@@ -627,33 +627,249 @@
   {
     "path": "ui-ux-design",
     "name": "UI/UX Design",
-    "meta": { "title": "UI/UX Design", "description": "Benutzererlebnis und Interface Design" },
+    "meta": {
+      "title": "UI/UX Design & User Experience | Wesner-Softwareentwicklung",
+      "description": "Intuitive und ansprechende Benutzeroberflächen. Wir gestalten digitale Erlebnisse, die Ihre Nutzer begeistern und Ihre Konversionsraten steigern."
+    },
     "shortDescription": "Intuitive Benutzeroberflächen und herausragende Nutzererlebnisse.",
-    "iconUrl": "/careers/benefits/benefit2.png", "whiteIconUrl": "/services/enterprise-white.png", "bannerUrl": "/services/development-banner.png",
-    "description": "Beschreibung folgt.", "subtitle": "Ihre Lösung", "mainTexts": [{"text": "Inhalt folgt."}], "features": [{"title": "Feature", "paragraphs": [{"text": "Text"}]}], "benefits": [{"imgUrl": "/services/development/benefit1.png", "text": "Benefit"}]
+    "iconUrl": "/careers/benefits/benefit2.png",
+    "whiteIconUrl": "/services/enterprise-white.png",
+    "bannerUrl": "/services/ui-ux-design-banner.png",
+    "description": "Ein gutes Design ist unsichtbar, aber spürbar. Wir kreieren Benutzeroberflächen (UI), die nicht nur modern aussehen, sondern durch eine durchdachte User Experience (UX) überzeugen.",
+    "subtitle": "Digitale Erlebnisse, die begeistern",
+    "mainTexts": [
+      {
+        "text": "Die beste Software nützt nichts, wenn sie von den Anwendern nicht verstanden oder ungern genutzt wird. Wir stellen den Endnutzer in den Mittelpunkt des Gestaltungsprozesses. Durch fundierte Research-Methoden finden wir heraus, was Ihre Zielgruppe wirklich braucht."
+      },
+      {
+        "text": "Von der ersten Skizze auf dem Papier über Wireframes bis hin zum klickbaren, interaktiven High-Fidelity-Prototypen: Wir machen Ihre Vision greifbar, noch bevor die erste Zeile Code geschrieben wird. Das reduziert Entwicklungsrisiken und spart bares Geld."
+      }
+    ],
+    "features": [
+      {
+        "title": "User Research & Analyse",
+        "paragraphs": [
+          {
+            "text": "Wir lernen Ihre Nutzer kennen. Durch Interviews, Persona-Entwicklung und User-Journey-Mapping identifizieren wir Schmerzpunkte und Bedürfnisse."
+          }
+        ]
+      },
+      {
+        "title": "Wireframing & Prototyping",
+        "paragraphs": [
+          {
+            "text": "Wir erstellen strukturelle Layouts und interaktive Prototypen in Figma. So können Sie das Konzept frühzeitig testen und validieren."
+          }
+        ]
+      },
+      {
+        "title": "Visual & Interface Design",
+        "paragraphs": [
+          {
+            "text": "Wir entwickeln ein modernes, ansprechendes UI-Design, das Ihre Markenidentität widerspiegelt und auf den Aufbau von skalierbaren Design-Systemen setzt."
+          }
+        ]
+      }
+    ],
+    "benefits": [
+      {
+        "imgUrl": "/services/development/benefit1.png",
+        "text": "Steigerung der Konversionsraten durch intuitive Nutzerführung"
+      },
+      {
+        "imgUrl": "/services/development/benefit2.png",
+        "text": "Reduzierte Entwicklungskosten durch frühes Testen von Prototypen"
+      },
+      {
+        "imgUrl": "/services/development/benefit3.png",
+        "text": "Höhere Kundenzufriedenheit und stärkere Markenbindung"
+      }
+    ]
   },
   {
     "path": "ki-forschung-entwicklung",
     "name": "KI-Forschung und Entwicklung",
-    "meta": { "title": "KI-Forschung und Entwicklung", "description": "Künstliche Intelligenz und ML" },
+    "meta": {
+      "title": "KI-Entwicklung & Machine Learning | Künstliche Intelligenz | Wesner-Softwareentwicklung",
+      "description": "Nutzen Sie das Potenzial der Künstlichen Intelligenz. Wir entwickeln maßgeschneiderte KI-Modelle, Machine Learning und Data-Science-Lösungen für Ihr Unternehmen."
+    },
     "shortDescription": "Integration von Künstlicher Intelligenz und Machine Learning in Ihre Prozesse.",
-    "iconUrl": "/services/development/benefit3.png", "whiteIconUrl": "/services/development-white.png", "bannerUrl": "/services/development-banner.png",
-    "description": "Beschreibung folgt.", "subtitle": "Ihre Lösung", "mainTexts": [{"text": "Inhalt folgt."}], "features": [{"title": "Feature", "paragraphs": [{"text": "Text"}]}], "benefits": [{"imgUrl": "/services/development/benefit1.png", "text": "Benefit"}]
+    "iconUrl": "/services/development/benefit3.png",
+    "whiteIconUrl": "/services/development-white.png",
+    "bannerUrl": "/services/ki-forschung-entwicklung-banner.png",
+    "description": "Künstliche Intelligenz verändert die Art und Weise, wie wir arbeiten, grundlegend. Wir helfen Ihnen, diese Technologie nicht als Hype, sondern als greifbaren Wettbewerbsvorteil zu nutzen.",
+    "subtitle": "Daten in Werte verwandeln",
+    "mainTexts": [
+      {
+        "text": "Von der Automatisierung wiederkehrender Aufgaben über intelligente Datenanalyse bis hin zur Vorhersage von Markttrends: Wir identifizieren die Bereiche in Ihrem Unternehmen, in denen KI den größten Mehrwert liefert."
+      },
+      {
+        "text": "Unsere Experten begleiten Sie von der Machbarkeitsstudie bis zur nahtlosen Integration von Machine-Learning-Modellen in Ihre bestehenden Systeme. Dabei legen wir höchsten Wert auf Datenschutz, Skalierbarkeit und erklärbare KI-Entscheidungen."
+      }
+    ],
+    "features": [
+      {
+        "title": "Machine Learning & Deep Learning",
+        "paragraphs": [
+          {
+            "text": "Wir trainieren individuelle Algorithmen mit Ihren Unternehmensdaten, um Muster zu erkennen, Bild- oder Textdaten zu verarbeiten (Computer Vision & NLP) und fundierte Vorhersagen zu treffen."
+          }
+        ]
+      },
+      {
+        "title": "Generative KI & LLMs",
+        "paragraphs": [
+          {
+            "text": "Integration und Anpassung großer Sprachmodelle (Large Language Models wie GPT, Llama) zur Automatisierung von Support, Texterstellung oder komplexer Wissensrecherche in Ihren internen Datenbanken."
+          }
+        ]
+      },
+      {
+        "title": "Data Engineering & Analytics",
+        "paragraphs": [
+          {
+            "text": "KI braucht saubere Daten. Wir bauen robuste Datenpipelines auf, bereinigen Ihre Datensätze und schaffen die essenzielle Infrastruktur für erfolgreiche KI-Projekte."
+          }
+        ]
+      }
+    ],
+    "benefits": [
+      {
+        "imgUrl": "/services/development/benefit1.png",
+        "text": "Massive Effizienzsteigerung durch Automatisierung manueller Prozesse"
+      },
+      {
+        "imgUrl": "/services/development/benefit2.png",
+        "text": "Bessere, datengetriebene Entscheidungen durch Predictive Analytics"
+      },
+      {
+        "imgUrl": "/services/development/benefit3.png",
+        "text": "Entwicklung neuer, innovativer Geschäftsmodelle"
+      }
+    ]
   },
   {
     "path": "sprachassistenten",
     "name": "Sprachassistenten",
-    "meta": { "title": "Sprachassistenten", "description": "Voice-Bots und Sprachsteuerung" },
+    "meta": {
+      "title": "Sprachassistenten & Voice-Bots Entwicklung | Wesner-Softwareentwicklung",
+      "description": "Intelligente Voice-Bots und sprachgesteuerte Systeme für Ihr Unternehmen. Automatisieren Sie den Kundenservice und schaffen Sie moderne Voice User Interfaces (VUI)."
+    },
     "shortDescription": "Intelligente Voice-Bots und sprachgesteuerte Systeme für Ihr Unternehmen.",
-    "iconUrl": "/services/support.png", "whiteIconUrl": "/services/support-white.png", "bannerUrl": "/services/development-banner.png",
-    "description": "Beschreibung folgt.", "subtitle": "Ihre Lösung", "mainTexts": [{"text": "Inhalt folgt."}], "features": [{"title": "Feature", "paragraphs": [{"text": "Text"}]}], "benefits": [{"imgUrl": "/services/development/benefit1.png", "text": "Benefit"}]
+    "iconUrl": "/services/support.png",
+    "whiteIconUrl": "/services/support-white.png",
+    "bannerUrl": "/services/sprachassistenten-banner.png",
+    "description": "Die Stimme ist das natürlichste Interface des Menschen. Wir entwickeln intelligente Sprachassistenten, die Ihre Kunden rund um die Uhr betreuen, Prozesse beschleunigen und neue Vertriebskanäle eröffnen.",
+    "subtitle": "Voice Interfaces für die Zukunft Ihres Unternehmens",
+    "mainTexts": [
+      {
+        "text": "Egal ob Sie Ihren Kundenservice durch einen intelligenten Voice-Bot entlasten möchten, eine Steuerung für Ihre Smart-Home-Hardware benötigen oder einen eigenen Skill für Plattformen wie Amazon Alexa oder Google Assistant planen – wir setzen Ihre Voice-Strategie um."
+      },
+      {
+        "text": "Dank modernster Natural Language Processing (NLP) Algorithmen verstehen unsere Systeme nicht nur einzelne Wörter, sondern den echten Kontext und die Intention des Nutzers. Das Ergebnis sind flüssige, natürliche Dialoge statt starrer Menüführung."
+      }
+    ],
+    "features": [
+      {
+        "title": "Voice-Bots & IVR-Systeme",
+        "paragraphs": [
+          {
+            "text": "Automatisieren Sie Ihren telefonischen Kundenservice. Unsere intelligenten Voice-Bots qualifizieren Anrufer vor, beantworten Standardfragen und leiten komplexe Anliegen nahtlos an menschliche Mitarbeiter weiter."
+          }
+        ]
+      },
+      {
+        "title": "Alexa Skills & Google Actions",
+        "paragraphs": [
+          {
+            "text": "Wir bringen Ihre Dienstleistungen in die Wohnzimmer Ihrer Kunden. Konzeption und Entwicklung maßgeschneiderter Voice-Anwendungen für die etablierten Smart-Speaker-Plattformen."
+          }
+        ]
+      },
+      {
+        "title": "Custom Voice User Interfaces (VUI)",
+        "paragraphs": [
+          {
+            "text": "Integration von Sprachsteuerung in Ihre eigenen mobilen Apps, Webportale oder IoT-Geräte – unabhängig von großen Drittanbietern, mit voller Kontrolle über den Datenschutz."
+          }
+        ]
+      }
+    ],
+    "benefits": [
+      {
+        "imgUrl": "/services/development/benefit1.png",
+        "text": "Erhebliche Kostenreduktion im Customer Support (24/7 Verfügbarkeit)"
+      },
+      {
+        "imgUrl": "/services/development/benefit2.png",
+        "text": "Verbesserte Barrierefreiheit und User Experience"
+      },
+      {
+        "imgUrl": "/services/development/benefit3.png",
+        "text": "Positionierung als Innovationsführer in Ihrer Branche"
+      }
+    ]
   },
   {
     "path": "produktbausteine",
     "name": "Produktbausteine",
-    "meta": { "title": "Produktbausteine", "description": "Vorgefertigte Softwaremodule" },
+    "meta": {
+      "title": "Produktbausteine & Vorgefertigte Softwaremodule | Wesner-Softwareentwicklung",
+      "description": "Beschleunigen Sie Ihre Softwareentwicklung mit unseren erprobten Produktbausteinen. Vorgefertigte Module für Authentifizierung, Payment, Admin-Dashboards und mehr."
+    },
     "shortDescription": "Vorgefertigte Softwaremodule für eine schnellere und kosteneffiziente Entwicklung.",
-    "iconUrl": "/services/development.png", "whiteIconUrl": "/services/development-white.png", "bannerUrl": "/services/development-banner.png",
-    "description": "Beschreibung folgt.", "subtitle": "Ihre Lösung", "mainTexts": [{"text": "Inhalt folgt."}], "features": [{"title": "Feature", "paragraphs": [{"text": "Text"}]}], "benefits": [{"imgUrl": "/services/development/benefit1.png", "text": "Benefit"}]
+    "iconUrl": "/services/development.png",
+    "whiteIconUrl": "/services/development-white.png",
+    "bannerUrl": "/services/produktbausteine-banner.png",
+    "description": "Warum das Rad neu erfinden? Mit unseren vorgefertigten und praxiserprobten Softwaremodulen beschleunigen wir Ihre Entwicklung, senken Kosten und minimieren Projektrisiken.",
+    "subtitle": "Schneller am Markt mit modularen Bausteinen",
+    "mainTexts": [
+      {
+        "text": "Viele Softwareprojekte benötigen ähnliche Grundfunktionen – sei es eine sichere Benutzerverwaltung, Zahlungsabwicklung oder ein Benachrichtigungssystem. Anstatt diese Standardfunktionen für jedes Projekt von Grund auf neu zu programmieren, setzen wir auf unsere Bibliothek aus etablierten Produktbausteinen."
+      },
+      {
+        "text": "Diese Module sind hochgradig anpassbar (White-Label) und lassen sich nahtlos in Ihre individuelle Architektur integrieren. So fokussieren wir unser gemeinsames Entwicklungsbudget auf die Features, die Ihr Produkt wirklich einzigartig machen und Ihnen einen Wettbewerbsvorteil verschaffen."
+      }
+    ],
+    "features": [
+      {
+        "title": "Benutzerverwaltung & IAM",
+        "paragraphs": [
+          {
+            "text": "Sichere Authentifizierung (SSO, 2FA), komplexes Rollen- und Rechtemanagement sowie Profilverwaltung – sofort einsatzbereit und vollständig DSGVO-konform."
+          }
+        ]
+      },
+      {
+        "title": "Zahlung & Billing",
+        "paragraphs": [
+          {
+            "text": "Integrierte Module für Abonnements (Subscriptions), automatisierte Rechnungsstellung und die sichere Anbindung gängiger Payment-Provider (Stripe, PayPal, SEPA)."
+          }
+        ]
+      },
+      {
+        "title": "Dashboards & Reporting",
+        "paragraphs": [
+          {
+            "text": "Vorgefertigte Admin-Panels und Analyse-Dashboards zur Visualisierung Ihrer KPIs, inklusive Datenexport, Rechteprüfung und dynamischen Filtern."
+          }
+        ]
+      }
+    ],
+    "benefits": [
+      {
+        "imgUrl": "/services/development/benefit1.png",
+        "text": "Erhebliche Zeit- und Kostenersparnis bei der Entwicklung"
+      },
+      {
+        "imgUrl": "/services/development/benefit2.png",
+        "text": "Hohe Zuverlässigkeit durch praxiserprobte und getestete Codes"
+      },
+      {
+        "imgUrl": "/services/development/benefit3.png",
+        "text": "Voller Fokus auf Ihre individuellen Kernfunktionen (USP)"
+      }
+    ]
   }
 ]

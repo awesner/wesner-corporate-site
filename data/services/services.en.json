@@ -249,7 +249,7 @@
       "description": "We develop high-performance native and cross-platform apps. From idea to App Store release."
     },
     "shortDescription": "Native and cross-platform mobile apps for iOS and Android.",
-    "iconUrl": "/services/mobile.png",
+    "iconUrl": "/services/support.png",
     "whiteIconUrl": "/services/support-white.png",
     "bannerUrl": "/services/mobile-app-entwicklung-banner.png",
     "description": "Mobile applications are the most direct way to reach your customers today. We turn your ideas into intuitive and high-performance apps that delight users on any device.",
@@ -616,33 +616,249 @@
   {
     "path": "ui-ux-design",
     "name": "UI/UX Design",
-    "meta": { "title": "UI/UX Design", "description": "User experience and interface design" },
+    "meta": {
+      "title": "UI/UX Design & User Experience | Wesner-Softwareentwicklung",
+      "description": "Intuitive and engaging user interfaces. We design digital experiences that delight your users and boost your conversion rates."
+    },
     "shortDescription": "Intuitive user interfaces and outstanding user experiences.",
-    "iconUrl": "/careers/benefits/benefit2.png", "whiteIconUrl": "/services/enterprise-white.png", "bannerUrl": "/services/development-banner.png",
-    "description": "Coming soon.", "subtitle": "Your Solution", "mainTexts": [{"text": "Content coming soon."}], "features": [{"title": "Feature", "paragraphs": [{"text": "Text"}]}], "benefits": [{"imgUrl": "/services/development/benefit1.png", "text": "Benefit"}]
+    "iconUrl": "/careers/benefits/benefit2.png",
+    "whiteIconUrl": "/services/enterprise-white.png",
+    "bannerUrl": "/services/ui-ux-design-banner.png",
+    "description": "Good design is invisible but tangible. We create user interfaces (UI) that not only look modern but also convince through a well-thought-out User Experience (UX).",
+    "subtitle": "Digital Experiences that Delight",
+    "mainTexts": [
+      {
+        "text": "The best software is useless if it is not understood or reluctantly used by the end-users. We place the user at the center of the design process. Through solid research methods, we find out what your target audience really needs."
+      },
+      {
+        "text": "From the first sketch on paper to wireframes and clickable, interactive high-fidelity prototypes: We make your vision tangible even before the first line of code is written. This reduces development risks and saves money."
+      }
+    ],
+    "features": [
+      {
+        "title": "User Research & Analysis",
+        "paragraphs": [
+          {
+            "text": "We get to know your users. Through interviews, persona development, and user journey mapping, we identify pain points and needs."
+          }
+        ]
+      },
+      {
+        "title": "Wireframing & Prototyping",
+        "paragraphs": [
+          {
+            "text": "We create structural layouts and interactive prototypes in Figma. This allows you to test and validate the concept early on."
+          }
+        ]
+      },
+      {
+        "title": "Visual & Interface Design",
+        "paragraphs": [
+          {
+            "text": "We develop a modern, appealing UI design that reflects your brand identity and relies on building scalable design systems."
+          }
+        ]
+      }
+    ],
+    "benefits": [
+      {
+        "imgUrl": "/services/development/benefit1.png",
+        "text": "Increased conversion rates through intuitive user guidance"
+      },
+      {
+        "imgUrl": "/services/development/benefit2.png",
+        "text": "Reduced development costs through early prototype testing"
+      },
+      {
+        "imgUrl": "/services/development/benefit3.png",
+        "text": "Higher customer satisfaction and stronger brand loyalty"
+      }
+    ]
   },
   {
     "path": "ki-forschung-entwicklung",
-    "name": "AI Research & Development",
-    "meta": { "title": "AI Research & Development", "description": "Artificial Intelligence and ML" },
+    "name": "AI Research and Development",
+    "meta": {
+      "title": "AI Development & Machine Learning | Artificial Intelligence | Wesner-Softwareentwicklung",
+      "description": "Unlock the potential of Artificial Intelligence. We develop custom AI models, Machine Learning, and Data Science solutions for your business."
+    },
     "shortDescription": "Integration of Artificial Intelligence and Machine Learning into your processes.",
-    "iconUrl": "/services/development/benefit3.png", "whiteIconUrl": "/services/development-white.png", "bannerUrl": "/services/development-banner.png",
-    "description": "Coming soon.", "subtitle": "Your Solution", "mainTexts": [{"text": "Content coming soon."}], "features": [{"title": "Feature", "paragraphs": [{"text": "Text"}]}], "benefits": [{"imgUrl": "/services/development/benefit1.png", "text": "Benefit"}]
+    "iconUrl": "/services/development/benefit3.png",
+    "whiteIconUrl": "/services/development-white.png",
+    "bannerUrl": "/services/ki-forschung-entwicklung-banner.png",
+    "description": "Artificial Intelligence is fundamentally changing the way we work. We help you use this technology not as hype, but as a tangible competitive advantage.",
+    "subtitle": "Turning Data into Value",
+    "mainTexts": [
+      {
+        "text": "From automating repetitive tasks and intelligent data analysis to predicting market trends: We identify the areas in your company where AI delivers the greatest added value."
+      },
+      {
+        "text": "Our experts support you from the feasibility study to the seamless integration of Machine Learning models into your existing systems. We place the highest priority on data privacy, scalability, and Explainable AI."
+      }
+    ],
+    "features": [
+      {
+        "title": "Machine Learning & Deep Learning",
+        "paragraphs": [
+          {
+            "text": "We train custom algorithms with your company data to recognize patterns, process image or text data (Computer Vision & NLP), and make well-founded predictions."
+          }
+        ]
+      },
+      {
+        "title": "Generative AI & LLMs",
+        "paragraphs": [
+          {
+            "text": "Integration and adaptation of Large Language Models (like GPT, Llama) to automate support, text generation, or complex knowledge research within your internal databases."
+          }
+        ]
+      },
+      {
+        "title": "Data Engineering & Analytics",
+        "paragraphs": [
+          {
+            "text": "AI needs clean data. We build robust data pipelines, clean your datasets, and create the essential infrastructure for successful AI projects."
+          }
+        ]
+      }
+    ],
+    "benefits": [
+      {
+        "imgUrl": "/services/development/benefit1.png",
+        "text": "Massive efficiency increase through automation of manual processes"
+      },
+      {
+        "imgUrl": "/services/development/benefit2.png",
+        "text": "Better, data-driven decisions through Predictive Analytics"
+      },
+      {
+        "imgUrl": "/services/development/benefit3.png",
+        "text": "Development of new, innovative business models"
+      }
+    ]
   },
   {
     "path": "sprachassistenten",
     "name": "Voice Assistants",
-    "meta": { "title": "Voice Assistants", "description": "Voice bots and voice control" },
+    "meta": {
+      "title": "Voice Assistants & Voice-Bot Development | Wesner-Softwareentwicklung",
+      "description": "Intelligent voice bots and voice-controlled systems for your business. Automate customer service and create modern Voice User Interfaces (VUI)."
+    },
     "shortDescription": "Intelligent voice bots and voice-controlled systems for your business.",
-    "iconUrl": "/services/support.png", "whiteIconUrl": "/services/support-white.png", "bannerUrl": "/services/development-banner.png",
-    "description": "Coming soon.", "subtitle": "Your Solution", "mainTexts": [{"text": "Content coming soon."}], "features": [{"title": "Feature", "paragraphs": [{"text": "Text"}]}], "benefits": [{"imgUrl": "/services/development/benefit1.png", "text": "Benefit"}]
+    "iconUrl": "/services/support.png",
+    "whiteIconUrl": "/services/support-white.png",
+    "bannerUrl": "/services/sprachassistenten-banner.png",
+    "description": "Voice is the most natural human interface. We develop intelligent voice assistants that serve your customers around the clock, accelerate processes, and open up new sales channels.",
+    "subtitle": "Voice Interfaces for the Future of Your Business",
+    "mainTexts": [
+      {
+        "text": "Whether you want to relieve your customer service with an intelligent voice bot, need voice control for your smart home hardware, or are planning your own skill for platforms like Amazon Alexa or Google Assistant – we implement your voice strategy."
+      },
+      {
+        "text": "Thanks to state-of-the-art Natural Language Processing (NLP) algorithms, our systems understand not just single words, but the true context and intent of the user. The result is fluid, natural dialogues instead of rigid menu navigation."
+      }
+    ],
+    "features": [
+      {
+        "title": "Voice Bots & IVR Systems",
+        "paragraphs": [
+          {
+            "text": "Automate your telephone customer service. Our intelligent voice bots pre-qualify callers, answer standard questions, and seamlessly route complex requests to human agents."
+          }
+        ]
+      },
+      {
+        "title": "Alexa Skills & Google Actions",
+        "paragraphs": [
+          {
+            "text": "We bring your services into your customers' living rooms. Conception and development of custom voice applications for established smart speaker platforms."
+          }
+        ]
+      },
+      {
+        "title": "Custom Voice User Interfaces (VUI)",
+        "paragraphs": [
+          {
+            "text": "Integration of voice control into your own mobile apps, web portals, or IoT devices – independent of major third-party providers, with full control over data privacy."
+          }
+        ]
+      }
+    ],
+    "benefits": [
+      {
+        "imgUrl": "/services/development/benefit1.png",
+        "text": "Significant cost reduction in Customer Support (24/7 availability)"
+      },
+      {
+        "imgUrl": "/services/development/benefit2.png",
+        "text": "Improved accessibility and User Experience"
+      },
+      {
+        "imgUrl": "/services/development/benefit3.png",
+        "text": "Positioning as an innovation leader in your industry"
+      }
+    ]
   },
   {
     "path": "produktbausteine",
     "name": "Product Modules",
-    "meta": { "title": "Product Modules", "description": "Pre-built software modules" },
-    "shortDescription": "Pre-built software modules for faster and cost-efficient development.",
-    "iconUrl": "/services/development.png", "whiteIconUrl": "/services/development-white.png", "bannerUrl": "/services/development-banner.png",
-    "description": "Coming soon.", "subtitle": "Your Solution", "mainTexts": [{"text": "Content coming soon."}], "features": [{"title": "Feature", "paragraphs": [{"text": "Text"}]}], "benefits": [{"imgUrl": "/services/development/benefit1.png", "text": "Benefit"}]
+    "meta": {
+      "title": "Product Modules & Pre-built Software Components | Wesner-Softwareentwicklung",
+      "description": "Accelerate your software development with our proven product modules. Pre-built components for authentication, payment, admin dashboards, and more."
+    },
+    "shortDescription": "Pre-built software modules for faster and more cost-efficient development.",
+    "iconUrl": "/services/development.png",
+    "whiteIconUrl": "/services/development-white.png",
+    "bannerUrl": "/services/produktbausteine-banner.png",
+    "description": "Why reinvent the wheel? With our pre-built and field-tested software modules, we accelerate your development, reduce costs, and minimize project risks.",
+    "subtitle": "Faster Time-to-Market with Modular Components",
+    "mainTexts": [
+      {
+        "text": "Many software projects require similar basic functions – be it secure user management, payment processing, or a notification system. Instead of programming these standard features from scratch for every project, we rely on our library of established product modules."
+      },
+      {
+        "text": "These modules are highly customizable (white-label) and can be seamlessly integrated into your custom architecture. This allows us to focus our joint development budget on the features that truly make your product unique and give you a competitive advantage."
+      }
+    ],
+    "features": [
+      {
+        "title": "User Management & IAM",
+        "paragraphs": [
+          {
+            "text": "Secure authentication (SSO, 2FA), complex role and rights management, and profile administration – ready to use and fully GDPR-compliant."
+          }
+        ]
+      },
+      {
+        "title": "Payment & Billing",
+        "paragraphs": [
+          {
+            "text": "Integrated modules for subscriptions, automated invoicing, and secure connection to common payment providers (Stripe, PayPal, SEPA)."
+          }
+        ]
+      },
+      {
+        "title": "Dashboards & Reporting",
+        "paragraphs": [
+          {
+            "text": "Pre-built admin panels and analytics dashboards to visualize your KPIs, including data export, rights verification, and dynamic filters."
+          }
+        ]
+      }
+    ],
+    "benefits": [
+      {
+        "imgUrl": "/services/development/benefit1.png",
+        "text": "Significant time and cost savings in development"
+      },
+      {
+        "imgUrl": "/services/development/benefit2.png",
+        "text": "High reliability through field-tested and proven code"
+      },
+      {
+        "imgUrl": "/services/development/benefit3.png",
+        "text": "Full focus on your unique core functionalities (USP)"
+      }
+    ]
   }
 ]

@@ -110,7 +110,7 @@ export default function Umsetzung() {
           </Grid>
           <Grid item xs={12} md={5} lg={4}>
             <Box display="flex" justifyContent="center">
-              <AppSimulator refreshTrigger={0} />
+              <AppSimulator refreshTrigger={refreshTrigger}  />
             </Box>
           </Grid>
         </Grid>

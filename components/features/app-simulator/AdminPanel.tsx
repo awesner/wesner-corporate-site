@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import {
   Paper, Box, Typography, Button, Table, TableHead, TableRow, TableCell, TableBody,
   Chip, Tooltip, IconButton, Dialog, DialogContent, Grid, TextField, DialogActions, DialogTitle
@@ -14,23 +14,35 @@ interface AdminPanelProps {
   isReadOnly?: boolean;
 }
 
+interface SessionParticipant {
+  id: number;
+  user_id: string;
+  profiles?: {
+    first_name?: string;
+    last_name?: string;
+  } | null;
+}
+
 export const AdminPanel: React.FC<AdminPanelProps> = ({ onDataChange, isReadOnly = false }) => {
   const [courses, setCourses] = useState<Course[]>([]);
 
   const [isCourseDialogOpen, setCourseDialogOpen] = useState(false);
   const [isSessionManagerOpen, setSessionManagerOpen] = useState(false);
+  const [isParticipantsDialogOpen, setParticipantsDialogOpen] = useState(false);
 
   const [editingCourse, setEditingCourse] = useState<Partial<Course>>({});
 
   const [selectedCourseId, setSelectedCourseId] = useState<number | null>(null);
   const [courseSessionsList, setCourseSessionsList] = useState<CourseSession[]>([]);
+  const [selectedSessionForParticipants, setSelectedSessionForParticipants] = useState<CourseSession | null>(null);
+  const [sessionParticipants, setSessionParticipants] = useState<SessionParticipant[]>([]);
   const [sessionForm, setSessionForm] = useState<{id?: number, date: string, time: string, seats: string}>({
     date: '', time: '10:00', seats: '10'
   });
 
   const checkAccess = () => {
     if (isReadOnly) {
-      alert("Access denied. This is a demo mode for the user.");
+      alert('Zugriff verweigert. Dies ist ein Demo-Modus für den Benutzer.');
       return false;
     }
     return true;
@@ -49,10 +61,25 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onDataChange, isReadOnly
   const fetchSessionsForManager = async (courseId: number) => {
     const { data } = await supabase
       .from('course_sessions')
-      .select('*')
+      .select('*, bookings(count)')
       .eq('course_id', courseId)
       .order('start_time');
     setCourseSessionsList((data as unknown as CourseSession[]) || []);
+  };
+
+  const fetchParticipantsForSession = async (sessionId: number) => {
+    const { data, error } = await supabase
+      .from('bookings')
+      .select('id, user_id, profiles(first_name, last_name)')
+      .eq('session_id', sessionId)
+      .order('id');
+
+    if (error) {
+      alert('Fehler: ' + error.message);
+      return;
+    }
+
+    setSessionParticipants((data as SessionParticipant[]) || []);
   };
 
 
@@ -150,6 +177,33 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onDataChange, isReadOnly
     onDataChange();
   };
 
+  const openParticipantsManager = async (session: CourseSession) => {
+    if (!checkAccess()) return;
+    setSelectedSessionForParticipants(session);
+    await fetchParticipantsForSession(session.id);
+    setParticipantsDialogOpen(true);
+  };
+
+  const handleRemoveParticipant = async (bookingId: number) => {
+    if (!checkAccess()) return;
+    if (!window.confirm('Teilnehmer von diesem Termin entfernen?')) return;
+
+    const { error } = await supabase.from('bookings').delete().eq('id', bookingId);
+    if (error) {
+      alert('Fehler: ' + error.message);
+      return;
+    }
+
+    if (selectedSessionForParticipants) {
+      await fetchParticipantsForSession(selectedSessionForParticipants.id);
+    }
+    if (selectedCourseId) {
+      await fetchSessionsForManager(selectedCourseId);
+    }
+    await fetchCourses();
+    onDataChange();
+  };
+
   return (
     <Paper sx={{ p: 3, height: '100%', position: 'relative', overflow: 'hidden' }}>
 
@@ -167,7 +221,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onDataChange, isReadOnly
             <Lock sx={{ fontSize: 50, color: 'text.secondary', mb: 2 }} />
             <Typography variant="h6" color="text.primary" fontWeight="bold">Admin-Bereich</Typography>
             <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-              Sie haben keine Berechtigung,<br/> diesen Bereich zu bearbeiten.
+              Sie haben keine Berechtigung,<br/> diesen Bereich zu Ändern.
             </Typography>
           </Box>
         </Box>
@@ -235,7 +289,13 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onDataChange, isReadOnly
                 </TableCell>
                 <TableCell>
                   {nextSession ? (
-                    <Box display="flex" alignItems="center" gap={0.5}>
+                    <Box
+                      display="flex"
+                      alignItems="center"
+                      gap={0.5}
+                      onClick={() => openParticipantsManager(nextSession)}
+                      sx={{ cursor: isReadOnly ? 'default' : 'pointer', width: 'fit-content' }}
+                    >
                       {(() => {
                         const booked = nextSession.bookings?.[0]?.count || 0;
                         const max = nextSession.max_participants;
@@ -254,7 +314,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onDataChange, isReadOnly
                 </TableCell>
                 <TableCell>{course.duration_min} min</TableCell>
                 <TableCell align="right">
-                  <Tooltip title="Termine">
+                  <Tooltip disableInteractive title="Termine verwalten" arrow componentsProps={{ tooltip: { sx: { pointerEvents: 'none', bgcolor: 'grey.100', color: 'text.primary', fontSize: '0.9rem', px: 1.4, py: 0.9, border: '1px solid', borderColor: 'grey.300' } }, arrow: { sx: { color: 'grey.100' } } }}>
                     <span>
                       <IconButton
                         color={hasAnySessions ? "primary" : "warning"}
@@ -265,7 +325,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onDataChange, isReadOnly
                       </IconButton>
                     </span>
                   </Tooltip>
-                  <Tooltip title="Bearbeiten">
+                  <Tooltip disableInteractive title="Ändern" arrow componentsProps={{ tooltip: { sx: { pointerEvents: 'none', bgcolor: 'grey.100', color: 'text.primary', fontSize: '0.9rem', px: 1.4, py: 0.9, border: '1px solid', borderColor: 'grey.300' } }, arrow: { sx: { color: 'grey.100' } } }}>
                     <span>
                       <IconButton
                         onClick={() => { setEditingCourse(course); setCourseDialogOpen(true); }}
@@ -275,7 +335,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onDataChange, isReadOnly
                       </IconButton>
                     </span>
                   </Tooltip>
-                  <Tooltip title="Löschen">
+                  <Tooltip disableInteractive title="Löschen" arrow componentsProps={{ tooltip: { sx: { pointerEvents: 'none', bgcolor: 'grey.100', color: 'text.primary', fontSize: '0.9rem', px: 1.4, py: 0.9, border: '1px solid', borderColor: 'grey.300' } }, arrow: { sx: { color: 'grey.100' } } }}>
                     <span>
                       <IconButton
                         color="error"
@@ -304,7 +364,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onDataChange, isReadOnly
       <Dialog open={isCourseDialogOpen} onClose={() => setCourseDialogOpen(false)} maxWidth="md" fullWidth>
         <Box display="flex" justifyContent="space-between" alignItems="center" p={3} borderBottom="1px solid #eee">
           <Typography variant="h6" fontWeight="bold">
-            {editingCourse.id ? 'Kurs bearbeiten' : 'Neuen Kurs erstellen'}
+            {editingCourse.id ? 'Kurs ändern' : 'Neuen Kurs erstellen'}
           </Typography>
           <IconButton onClick={() => setCourseDialogOpen(false)} size="small"><Close /></IconButton>
         </Box>
@@ -379,10 +439,27 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onDataChange, isReadOnly
                       <TableRow key={s.id} selected={sessionForm.id === s.id}>
                         <TableCell>{new Date(s.start_time).toLocaleDateString('de-DE')}</TableCell>
                         <TableCell>{new Date(s.start_time).toLocaleTimeString('de-DE', {hour:'2-digit', minute:'2-digit'})}</TableCell>
-                        <TableCell>{s.max_participants}</TableCell>
+                        <TableCell>
+                          <Box
+                            display="flex"
+                            alignItems="center"
+                            gap={0.5}
+                            onClick={() => openParticipantsManager(s)}
+                            sx={{ cursor: isReadOnly ? 'default' : 'pointer', width: 'fit-content' }}
+                          >
+                            <Group fontSize="small" />
+                            <Typography variant="body2">
+                              {s.bookings?.[0]?.count || 0} / {s.max_participants}
+                            </Typography>
+                          </Box>
+                        </TableCell>
                         <TableCell align="right">
-                          <IconButton size="small" onClick={() => handleEditSession(s)}><Edit fontSize="small" /></IconButton>
-                          <IconButton size="small" color="error" onClick={() => handleDeleteSession(s.id)}><Delete fontSize="small" /></IconButton>
+                          <Tooltip disableInteractive title="Termin ändern" arrow componentsProps={{ tooltip: { sx: { pointerEvents: 'none', bgcolor: 'grey.100', color: 'text.primary', fontSize: '0.9rem', px: 1.4, py: 0.9, border: '1px solid', borderColor: 'grey.300' } }, arrow: { sx: { color: 'grey.100' } } }}>
+                            <IconButton size="small" onClick={() => handleEditSession(s)}><Edit fontSize="small" /></IconButton>
+                          </Tooltip>
+                          <Tooltip disableInteractive title="Termin löschen" arrow componentsProps={{ tooltip: { sx: { pointerEvents: 'none', bgcolor: 'grey.100', color: 'text.primary', fontSize: '0.9rem', px: 1.4, py: 0.9, border: '1px solid', borderColor: 'grey.300' } }, arrow: { sx: { color: 'grey.100' } } }}>
+                            <IconButton size="small" color="error" onClick={() => handleDeleteSession(s.id)}><Delete fontSize="small" /></IconButton>
+                          </Tooltip>
                         </TableCell>
                       </TableRow>
                     ))}
@@ -393,7 +470,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onDataChange, isReadOnly
             <Grid item xs={12} md={5}>
               <Paper sx={{ p: 2, bgcolor: '#f9f9f9' }} variant="outlined">
                 <Typography variant="subtitle2" gutterBottom fontWeight="bold">
-                  {sessionForm.id ? 'Termin bearbeiten' : 'Neuen Termin hinzufügen'}
+                  {sessionForm.id ? 'Termin ändern' : 'Neuen Termin hinzufügen'}
                 </Typography>
                 <Box display="flex" flexDirection="column" gap={2} mt={2}>
                   <TextField type="date" label="Datum" InputLabelProps={{ shrink: true }} size="small" fullWidth value={sessionForm.date} onChange={e => setSessionForm({...sessionForm, date: e.target.value})} />
@@ -415,6 +492,49 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onDataChange, isReadOnly
           </Grid>
         </DialogContent>
         <DialogActions><Button onClick={() => setSessionManagerOpen(false)}>Schließen</Button></DialogActions>
+      </Dialog>
+
+      <Dialog open={isParticipantsDialogOpen} onClose={() => setParticipantsDialogOpen(false)} maxWidth="sm" fullWidth>
+        <DialogTitle>Teilnehmer verwalten</DialogTitle>
+        <DialogContent dividers>
+          {selectedSessionForParticipants && (
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+              Termin: {new Date(selectedSessionForParticipants.start_time).toLocaleDateString('de-DE')} - {new Date(selectedSessionForParticipants.start_time).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' })} Uhr
+            </Typography>
+          )}
+
+          {sessionParticipants.length === 0 ? (
+            <Typography variant="body2" color="text.secondary">Keine Teilnehmer für diesen Termin.</Typography>
+          ) : (
+            <Table size="small">
+              <TableHead>
+                <TableRow>
+                  <TableCell>#</TableCell>
+                  <TableCell>Teilnehmer</TableCell>
+                  <TableCell align="right">Aktion</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {sessionParticipants.map((participant, index) => (
+                  <TableRow key={participant.id}>
+                    <TableCell>{index + 1}</TableCell>
+                    <TableCell>
+                      {`${participant.profiles?.first_name || ''} ${participant.profiles?.last_name || ''}`.trim() || participant.user_id}
+                    </TableCell>
+                    <TableCell align="right">
+                      <IconButton size="small" color="error" onClick={() => handleRemoveParticipant(participant.id)}>
+                        <Delete fontSize="small" />
+                      </IconButton>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          )}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setParticipantsDialogOpen(false)}>Schließen</Button>
+        </DialogActions>
       </Dialog>
 
     </Paper>

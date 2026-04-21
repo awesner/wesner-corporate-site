@@ -17,6 +17,7 @@ interface AdminPanelProps {
 interface SessionParticipant {
   id: number;
   user_id: string;
+  status: 'confirmed' | 'waitlist';
   profiles?: {
     first_name?: string;
     last_name?: string;
@@ -51,7 +52,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onDataChange, isReadOnly
   const fetchCourses = async () => {
     const { data } = await supabase
       .from('courses')
-      .select('*, course_sessions(id, start_time, max_participants, bookings(count))')
+      .select('*, course_sessions(id, start_time, max_participants, bookings(status))')
       .order('id');
     setCourses((data as unknown as Course[]) || []);
   };
@@ -61,7 +62,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onDataChange, isReadOnly
   const fetchSessionsForManager = async (courseId: number) => {
     const { data } = await supabase
       .from('course_sessions')
-      .select('*, bookings(count)')
+      .select('*, bookings(status)')
       .eq('course_id', courseId)
       .order('start_time');
     setCourseSessionsList((data as unknown as CourseSession[]) || []);
@@ -70,7 +71,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onDataChange, isReadOnly
   const fetchParticipantsForSession = async (sessionId: number) => {
     const { data, error } = await supabase
       .from('bookings')
-      .select('id, user_id, profiles(first_name, last_name)')
+      .select('id, user_id, status, profiles(first_name, last_name)')
       .eq('session_id', sessionId)
       .order('id');
 
@@ -81,6 +82,9 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onDataChange, isReadOnly
 
     setSessionParticipants((data as SessionParticipant[]) || []);
   };
+
+  const getConfirmedCount = (session?: CourseSession) =>
+    (session?.bookings || []).filter((booking) => booking.status === 'confirmed').length;
 
 
   const handleSaveCourse = async () => {
@@ -297,7 +301,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onDataChange, isReadOnly
                       sx={{ cursor: isReadOnly ? 'default' : 'pointer', width: 'fit-content' }}
                     >
                       {(() => {
-                        const booked = nextSession.bookings?.[0]?.count || 0;
+                        const booked = getConfirmedCount(nextSession);
                         const max = nextSession.max_participants;
                         const isFull = booked >= max;
                         return (
@@ -449,7 +453,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onDataChange, isReadOnly
                           >
                             <Group fontSize="small" />
                             <Typography variant="body2">
-                              {s.bookings?.[0]?.count || 0} / {s.max_participants}
+                              {getConfirmedCount(s)} / {s.max_participants}
                             </Typography>
                           </Box>
                         </TableCell>
@@ -520,6 +524,17 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onDataChange, isReadOnly
                     <TableCell>{index + 1}</TableCell>
                     <TableCell>
                       {`${participant.profiles?.first_name || ''} ${participant.profiles?.last_name || ''}`.trim() || participant.user_id}
+                      <Chip
+                        label={participant.status === 'confirmed' ? 'Bestätigt' : 'Warteliste'}
+                        size="small"
+                        sx={{
+                          ml: 1,
+                          height: 22,
+                          bgcolor: participant.status === 'confirmed' ? '#2e7d32' : '#ff9800',
+                          color: '#fff',
+                          fontWeight: 500
+                        }}
+                      />
                     </TableCell>
                     <TableCell align="right">
                       <IconButton size="small" color="error" onClick={() => handleRemoveParticipant(participant.id)}>

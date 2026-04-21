@@ -13,5 +13,5 @@ export interface CourseSession {
   start_time: string;
   max_participants: number;
   course?: Course;
-  bookings?: { count: number }[];
+  bookings?: { count?: number; status?: 'confirmed' | 'waitlist' }[];
 }

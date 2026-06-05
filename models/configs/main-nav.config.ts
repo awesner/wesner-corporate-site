@@ -75,10 +75,6 @@ export const useGetMainNavConfig = () => {
           name: t('navigation.productsChildren.monitoring'),
           path: `${ERoutes.Products}/monitoring`,
         },
-        {
-          name: t('navigation.productsChildren.chatbot'),
-          path: `${ERoutes.Products}/ai-chatbot`,
-        },
       ],
     },
   ] as IMainNavItem[];

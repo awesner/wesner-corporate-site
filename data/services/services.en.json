@@ -26,7 +26,10 @@
         "paragraphs": [
           {
             "text": "Text Text Text.",
-            "list": ["Text Text Text.", "Text Text Text."]
+            "list": [
+              "Text Text Text.",
+              "Text Text Text."
+            ]
           }
         ]
       },
@@ -35,7 +38,10 @@
         "paragraphs": [
           {
             "text": "combine both worlds, would it be more exciting and possible?:",
-            "list": ["text Text Text.", "Text Text Text."]
+            "list": [
+              "text Text Text.",
+              "Text Text Text."
+            ]
           },
           {
             "text": "Text Text Text."
@@ -858,120 +864,6 @@
       {
         "imgUrl": "/services/development/benefit3.png",
         "text": "Full focus on your unique core functionalities (USP)"
-      }
-    ]
-  },
-  {
-    "path": "biztalk-migration-azure",
-    "name": "BizTalk Migration to Azure",
-    "meta": {
-      "title": "BizTalk Migration to Azure Integration Services | Wesner-Softwareentwicklung",
-      "description": "Professional migration from Microsoft BizTalk Server to Azure Integration Services. Lift & Shift, Hybrid, and Native re-development with proven methodology."
-    },
-    "shortDescription": "Migration from BizTalk Server to Azure Integration Services with proven methodology and migration strategy.",
-    "iconUrl": "/services/enterprise.png",
-    "whiteIconUrl": "/services/enterprise-white.png",
-    "bannerUrl": "/services/enterprise-banner.png",
-    "description": "Microsoft BizTalk Server is reaching end-of-life. We guide you through the strategic migration of your BizTalk integrations to Azure Integration Services — from analysis to production operations.",
-    "subtitle": "From BizTalk to Azure Integration Services",
-    "mainTexts": [
-      {
-        "text": "Azure Integration Services (AIS) is Microsoft's cloud-native integration platform and the strategic successor to BizTalk Server. The platform includes Logic Apps for workflow orchestration, Azure Service Bus for enterprise messaging, Azure Functions for custom code, API Management as a central API facade, Event Grid for event-driven architectures, and Key Vault for secret management."
-      },
-      {
-        "text": "Our migration methodology is based on two proven strategies: Lift & Shift for rapid adoption of existing integrations with minimal changes, and Native Re-development for redesigning processes with cloud-native patterns. In many projects, we combine both approaches in a hybrid coexistence model where BizTalk and Azure operate in parallel."
-      }
-    ],
-    "features": [
-      {
-        "title": "Migration Phases",
-        "paragraphs": [
-          {
-            "text": "Our structured migration is divided into four phases:",
-            "list": [
-              "Analysis Phase: Inventory of all BizTalk applications, dependency analysis, complexity assessment, and strategy definition (Lift & Shift vs. Native vs. Retire)",
-              "Development Phase: Building Azure infrastructure, CI/CD pipelines, iterative migration of integrations using the 6-R model of cloud migration",
-              "Testing Phase: Unit, integration, and regression tests, parallel operation of BizTalk and Azure for validation",
-              "Production Phase: Cutover planning, controlled switchover, monitoring, and decommissioning of BizTalk Server"
-            ]
-          }
-        ]
-      },
-      {
-        "title": "Azure Integration Services Components",
-        "paragraphs": [
-          {
-            "text": "The core components of the target architecture and their BizTalk equivalents:",
-            "list": [
-              "Logic Apps (Standard): Replaces BizTalk Orchestrations, Maps, and Pipelines — 400+ connectors, visual workflow designer, B2B/EDI support",
-              "Azure Service Bus: Replaces the BizTalk MessageBox (Publish/Subscribe) — Queues, Topics, Dead-Letter Queues, Sessions, and guaranteed delivery",
-              "Azure Functions: Replaces Custom Pipeline Components — XSLT/Liquid transformations, PGP encryption, CSV parsing",
-              "API Management: Replaces BizTalk HTTP Receive/Send Ports — OAuth2, rate limiting, developer portal, policy engine",
-              "Event Grid: Replaces BizTalk File/FTP Polling — push-based events, sub-second latency",
-              "Key Vault: Replaces BizTalk SSO — centralized secret and certificate management"
-            ]
-          }
-        ]
-      },
-      {
-        "title": "Migration Examples",
-        "paragraphs": [
-          {
-            "text": "Typical migration patterns we implement for you:",
-            "list": [
-              "Lift & Shift: Direct adoption of existing BizTalk flows to Logic Apps with SFTP connector, Service Bus, and existing mappings",
-              "Hybrid/SFTP Mapping: Parallel operation of BizTalk and Azure with shared SFTP infrastructure and gradual switchover",
-              "Native Re-development: Process analysis and redesign as cloud-native solution with event-driven architecture",
-              "Copy-in-to-out (DWH): File-based integration patterns for data warehouse scenarios",
-              "SQL-to-Storage: Database-driven integration patterns with Azure Blob Storage"
-            ]
-          }
-        ]
-      },
-      {
-        "title": "Development & DevOps",
-        "paragraphs": [
-          {
-            "text": "Professional development processes for sustainable cloud integrations:",
-            "list": [
-              "GitHub Branching & Staging: Feature branches, pull requests, code reviews with automated promotion DEV → TEST → PROD",
-              "CI/CD Pipelines: Automated build, test, and deployment for Logic Apps, Functions, and Infrastructure-as-Code (Bicep/ARM)",
-              "Test Automation: Unit tests, integration tests, and E2E tests in the testing pyramid",
-              "Exception Handling: Structured error handling with Dead-Letter Queues, retry policies, and alert routing",
-              "Monitoring: Application Insights, Log Analytics, and custom dashboards for real-time monitoring of all integrations"
-            ]
-          }
-        ]
-      },
-      {
-        "title": "Enterprise Integration Platform",
-        "paragraphs": [
-          {
-            "text": "Azure Integration Services as a full-fledged iPaaS platform (Integration Platform as a Service) covers all enterprise integration scenarios:",
-            "list": [
-              "EAI (Enterprise Application Integration): Cross-system business processes and data flows",
-              "B2B Integration: EDI, AS2, EDIFACT, and X12 for partner connectivity",
-              "API Management: Management, security, and monetization of your APIs",
-              "ETL/ELT: Data integration with Azure Data Factory and Synapse Analytics",
-              "Hybrid Integration: VNet integration, On-Premises Data Gateway for secure connection to local systems",
-              "Security & Governance: Azure Entra ID, Key Vault, Azure Policy, and Microsoft Defender for comprehensive security"
-            ]
-          }
-        ]
-      }
-    ],
-    "benefits": [
-      {
-        "imgUrl": "/services/enterprise/benefit1.png",
-        "text": "Structured migration with proven methodology and minimal risk"
-      },
-      {
-        "imgUrl": "/services/enterprise/benefit2.png",
-        "text": "Cost optimization through cloud-native scaling and pay-per-use"
-      },
-      {
-        "imgUrl": "/services/enterprise/benefit3.png",
-        "text": "Future-proof platform with 400+ connectors and enterprise support"
       }
     ]
   }

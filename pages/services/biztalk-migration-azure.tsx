@@ -2061,32 +2061,32 @@ export default function BizTalkMigrationAzure({ locale }: { locale: string }) {
       {activeTab === null && (
         <Box sx={{ bgcolor: '#f9fafb' }}>
           {/* Quick-Nav Leiste */}
-          <Box sx={{ bgcolor: 'white', borderBottom: '1px solid #e5e7eb' }}>
+          <Box sx={{ bgcolor: 'white', borderBottom: '1px solid #e5e7eb', py: 1 }}>
             <Container maxWidth="lg">
               <Box
-                sx={{ display: 'flex', gap: 0.5, py: 1.5, overflowX: 'auto' }}
+                sx={{ display: 'flex', gap: 1, py: 1, overflowX: 'auto' }}
               >
                 {topicCategories(isEn).map((cat, ci) => (
                   <Chip
                     key={ci}
                     label={cat.title}
-                    size="small"
                     onClick={() => {
-                      document
-                        .getElementById(`cat-${ci}`)
-                        ?.scrollIntoView({
-                          behavior: 'smooth',
-                          block: 'start',
-                        });
+                      document.getElementById(`cat-${ci}`)?.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start',
+                      });
                     }}
                     sx={{
                       cursor: 'pointer',
-                      fontWeight: 600,
-                      fontSize: '0.75rem',
+                      fontWeight: 700,
+                      fontSize: '0.85rem',
+                      height: 36,
+                      px: 1,
                       bgcolor: 'transparent',
-                      border: '1px solid #e5e7eb',
+                      border: `2px solid ${cat.color}30`,
+                      color: cat.color,
                       '&:hover': {
-                        bgcolor: cat.color + '10',
+                        bgcolor: cat.color + '12',
                         borderColor: cat.color,
                       },
                     }}
@@ -2105,21 +2105,21 @@ export default function BizTalkMigrationAzure({ locale }: { locale: string }) {
               >
                 {/* Kategorie-Header */}
                 <Typography
-                  variant="overline"
+                  variant="h5"
                   sx={{
                     color: cat.color,
-                    fontWeight: 700,
-                    letterSpacing: 2,
-                    fontSize: '0.7rem',
+                    fontWeight: 800,
+                    fontSize: { xs: '1.2rem', md: '1.4rem' },
+                    mb: 0.5,
                   }}
                 >
                   {cat.title}
                 </Typography>
                 {cat.desc && (
                   <Typography
-                    variant="body2"
+                    variant="body1"
                     color="text.secondary"
-                    sx={{ mt: 0.5, mb: 2.5, maxWidth: 600 }}
+                    sx={{ mb: 2.5, maxWidth: 700 }}
                   >
                     {cat.desc}
                   </Typography>

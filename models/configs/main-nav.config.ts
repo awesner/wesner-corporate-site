@@ -19,39 +19,84 @@ export const useGetMainNavConfig = () => {
           name: t('navigation.categories.integration'),
           path: '#',
           children: [
-            { name: t('navigation.servicesChildren.enterprise'), path: `${ERoutes.Services}/enterprise` },
-            { name: t('navigation.servicesChildren.biztalkMigration'), path: `${ERoutes.Services}/biztalk-migration-azure` },
-            { name: t('navigation.servicesChildren.ekaer'), path: `${ERoutes.Services}/ekaer` },
+            {
+              name: t('navigation.servicesChildren.enterprise'),
+              path: `${ERoutes.Services}/enterprise`,
+            },
+            {
+              name: t('navigation.servicesChildren.biztalkMigration'),
+              path: `${ERoutes.Services}/biztalk-migration-azure`,
+            },
+            {
+              name: t('navigation.servicesChildren.ekaer'),
+              path: `${ERoutes.Services}/ekaer`,
+            },
           ],
         },
         {
           name: t('navigation.categories.development'),
           path: '#',
           children: [
-            { name: t('navigation.servicesChildren.individuelle'), path: `${ERoutes.Services}/individuelle-softwareentwicklung` },
-            { name: t('navigation.servicesChildren.web'), path: `${ERoutes.Services}/webentwicklung` },
-            { name: t('navigation.servicesChildren.mobile'), path: `${ERoutes.Services}/mobile-app-entwicklung` },
-            { name: t('navigation.servicesChildren.embedded'), path: `${ERoutes.Services}/embedded-entwicklung` },
+            {
+              name: t('navigation.servicesChildren.individuelle'),
+              path: `${ERoutes.Services}/individuelle-softwareentwicklung`,
+            },
+            {
+              name: t('navigation.servicesChildren.web'),
+              path: `${ERoutes.Services}/webentwicklung`,
+            },
+            {
+              name: t('navigation.servicesChildren.mobile'),
+              path: `${ERoutes.Services}/mobile-app-entwicklung`,
+            },
+            {
+              name: t('navigation.servicesChildren.embedded'),
+              path: `${ERoutes.Services}/embedded-entwicklung`,
+            },
           ],
         },
         {
           name: t('navigation.categories.architecture'),
           path: '#',
           children: [
-            { name: t('navigation.servicesChildren.architecture'), path: `${ERoutes.Services}/softwarearchitektur` },
-            { name: t('navigation.servicesChildren.consulting'), path: `${ERoutes.Services}/softwareberatung` },
-            { name: t('navigation.servicesChildren.productConsulting'), path: `${ERoutes.Services}/produktberatung` },
-            { name: t('navigation.servicesChildren.requirements'), path: `${ERoutes.Services}/requirements-engineering` },
+            {
+              name: t('navigation.servicesChildren.architecture'),
+              path: `${ERoutes.Services}/softwarearchitektur`,
+            },
+            {
+              name: t('navigation.servicesChildren.consulting'),
+              path: `${ERoutes.Services}/softwareberatung`,
+            },
+            {
+              name: t('navigation.servicesChildren.productConsulting'),
+              path: `${ERoutes.Services}/produktberatung`,
+            },
+            {
+              name: t('navigation.servicesChildren.requirements'),
+              path: `${ERoutes.Services}/requirements-engineering`,
+            },
           ],
         },
         {
           name: t('navigation.categories.innovation'),
           path: '#',
           children: [
-            { name: t('navigation.servicesChildren.uiux'), path: `${ERoutes.Services}/ui-ux-design` },
-            { name: t('navigation.servicesChildren.ai'), path: `${ERoutes.Services}/ki-forschung-entwicklung` },
-            { name: t('navigation.servicesChildren.voice'), path: `${ERoutes.Services}/sprachassistenten` },
-            { name: t('navigation.servicesChildren.modules'), path: `${ERoutes.Services}/produktbausteine` },
+            {
+              name: t('navigation.servicesChildren.uiux'),
+              path: `${ERoutes.Services}/ui-ux-design`,
+            },
+            {
+              name: t('navigation.servicesChildren.ai'),
+              path: `${ERoutes.Services}/ki-forschung-entwicklung`,
+            },
+            {
+              name: t('navigation.servicesChildren.voice'),
+              path: `${ERoutes.Services}/sprachassistenten`,
+            },
+            {
+              name: t('navigation.servicesChildren.modules'),
+              path: `${ERoutes.Services}/produktbausteine`,
+            },
           ],
         },
       ],

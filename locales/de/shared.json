@@ -21,6 +21,7 @@
     },
     "servicesChildren": {
       "enterprise": "Unternehmensintegration",
+      "biztalkMigration": "BizTalk Migration nach Azure",
       "ekaer": "EKAER",
       "individuelle": "Individuelle Softwareentwicklung",
       "web": "Webentwicklung",

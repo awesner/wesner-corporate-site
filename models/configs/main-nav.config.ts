@@ -20,6 +20,7 @@ export const useGetMainNavConfig = () => {
           path: '#',
           children: [
             { name: t('navigation.servicesChildren.enterprise'), path: `${ERoutes.Services}/enterprise` },
+            { name: t('navigation.servicesChildren.biztalkMigration'), path: `${ERoutes.Services}/biztalk-migration-azure` },
             { name: t('navigation.servicesChildren.ekaer'), path: `${ERoutes.Services}/ekaer` },
           ],
         },

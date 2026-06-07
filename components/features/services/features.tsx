@@ -69,9 +69,9 @@ export default function Features({ service }: IProps): JSX.Element {
           >
             <Benefits benefits={benefits} />
           </Box>
-          {/*{features?.map((feature, index) => (*/}
-          {/*  <ServiceFeature key={index} feature={feature} />*/}
-          {/*))}*/}
+          {features?.map((feature, index) => (
+            <ServiceFeature key={index} feature={feature} />
+          ))}
         </Stack>
       </Container>
     </Box>

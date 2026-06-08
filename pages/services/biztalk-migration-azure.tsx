@@ -1912,6 +1912,7 @@ function ServiceDetail({ svc, t }: { svc: AisService; t?: BizTalkI18n }) {
                       fontWeight: 'bold',
                       minWidth: 28,
                       height: 24,
+                      flexShrink: 0,
                     }}
                   />
                   <Typography variant="body2">{uc}</Typography>
@@ -2020,7 +2021,7 @@ export default function BizTalkMigrationAzure({ locale }: { locale: string }) {
   return (
     <BaseLayout>
       <Head>
-        <title>{t.hero.title} | Wesner-Softwareentwicklung</title>
+        <title>{`${t.hero.title} | Wesner-Softwareentwicklung`}</title>
         <meta name="description" content={t.hero.subtitle} />
       </Head>
 
@@ -2061,11 +2062,11 @@ export default function BizTalkMigrationAzure({ locale }: { locale: string }) {
       {activeTab === null && (
         <Box sx={{ bgcolor: '#f9fafb' }}>
           {/* Quick-Nav Leiste */}
-          <Box sx={{ bgcolor: 'white', borderBottom: '1px solid #e5e7eb', py: 1 }}>
+          <Box
+            sx={{ bgcolor: 'white', borderBottom: '1px solid #e5e7eb', py: 1 }}
+          >
             <Container maxWidth="lg">
-              <Box
-                sx={{ display: 'flex', gap: 1, py: 1, overflowX: 'auto' }}
-              >
+              <Box sx={{ display: 'flex', gap: 1, py: 1, overflowX: 'auto' }}>
                 {topicCategories(isEn).map((cat, ci) => (
                   <Chip
                     key={ci}
@@ -2223,7 +2224,13 @@ export default function BizTalkMigrationAzure({ locale }: { locale: string }) {
       {/* Layout mit Sidebar-Navigation (nur wenn Thema gewählt) */}
       {activeTab !== null && (
         <Container maxWidth="xl" sx={{ py: { xs: 3, md: 5 } }}>
-          <Box sx={{ display: 'flex', gap: { xs: 0, md: 4 } }}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: { xs: 'column', md: 'row' },
+              gap: { xs: 1, md: 4 },
+            }}
+          >
             {/* Sidebar Links */}
             <Box
               component="nav"
@@ -2351,6 +2358,7 @@ export default function BizTalkMigrationAzure({ locale }: { locale: string }) {
                 }}
                 variant="scrollable"
                 scrollButtons="auto"
+                allowScrollButtonsMobile
                 sx={{
                   '& .MuiTab-root': {
                     textTransform: 'none',
@@ -2360,18 +2368,15 @@ export default function BizTalkMigrationAzure({ locale }: { locale: string }) {
                   },
                 }}
               >
-                <Tab label={t.tabs.overview} />
-                <Tab label="Logic Apps" />
-                <Tab label="Service Bus" />
-                <Tab label="API Mgmt" />
-                <Tab label="Event Grid" />
-                <Tab label="Functions" />
-                <Tab label="Data Factory" />
-                <Tab label="Key Vault" />
-                <Tab label="Monitoring" />
-                <Tab label="Entra ID" />
-                <Tab label={isEn ? 'Migration' : 'Migration'} />
-                <Tab label={isEn ? 'Environments' : 'Umgebungen'} />
+                {sidebarLinks(isEn, t)
+                  .filter((link) => !link.section)
+                  .map((link) => (
+                    <Tab
+                      key={link.tabIndex}
+                      value={link.tabIndex}
+                      label={link.label}
+                    />
+                  ))}
               </Tabs>
             </Box>
 
@@ -2419,7 +2424,7 @@ export default function BizTalkMigrationAzure({ locale }: { locale: string }) {
                       {mainComponentIds.map((id) => {
                         const s = svcData[id];
                         return (
-                          <Grid item xs={12} sm={6} md={4} key={id}>
+                          <Grid item xs={12} lg={4} key={id}>
                             <Card
                               variant="outlined"
                               sx={{
@@ -2496,7 +2501,7 @@ export default function BizTalkMigrationAzure({ locale }: { locale: string }) {
                     </Typography>
                     <Grid container spacing={2}>
                       {t.f1.serverlessItems.map((f, i) => (
-                        <Grid item xs={12} md={4} key={i}>
+                        <Grid item xs={12} lg={4} key={i}>
                           <Card variant="outlined" sx={{ height: '100%' }}>
                             <CardContent>
                               <Typography
@@ -2531,7 +2536,7 @@ export default function BizTalkMigrationAzure({ locale }: { locale: string }) {
                     </Typography>
                     <Grid container spacing={1} sx={{ mt: 1 }}>
                       {references.map((ref, i) => (
-                        <Grid item xs={12} sm={6} key={i}>
+                        <Grid item xs={12} md={6} key={i}>
                           <MuiLink
                             href={ref.url}
                             target="_blank"
@@ -2750,7 +2755,7 @@ export default function BizTalkMigrationAzure({ locale }: { locale: string }) {
                     </Typography>
                     <Grid container spacing={2}>
                       {t.f2.hybridItems.map((item, i) => (
-                        <Grid item xs={12} md={4} key={i}>
+                        <Grid item xs={12} lg={4} key={i}>
                           <Paper
                             sx={{ p: 2, bgcolor: 'rgba(255,255,255,0.15)' }}
                           >
@@ -2899,6 +2904,7 @@ export default function BizTalkMigrationAzure({ locale }: { locale: string }) {
                                     fontWeight: 'bold',
                                     minWidth: 28,
                                     height: 24,
+                                    flexShrink: 0,
                                   }}
                                 />
                                 <Box>
@@ -2962,7 +2968,7 @@ export default function BizTalkMigrationAzure({ locale }: { locale: string }) {
                   </Typography>
                   <Grid container spacing={2} sx={{ mb: 4 }}>
                     {sixRData.map((item, i) => (
-                      <Grid item xs={12} sm={6} md={4} key={i}>
+                      <Grid item xs={12} lg={4} key={i}>
                         <Card
                           variant="outlined"
                           sx={{
@@ -3071,7 +3077,7 @@ export default function BizTalkMigrationAzure({ locale }: { locale: string }) {
                     </Typography>
                     <Grid container spacing={2}>
                       {t.f2.eolItems.map((item, i) => (
-                        <Grid item xs={12} md={4} key={i}>
+                        <Grid item xs={12} lg={4} key={i}>
                           <Paper
                             sx={{ p: 2, bgcolor: 'rgba(255,255,255,0.1)' }}
                           >
@@ -3169,7 +3175,7 @@ export default function BizTalkMigrationAzure({ locale }: { locale: string }) {
                   {/* Environment Cards */}
                   <Grid container spacing={3} sx={{ mb: 4 }}>
                     {envData.map((env) => (
-                      <Grid item xs={12} md={4} key={env.id}>
+                      <Grid item xs={12} md={6} lg={4} key={env.id}>
                         <Paper
                           variant="outlined"
                           sx={{ height: '100%', overflow: 'hidden' }}
@@ -3460,7 +3466,7 @@ export default function BizTalkMigrationAzure({ locale }: { locale: string }) {
                           use: 'PROD (High Volume)',
                         },
                       ].map((p, i) => (
-                        <Grid item xs={12} md={4} key={i}>
+                        <Grid item xs={12} lg={4} key={i}>
                           <Card variant="outlined">
                             <CardContent>
                               <Typography

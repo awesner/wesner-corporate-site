@@ -565,6 +565,7 @@ function TaskList({
               fontWeight: 'bold',
               minWidth: 28,
               height: 24,
+              flexShrink: 0,
             }}
           />
           <Box>
@@ -616,7 +617,7 @@ export function IntegrationEnvContent({ locale }: L) {
             { name: 'Azure Functions', status: en ? 'Planned' : 'Geplant' },
             { name: 'Azure Event Grid', status: en ? 'Planned' : 'Geplant' },
           ].map((r, i) => (
-            <Grid item xs={6} md={4} key={i}>
+            <Grid item xs={12} md={6} lg={4} key={i}>
               <Card variant="outlined">
                 <CardContent sx={{ py: 1.5 }}>
                   <Typography variant="subtitle2" fontWeight="bold">
@@ -898,7 +899,7 @@ export function EnterprisePlatformContent({ locale }: L) {
         </Typography>
         <Grid container spacing={2}>
           {categories.map((cat, i) => (
-            <Grid item xs={12} md={6} key={i}>
+            <Grid item xs={12} lg={6} key={i}>
               <Card
                 variant="outlined"
                 sx={{
@@ -1097,7 +1098,7 @@ export function MigrationExamplesContent({ locale }: L) {
             {ex.desc}
           </Typography>
           <Grid container spacing={3}>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} lg={6}>
               <Typography
                 variant="overline"
                 fontWeight="bold"
@@ -1107,7 +1108,7 @@ export function MigrationExamplesContent({ locale }: L) {
               </Typography>
               <BulletList items={ex.biz} color="#DC2626" />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} lg={6}>
               <Typography variant="overline" fontWeight="bold" color="primary">
                 Azure ({en ? 'Target' : 'SOLL'})
               </Typography>
@@ -1336,7 +1337,7 @@ export function CutoverContent({ locale }: L) {
       >
         <Grid container spacing={2}>
           {opts.map((o, i) => (
-            <Grid item xs={12} md={4} key={i}>
+            <Grid item xs={12} md={6} lg={4} key={i}>
               <Card variant="outlined" sx={{ height: '100%' }}>
                 <CardContent>
                   <Typography variant="subtitle2" fontWeight="bold">
@@ -1491,7 +1492,7 @@ export function DevProcessContent({ locale }: L) {
                 },
               ]
           ).map((nfr, i) => (
-            <Grid item xs={12} md={6} key={i}>
+            <Grid item xs={12} lg={6} key={i}>
               <Card variant="outlined" sx={{ height: '100%' }}>
                 <CardContent>
                   <Typography
@@ -1648,7 +1649,7 @@ export function GitBranchingContent({ locale }: L) {
                 },
               ]
           ).map((env, i) => (
-            <Grid item xs={12} md={4} key={i}>
+            <Grid item xs={12} md={6} lg={4} key={i}>
               <Card
                 variant="outlined"
                 sx={{ borderTop: `3px solid ${env.color}`, height: '100%' }}
@@ -1818,7 +1819,7 @@ export function CiCdAzureContent({ locale }: L) {
                 },
               ]
           ).map((d, i) => (
-            <Grid item xs={12} sm={6} key={i}>
+            <Grid item xs={12} lg={6} key={i}>
               <Card variant="outlined" sx={{ height: '100%' }}>
                 <CardContent>
                   <Typography
@@ -2037,7 +2038,7 @@ export function TestingContent({ locale }: L) {
                 },
               ]
           ).map((t, i) => (
-            <Grid item xs={12} md={4} key={i}>
+            <Grid item xs={12} md={6} lg={4} key={i}>
               <Card
                 variant="outlined"
                 sx={{ borderTop: `3px solid ${t.color}`, height: '100%' }}
@@ -2229,7 +2230,7 @@ export function MonitoringContent({ locale }: L) {
       >
         <Grid container spacing={2}>
           {monitorTools.map((s) => (
-            <Grid item xs={12} sm={6} key={s.id}>
+            <Grid item xs={12} lg={6} key={s.id}>
               <Card
                 variant="outlined"
                 sx={{
@@ -2492,7 +2493,7 @@ export function ExceptionHandlingContent({ locale }: L) {
       <Section title={en ? 'Strategies' : 'Strategien'}>
         <Grid container spacing={2}>
           {strategies.map((s, i) => (
-            <Grid item xs={12} sm={6} key={i}>
+            <Grid item xs={12} lg={6} key={i}>
               <Card
                 variant="outlined"
                 sx={{
@@ -2752,7 +2753,7 @@ export function SecurityContent({ locale }: L) {
         </Typography>
         <Grid container spacing={2}>
           {domains.map((d, i) => (
-            <Grid item xs={12} sm={6} md={4} key={i}>
+            <Grid item xs={12} md={6} lg={4} key={i}>
               <Card
                 variant="outlined"
                 sx={{
@@ -2988,7 +2989,7 @@ export function ProjectMgmtContent({ locale }: L) {
                 },
               ]
           ).map((s, i) => (
-            <Grid item xs={12} sm={6} key={i}>
+            <Grid item xs={12} lg={6} key={i}>
               <Card variant="outlined" sx={{ height: '100%' }}>
                 <CardContent>
                   <Typography

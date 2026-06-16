@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import {
   Container,
   Typography,
@@ -1998,23 +1997,12 @@ function ServiceDetail({ svc, t }: { svc: AisService; t?: BizTalkI18n }) {
 /* ─── Hauptseite ─── */
 
 export default function BizTalkMigrationAzure({ locale }: { locale: string }) {
-  const router = useRouter();
   const [activeTab, setActiveTab] = useState<number | null>(null);
   const [selectedComponent, setSelectedComponent] = useState<string | null>(
     null,
   );
 
   const isEn = locale === 'en';
-
-  // --- SEO URL LOGIC ---
-  const siteUrl = 'https://www.wesner-software.de';
-  const cleanPath = router.asPath.split('?')[0];
-
-  const urlEn = `${siteUrl}${cleanPath}`;
-  const urlDe = `${siteUrl}/de${cleanPath}`;
-
-  const canonicalUrl = locale === 'de' ? urlDe : urlEn;
-  // ---------------------
 
   const t: BizTalkI18n = isEn ? i18nEn : i18nDe;
   const svcData = isEn ? servicesEn : services;
@@ -2035,12 +2023,6 @@ export default function BizTalkMigrationAzure({ locale }: { locale: string }) {
       <Head>
         <title>{`${t.hero.title} | Wesner-Softwareentwicklung`}</title>
         <meta name="description" content={t.hero.subtitle} />
-
-        <link rel="canonical" href={canonicalUrl} />
-
-        <link rel="alternate" hrefLang="en" href={urlEn} />
-        <link rel="alternate" hrefLang="de" href={urlDe} />
-        <link rel="alternate" hrefLang="x-default" href={urlEn} />
       </Head>
 
       {/* Hero */}

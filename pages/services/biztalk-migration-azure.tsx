@@ -2627,7 +2627,7 @@ export default function BizTalkMigrationAzure({ locale }: { locale: string }) {
               {/* ─── F2: MIGRATION TAB ─── */}
               {currentTabId === 'migration' && (
                 <>
-                                  {/* BizTalk End of Life */}
+                  {/* BizTalk End of Life */}
                   <Paper
                     sx={{ p: 4, mb: 4, bgcolor: 'error.dark', color: 'white' }}
                   >
@@ -2658,7 +2658,7 @@ export default function BizTalkMigrationAzure({ locale }: { locale: string }) {
                     </Grid>
                   </Paper>
 
-                                    {/* On-Prem vs Cloud */}
+                  {/* On-Prem vs Cloud */}
                   <Typography variant="h5" fontWeight="bold" gutterBottom>
                     {t.f2.compareTitle}
                   </Typography>
@@ -2707,7 +2707,7 @@ export default function BizTalkMigrationAzure({ locale }: { locale: string }) {
                     </Table>
                   </TableContainer>
 
-                                    {/* 6 Rs der Cloud-Migration */}
+                  {/* 6 Rs der Cloud-Migration */}
                   <Typography variant="h5" fontWeight="bold" gutterBottom>
                     {t.f2.sixRsTitle}
                   </Typography>
@@ -2763,7 +2763,7 @@ export default function BizTalkMigrationAzure({ locale }: { locale: string }) {
                       </Grid>
                     ))}
                   </Grid>
-                  
+
                   {/* Strategien */}
                   <Typography variant="h5" fontWeight="bold" gutterBottom>
                     {t.f2.stratTitle}

@@ -21,10 +21,7 @@ const Careers: NextPage<ICareersProps> = ({ positions }) => {
     <>
       <Head>
         <title>{t('title')}</title>
-        <meta
-          name="description"
-          content={t('description')}
-        />
+        <meta name="description" content={t('description')} />
       </Head>
       <BannerSection />
       <Benefits />

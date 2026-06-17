@@ -27,7 +27,10 @@ export const authOptions: NextAuthOptions = {
             return null;
           }
 
-          const isValid = await compare(credentials.password, user.password_hash);
+          const isValid = await compare(
+            credentials.password,
+            user.password_hash,
+          );
 
           if (!isValid) {
             return null;

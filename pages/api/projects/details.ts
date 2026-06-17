@@ -12,7 +12,10 @@ interface ProjectData {
   user_id: number;
 }
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   const session = await getServerSession(req, res, authOptions);
 
   const { id } = req.query;
@@ -35,16 +38,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         FROM projects p JOIN users u ON p.user_id = u.id ORDER BY p.created_at DESC
       `;
       projectsList = rows.map((r: any) => ({
-        ...r, created_at: r.created_at.toISOString()
+        ...r,
+        created_at: r.created_at.toISOString(),
       }));
-    }
-    else {
+    } else {
       let query;
 
       if (projectId) {
         query = sql`SELECT * FROM projects WHERE id = ${projectId}`;
       } else if (isClient) {
-        query = sql`SELECT * FROM projects WHERE user_id = ${Number(session?.user?.id)} LIMIT 1`;
+        query = sql`SELECT * FROM projects WHERE user_id = ${Number(
+          session?.user?.id,
+        )} LIMIT 1`;
       }
 
       if (query) {
@@ -75,7 +80,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         created_at: c.created_at.toISOString(),
         author_name: c.author_name,
         author_role: c.author_role,
-        is_me: c.user_id === currentUserId
+        is_me: c.user_id === currentUserId,
       }));
 
       if (projectData.created_at instanceof Date) {
@@ -87,9 +92,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       viewMode,
       project: projectData,
       projectsList,
-      comments: commentsData
+      comments: commentsData,
     });
-
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: 'Database error' });

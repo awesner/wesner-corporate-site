@@ -35,21 +35,38 @@ const ProductsIndexPage: NextPage<IProductsIndexPageProps> = ({ products }) => {
 
       <div style={{ marginTop: '3rem', display: 'grid', gap: '2rem' }}>
         {products.map((product) => (
-          <div key={product.slug} style={{ border: '1px solid #eee', borderRadius: '8px', padding: '1.5rem', transition: 'box-shadow 0.3s' }}>
-
+          <div
+            key={product.slug}
+            style={{
+              border: '1px solid #eee',
+              borderRadius: '8px',
+              padding: '1.5rem',
+              transition: 'box-shadow 0.3s',
+            }}
+          >
             <Link href={`/products/${product.slug}`} passHref>
               <MuiLink
                 underline="none"
                 sx={{
                   cursor: 'pointer',
-                  '&:hover h2': { textDecoration: 'underline' }
+                  '&:hover h2': { textDecoration: 'underline' },
                 }}
               >
-                <h2 style={{ marginTop: 0, color: '#0070f3' }}>{product.name}</h2>
+                <h2 style={{ marginTop: 0, color: '#0070f3' }}>
+                  {product.name}
+                </h2>
               </MuiLink>
             </Link>
 
-            <h3 style={{ fontStyle: 'italic', color: '#555', fontWeight: 'normal' }}>{product.tagline}</h3>
+            <h3
+              style={{
+                fontStyle: 'italic',
+                color: '#555',
+                fontWeight: 'normal',
+              }}
+            >
+              {product.tagline}
+            </h3>
             <p>{product.summary}</p>
 
             <Link href={`/products/${product.slug}`} passHref>
@@ -59,13 +76,12 @@ const ProductsIndexPage: NextPage<IProductsIndexPageProps> = ({ products }) => {
                   fontWeight: 'bold',
                   color: '#0070f3',
                   cursor: 'pointer',
-                  '&:hover': { textDecoration: 'underline' }
+                  '&:hover': { textDecoration: 'underline' },
                 }}
               >
                 {t('learnMore')}
               </MuiLink>
             </Link>
-
           </div>
         ))}
       </div>
@@ -78,7 +94,12 @@ ProductsIndexPage.getLayout = function getLayout(page: ReactElement) {
 };
 
 export const getStaticProps: GetStaticProps = ({ locale }) => {
-  const productsFilePath = path.join(process.cwd(), 'data', 'products', `products.${locale}.json`);
+  const productsFilePath = path.join(
+    process.cwd(),
+    'data',
+    'products',
+    `products.${locale}.json`,
+  );
   const fileContents = fs.readFileSync(productsFilePath, 'utf8');
   const allProducts = JSON.parse(fileContents);
 

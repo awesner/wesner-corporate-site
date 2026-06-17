@@ -2,7 +2,10 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { sql } from '@vercel/postgres';
 import nodemailer from 'nodemailer';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -58,7 +61,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd;"><strong>Nachricht:</strong></td>
-              <td style="padding: 10px; border: 1px solid #ddd;">${message || '-'}</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">${
+                message || '-'
+              }</td>
             </tr>
           </table>
           
@@ -71,10 +76,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     await transporter.sendMail(mailOptions);
 
-    return res.status(200).json({ success: true, message: 'Anfrage erfolgreich gesendet' });
-
+    return res
+      .status(200)
+      .json({ success: true, message: 'Anfrage erfolgreich gesendet' });
   } catch (error: any) {
     console.error('Email Error:', error);
-    return res.status(500).json({ error: error.message || 'Internal Server Error' });
+    return res
+      .status(500)
+      .json({ error: error.message || 'Internal Server Error' });
   }
 }

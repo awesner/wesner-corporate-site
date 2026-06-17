@@ -9,14 +9,14 @@ interface INavMenuItem {
 }
 
 export default function NavigationMenuItem({
-                                             item,
-                                             sx,
-                                           }: INavMenuItem): JSX.Element {
+  item,
+  sx,
+}: INavMenuItem): JSX.Element {
   const router = useRouter();
   const { name, children } = item;
 
   const hasSubCategories = children?.some(
-    (child) => child.children && child.children.length > 0
+    (child) => child.children && child.children.length > 0,
   );
 
   return (
@@ -38,7 +38,10 @@ export default function NavigationMenuItem({
           {(children || []).map((child) => {
             if (child.children && child.children.length > 0) {
               return (
-                <Box key={child.name} sx={{ display: 'flex', flexDirection: 'column', mb: 1 }}>
+                <Box
+                  key={child.name}
+                  sx={{ display: 'flex', flexDirection: 'column', mb: 1 }}
+                >
                   <Typography
                     variant="overline"
                     sx={{
@@ -54,7 +57,12 @@ export default function NavigationMenuItem({
                   {child.children.map((subChild) => {
                     const isActive = router.asPath.includes(subChild.path);
                     return (
-                      <NextLink key={subChild.name} href={subChild.path} passHref prefetch={false}>
+                      <NextLink
+                        key={subChild.name}
+                        href={subChild.path}
+                        passHref
+                        prefetch={false}
+                      >
                         <MenuItem
                           component="a"
                           sx={{
@@ -75,7 +83,12 @@ export default function NavigationMenuItem({
 
             const isActive = router.asPath.includes(child.path);
             return (
-              <NextLink key={child.name} href={child.path} passHref prefetch={false}>
+              <NextLink
+                key={child.name}
+                href={child.path}
+                passHref
+                prefetch={false}
+              >
                 <MenuItem
                   component="a"
                   sx={{

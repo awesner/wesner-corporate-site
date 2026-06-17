@@ -36,7 +36,8 @@ export default function OtherServices({ services }: IProps) {
   }, [page, totalPages]);
 
   const handlePrev = () => setPage((prev) => Math.max(0, prev - 1));
-  const handleNext = () => setPage((prev) => Math.min(totalPages - 1, prev + 1));
+  const handleNext = () =>
+    setPage((prev) => Math.min(totalPages - 1, prev + 1));
 
   const startIndex = page * itemsPerPage;
   const currentServices = services.slice(startIndex, startIndex + itemsPerPage);
@@ -67,7 +68,13 @@ export default function OtherServices({ services }: IProps) {
         </Stack>
 
         {totalPages > 1 && (
-          <Box display="flex" justifyContent="center" alignItems="center" mt={5} gap={3}>
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            mt={5}
+            gap={3}
+          >
             <IconButton
               onClick={handlePrev}
               disabled={page === 0}
@@ -82,7 +89,7 @@ export default function OtherServices({ services }: IProps) {
                 '&.Mui-disabled': {
                   bgcolor: 'rgba(255, 255, 255, 0.05)',
                   color: 'grey.600',
-                }
+                },
               }}
             >
               <KeyboardArrowLeftIcon fontSize="medium" />
@@ -98,13 +105,14 @@ export default function OtherServices({ services }: IProps) {
                     height: 14,
                     borderRadius: '50%',
                     border: '2px solid',
-                    borderColor: page === index ? 'primary.main' : 'common.white',
+                    borderColor:
+                      page === index ? 'primary.main' : 'common.white',
                     bgcolor: page === index ? 'primary.main' : 'transparent',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
                     '&:hover': {
                       borderColor: 'primary.main',
-                    }
+                    },
                   }}
                 />
               ))}
@@ -124,7 +132,7 @@ export default function OtherServices({ services }: IProps) {
                 '&.Mui-disabled': {
                   bgcolor: 'rgba(255, 255, 255, 0.05)',
                   color: 'grey.600',
-                }
+                },
               }}
             >
               <KeyboardArrowRightIcon fontSize="medium" />

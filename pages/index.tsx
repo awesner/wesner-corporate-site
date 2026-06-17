@@ -21,10 +21,7 @@ const Home: NextPage<IHomePage> = ({ services }) => {
     <>
       <Head>
         <title>{t('title')}</title>
-        <meta
-          name="description"
-          content={t('description')}
-        />
+        <meta name="description" content={t('description')} />
       </Head>
       <Banner />
       <ServicesSection services={services} />

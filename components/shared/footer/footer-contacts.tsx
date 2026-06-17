@@ -86,16 +86,18 @@ export default function FooterContacts(): JSX.Element {
         >
           <LinkedInIcon sx={{ fontSize: 16 }} />
         </Link>
-        <Link href="https://www.instagram.com/wesner.softwareentwicklung/"
-              target="_blank"
-              sx={socialIconsStyles}
-              aria-label="instagram page"
+        <Link
+          href="https://www.instagram.com/wesner.softwareentwicklung/"
+          target="_blank"
+          sx={socialIconsStyles}
+          aria-label="instagram page"
         >
           <InstagramIcon sx={{ fontSize: 16, color: 'white' }} />
         </Link>
-        <Link href="https://www.tiktok.com/@wesnersoftwaregmbh?lang=de-DE"
-              target="_blank"
-              aria-label="tiktok page"
+        <Link
+          href="https://www.tiktok.com/@wesnersoftwaregmbh?lang=de-DE"
+          target="_blank"
+          aria-label="tiktok page"
         >
           <SiTiktokTyped style={{ fontSize: '16px', color: 'white' }} />
         </Link>

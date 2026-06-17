@@ -3,7 +3,15 @@ import { GetStaticProps } from 'next';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { Container, Grid, Typography, Box, CircularProgress, Button, Stack } from '@mui/material';
+import {
+  Container,
+  Grid,
+  Typography,
+  Box,
+  CircularProgress,
+  Button,
+  Stack,
+} from '@mui/material';
 import { Login, Logout } from '@mui/icons-material';
 import { BaseLayout } from '@components/layouts/base-layout';
 
@@ -25,7 +33,9 @@ export default function Umsetzung() {
 
     if (status === 'unauthenticated') {
       const currentPath = router.asPath;
-      router.replace(`/de/auth/signin?callbackUrl=${encodeURIComponent(currentPath)}`);
+      router.replace(
+        `/de/auth/signin?callbackUrl=${encodeURIComponent(currentPath)}`,
+      );
     }
   }, [status, router, router.isReady]);
 
@@ -43,11 +53,13 @@ export default function Umsetzung() {
   return (
     <BaseLayout>
       <Head>
-        <title>{isAdmin ? 'Admin Panel & Simulator' : 'Mein Portal'} | Wesner Software</title>
+        <title>
+          {isAdmin ? 'Admin Panel & Simulator' : 'Mein Portal'} | Wesner
+          Software
+        </title>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
       <Container maxWidth="xl" sx={{ py: 6 }}>
-
         <Box
           display="flex"
           justifyContent="space-between"
@@ -55,12 +67,14 @@ export default function Umsetzung() {
           mb={4}
           sx={{
             flexDirection: { xs: 'column', md: 'row' },
-            gap: 2
+            gap: 2,
           }}
         >
           <Box>
             <Typography variant="h4" fontWeight="bold">
-              {isAdmin ? 'Internetseite & App Simulator' : 'Willkommen im Mitgliederbereich'}
+              {isAdmin
+                ? 'Internetseite & App Simulator'
+                : 'Willkommen im Mitgliederbereich'}
             </Typography>
             <Typography color="text.secondary" sx={{ mt: 1 }}>
               {isAdmin
@@ -71,8 +85,15 @@ export default function Umsetzung() {
 
           <Stack direction="row" spacing={2} alignItems="center">
             {isLoggedIn && (
-              <Box textAlign="right" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                <Typography variant="caption" display="block" color="text.secondary">
+              <Box
+                textAlign="right"
+                sx={{ display: { xs: 'none', sm: 'block' } }}
+              >
+                <Typography
+                  variant="caption"
+                  display="block"
+                  color="text.secondary"
+                >
                   Angemeldet als:
                 </Typography>
                 <Typography variant="body2" fontWeight="bold">
@@ -86,9 +107,13 @@ export default function Umsetzung() {
                 variant="outlined"
                 color="error"
                 startIcon={<Logout />}
-                onClick={() => signOut({
-                  callbackUrl: `/de/auth/signin?callbackUrl=${encodeURIComponent(router.asPath)}`
-                })}
+                onClick={() =>
+                  signOut({
+                    callbackUrl: `/de/auth/signin?callbackUrl=${encodeURIComponent(
+                      router.asPath,
+                    )}`,
+                  })
+                }
               >
                 Abmelden
               </Button>
@@ -96,7 +121,9 @@ export default function Umsetzung() {
               <Button
                 variant="contained"
                 startIcon={<Login />}
-                onClick={() => signIn(undefined, { callbackUrl: router.asPath })}
+                onClick={() =>
+                  signIn(undefined, { callbackUrl: router.asPath })
+                }
               >
                 Anmelden
               </Button>
@@ -110,7 +137,7 @@ export default function Umsetzung() {
           </Grid>
           <Grid item xs={12} md={5} lg={4}>
             <Box display="flex" justifyContent="center">
-              <AppSimulator refreshTrigger={refreshTrigger}  />
+              <AppSimulator refreshTrigger={refreshTrigger} />
             </Box>
           </Grid>
         </Grid>
@@ -123,7 +150,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
       messages: require(`../locales/${locale || 'de'}/shared.json`),
-      locale: locale || 'de'
+      locale: locale || 'de',
     },
   };
 };

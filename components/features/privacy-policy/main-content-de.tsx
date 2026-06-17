@@ -430,7 +430,12 @@ export default function MainContentEn(): JSX.Element {
           Service Providers and Analytics
         </Typography>
         <Typography variant="body2" mb={{ xs: 1, md: 2 }}>
-          We may employ third-party companies and individuals (“Service Providers”) to facilitate our Service, provide the Service on our behalf, perform Service-related services, or assist us in analyzing how our Service is used. These third parties have access to your data only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.
+          We may employ third-party companies and individuals (“Service
+          Providers”) to facilitate our Service, provide the Service on our
+          behalf, perform Service-related services, or assist us in analyzing
+          how our Service is used. These third parties have access to your data
+          only to perform these tasks on our behalf and are obligated not to
+          disclose or use it for any other purpose.
         </Typography>
 
         <Stack gap={1}>
@@ -438,19 +443,33 @@ export default function MainContentEn(): JSX.Element {
             Google Analytics
           </Typography>
           <Typography variant="body2">
-            We use Google Analytics, a web analytics service provided by Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland (“Google”). Google Analytics uses cookies to help analyze how users use the site.
+            We use Google Analytics, a web analytics service provided by Google
+            Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland
+            (“Google”). Google Analytics uses cookies to help analyze how users
+            use the site.
           </Typography>
           <Typography variant="body2">
-            The legal basis for this data processing is your explicit consent pursuant to Art. 6 (1) lit. a GDPR, which you provide via our cookie banner.
+            The legal basis for this data processing is your explicit consent
+            pursuant to Art. 6 (1) lit. a GDPR, which you provide via our cookie
+            banner.
           </Typography>
           <Typography variant="body2">
-            We have activated the IP anonymization feature on this website. This means your IP address will be truncated by Google within member states of the European Union or other parties to the Agreement on the European Economic Area before being transmitted to the United States.
+            We have activated the IP anonymization feature on this website. This
+            means your IP address will be truncated by Google within member
+            states of the European Union or other parties to the Agreement on
+            the European Economic Area before being transmitted to the United
+            States.
           </Typography>
           <Typography variant="body2">
-            The data sent by us and linked to cookies will be automatically deleted after 14 months.
+            The data sent by us and linked to cookies will be automatically
+            deleted after 14 months.
           </Typography>
           <Typography variant="body2">
-            You can revoke your consent at any time. Furthermore, you can prevent your data from being used by Google Analytics by installing the Google Analytics opt-out browser add-on. For more information on the privacy practices of Google, please visit the Google Privacy & Terms web page:{' '}
+            You can revoke your consent at any time. Furthermore, you can
+            prevent your data from being used by Google Analytics by installing
+            the Google Analytics opt-out browser add-on. For more information on
+            the privacy practices of Google, please visit the Google Privacy &
+            Terms web page:{' '}
             <Link
               href="https://policies.google.com/privacy?hl=en"
               target="_blank"
@@ -466,7 +485,11 @@ export default function MainContentEn(): JSX.Element {
             Vercel Analytics
           </Typography>
           <Typography variant="body2">
-            To improve our website and measure performance, we use Vercel Analytics, a privacy-friendly analytics service provided by our hosting provider, Vercel Inc. This service does not use cookies and does not collect any personally identifiable information. All data collected is aggregated and anonymized.
+            To improve our website and measure performance, we use Vercel
+            Analytics, a privacy-friendly analytics service provided by our
+            hosting provider, Vercel Inc. This service does not use cookies and
+            does not collect any personally identifiable information. All data
+            collected is aggregated and anonymized.
           </Typography>
         </Stack>
       </Stack>

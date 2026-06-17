@@ -2,7 +2,10 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { sql } from '@vercel/postgres';
 import { hash } from 'bcryptjs';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
@@ -10,11 +13,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const { username, password } = req.body;
 
   if (!username || !password) {
-    return res.status(400).json({ message: 'Benutzername und Passwort sind erforderlich.' });
+    return res
+      .status(400)
+      .json({ message: 'Benutzername und Passwort sind erforderlich.' });
   }
 
   if (password.length < 6) {
-    return res.status(400).json({ message: 'Das Passwort muss mindestens 6 Zeichen lang sein.' });
+    return res
+      .status(400)
+      .json({ message: 'Das Passwort muss mindestens 6 Zeichen lang sein.' });
   }
 
   try {
@@ -23,7 +30,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     `;
 
     if (checkUser.rows.length > 0) {
-      return res.status(409).json({ message: 'Dieser Benutzername ist bereits vergeben.' });
+      return res
+        .status(409)
+        .json({ message: 'Dieser Benutzername ist bereits vergeben.' });
     }
 
     const hashedPassword = await hash(password, 10);

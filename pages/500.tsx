@@ -16,10 +16,12 @@ const Custom500: NextPage = () => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: 2
+          gap: 2,
         }}
       >
-        <CloudOffIcon sx={{ fontSize: 120, color: 'text.secondary', opacity: 0.2, mb: 2 }} />
+        <CloudOffIcon
+          sx={{ fontSize: 120, color: 'text.secondary', opacity: 0.2, mb: 2 }}
+        />
 
         <Typography
           variant="h1"
@@ -27,7 +29,7 @@ const Custom500: NextPage = () => {
           color="primary"
           sx={{
             fontSize: { xs: '4rem', md: '6rem' },
-            lineHeight: 1
+            lineHeight: 1,
           }}
         >
           500
@@ -37,11 +39,20 @@ const Custom500: NextPage = () => {
           Server-Fehler / Internal Server Error
         </Typography>
 
-        <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 600, mb: 4 }}>
-          Es tut uns leid, auf unserer Seite ist ein Fehler aufgetreten. Wir arbeiten bereits an der Lösung. Bitte versuchen Sie es später noch einmal.
+        <Typography
+          variant="body1"
+          color="text.secondary"
+          sx={{ maxWidth: 600, mb: 4 }}
+        >
+          Es tut uns leid, auf unserer Seite ist ein Fehler aufgetreten. Wir
+          arbeiten bereits an der Lösung. Bitte versuchen Sie es später noch
+          einmal.
           <br />
           <br />
-          <i>Sorry, something went wrong on our end. We are working on it. Please try again later.</i>
+          <i>
+            Sorry, something went wrong on our end. We are working on it. Please
+            try again later.
+          </i>
         </Typography>
 
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
@@ -57,11 +68,7 @@ const Custom500: NextPage = () => {
           </Link>
 
           <Link href="/contact-us" passHref>
-            <Button
-              variant="outlined"
-              size="large"
-              sx={{ px: 4 }}
-            >
+            <Button variant="outlined" size="large" sx={{ px: 4 }}>
               Kontakt / Contact
             </Button>
           </Link>

@@ -107,8 +107,7 @@ export const de: BizTalkI18n = {
     refsTitle: 'Quellen — Microsoft Learn',
   },
   f2: {
-
-       eolTitle: 'Warum Migrieren?',
+    eolTitle: 'Warum Migrieren?',
     eolDesc:
       'Bereits seit dem 14. Oktober 2025 ist der Support von BizTalk-Servern durch Microsoft eingestellt worden. An ihre Stelle treten stattdessen Azure Integration Services als Nachfolger',
     eolItems: [
@@ -222,7 +221,7 @@ export const en: BizTalkI18n = {
       'iPaaS (Integration Platform as a Service) is a cloud-based platform that enables enterprises to connect applications, data and processes across different systems without having to operate their own middleware infrastructure.',
     ipaasP2:
       'Without a central integration platform, point-to-point connections emerge between systems. With only 10 systems, this already results in up to 45 individual connections. An iPaaS solves this problem through a hub-and-spoke architectur. It means that all systems connect to the central platform, which handles routing, transformation and monitoring.',
-      ipaasP3:
+    ipaasP3:
       'Microsoft Azure Integration Services was rated as a Leader in the Gartner Magic Quadrant 2024 for Enterprise iPaaS. Its primary strengths lie in the 400 pre-built connectors, seamless integration with the Azure ecosystem and serverless model',
     platformTitle:
       'Azure Integration Services as an Enterprise Integration Platform',
@@ -230,9 +229,9 @@ export const en: BizTalkI18n = {
       "Azure Integration Services (AIS) is Microsoft's iPaaS offering and consists of six core components that together form a complete integration platform. Together they replace all functions of BizTalk servers and go even beyond:",
     serverlessTitle: 'What does "serverless" mean?',
     serverlessDesc:
-      "Serverless means you can focus completely on your business instead of always worrying about servers. Microsoft manages the entire infrastructure from operating system,over patching and scaling, to high availability.",
+      'Serverless means you can focus completely on your business instead of always worrying about servers. Microsoft manages the entire infrastructure from operating system,over patching and scaling, to high availability.',
 
-      serverlessItems: [
+    serverlessItems: [
       {
         title: 'Auto-Scaling',
         desc: 'Resources are automatically scaled up and down based on load. 0 requests = 0 costs.', //unsicher ob überzeugend, weil viel nutzen =? viel Kosten?
@@ -280,7 +279,7 @@ export const en: BizTalkI18n = {
     eolDesc:
       'Since the 14. October 2025 Microsoft does not support BizTalk servers anymore and instead offers Azure Integration Services.',
 
-      eolItems: [
+    eolItems: [
       {
         title: 'Mainstream Support End',
         date: 'October 14, 2025',
@@ -945,7 +944,8 @@ export const strategiesEn = [
   },
 ];
 
-export const requirementsEn = [ //sinnvoll das ganz so detailliert hier aufzuführen?
+export const requirementsEn = [
+  //sinnvoll das ganz so detailliert hier aufzuführen?
   {
     title: 'Access to BizTalk environment with Visual Studio',
     desc: 'Full access to the existing BizTalk Server environment incl. Visual Studio with BizTalk Developer Tools.',
@@ -1331,7 +1331,8 @@ export const sixRsEn = [
 
 /* ─── F3 EN data ─── */
 
-export const environmentsEn = [ //ist das in der ausführlichkeit notwendig?
+export const environmentsEn = [
+  //ist das in der ausführlichkeit notwendig?
   {
     id: 'dev',
     name: 'Development Environment',

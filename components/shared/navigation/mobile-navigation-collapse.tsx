@@ -14,9 +14,9 @@ interface IMobileNavCollapse {
 }
 
 export default function MobileNavigationCollapse({
-                                                   item,
-                                                   onClose,
-                                                 }: IMobileNavCollapse): JSX.Element {
+  item,
+  onClose,
+}: IMobileNavCollapse): JSX.Element {
   const router = useRouter();
   const { name, children } = item;
   const isActive = router.pathname.includes(item.path);
@@ -68,11 +68,20 @@ export default function MobileNavigationCollapse({
 
                   <Stack gap={1.5} pl={2}>
                     {child.children.map((subChild) => {
-                      const isChildActive = router.asPath.includes(subChild.path);
+                      const isChildActive = router.asPath.includes(
+                        subChild.path,
+                      );
                       return (
-                        <NextLink key={subChild.name} href={subChild.path} passHref>
+                        <NextLink
+                          key={subChild.name}
+                          href={subChild.path}
+                          passHref
+                        >
                           <Link
-                            sx={{ ...getLinkStyles(isChildActive), fontSize: '0.95rem' }}
+                            sx={{
+                              ...getLinkStyles(isChildActive),
+                              fontSize: '0.95rem',
+                            }}
                             onClick={onClose}
                           >
                             {subChild.name}

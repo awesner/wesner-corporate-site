@@ -37,8 +37,14 @@ const BlogIndexPage: NextPage<IBlogIndexPageProps> = ({ articles }) => {
 
       <div style={{ marginTop: '2rem' }}>
         {articles.map((article) => (
-          <div key={article.slug}
-               style={{ marginBottom: '2rem', borderBottom: '1px solid #ccc', paddingBottom: '1rem' }}>
+          <div
+            key={article.slug}
+            style={{
+              marginBottom: '2rem',
+              borderBottom: '1px solid #ccc',
+              paddingBottom: '1rem',
+            }}
+          >
             <h2>
               <Link href={`/blog/${article.slug}`} passHref>
                 <MuiLink
@@ -46,7 +52,7 @@ const BlogIndexPage: NextPage<IBlogIndexPageProps> = ({ articles }) => {
                   sx={{
                     color: '#0070f3',
                     cursor: 'pointer',
-                    '&:hover': { textDecoration: 'underline' }
+                    '&:hover': { textDecoration: 'underline' },
                   }}
                 >
                   {article.title}
@@ -54,7 +60,8 @@ const BlogIndexPage: NextPage<IBlogIndexPageProps> = ({ articles }) => {
               </Link>
             </h2>
             <p style={{ color: '#555' }}>
-              {t('publishedOn')}: {new Date(article.date).toLocaleDateString(locale)}
+              {t('publishedOn')}:{' '}
+              {new Date(article.date).toLocaleDateString(locale)}
             </p>
             <p>{article.summary}</p>
 
@@ -65,7 +72,7 @@ const BlogIndexPage: NextPage<IBlogIndexPageProps> = ({ articles }) => {
                   fontWeight: 'bold',
                   color: '#0070f3',
                   cursor: 'pointer',
-                  '&:hover': { textDecoration: 'underline' }
+                  '&:hover': { textDecoration: 'underline' },
                 }}
               >
                 {t('readMore')}
@@ -83,7 +90,12 @@ BlogIndexPage.getLayout = function getLayout(page: ReactElement) {
 };
 
 export const getStaticProps: GetStaticProps = ({ locale }) => {
-  const articlesFilePath = path.join(process.cwd(), 'data', 'blog', `articles.${locale}.json`);
+  const articlesFilePath = path.join(
+    process.cwd(),
+    'data',
+    'blog',
+    `articles.${locale}.json`,
+  );
 
   const fileContents = fs.readFileSync(articlesFilePath, 'utf8');
 

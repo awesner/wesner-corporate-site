@@ -6,8 +6,10 @@ interface AppSimulatorProps {
   refreshTrigger?: number;
 }
 
-export const AppSimulator: React.FC<AppSimulatorProps> = ({ refreshTrigger = 0 }) => {
- const baseUrl = "https://course-booker.vercel.app";
+export const AppSimulator: React.FC<AppSimulatorProps> = ({
+  refreshTrigger = 0,
+}) => {
+  const baseUrl = 'https://course-booker.vercel.app';
 
   const [iframeSrc, setIframeSrc] = useState(baseUrl);
   const [iframeKey, setIframeKey] = useState(0);
@@ -18,7 +20,7 @@ export const AppSimulator: React.FC<AppSimulatorProps> = ({ refreshTrigger = 0 }
     const newUrl = `${baseUrl}${separator}cb=${timestamp}`;
 
     setIframeSrc(newUrl);
-    setIframeKey(prev => prev + 1);
+    setIframeKey((prev) => prev + 1);
   };
 
   useEffect(() => {
@@ -47,18 +49,32 @@ export const AppSimulator: React.FC<AppSimulatorProps> = ({ refreshTrigger = 0 }
         </Box>
       </Box>
 
-      <Box sx={{
-        width: 375,
-        height: 667,
-        border: '12px solid #1c1c1c',
-        borderRadius: '36px',
-        overflow: 'hidden',
-        position: 'relative',
-        bgcolor: '#fff',
-        boxShadow: '0px 20px 40px rgba(0,0,0,0.2)'
-      }}>
-
-        <Box sx={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 150, height: 24, bgcolor: '#1c1c1c', borderBottomLeftRadius: 12, borderBottomRightRadius: 12, zIndex: 20 }} />
+      <Box
+        sx={{
+          width: 375,
+          height: 667,
+          border: '12px solid #1c1c1c',
+          borderRadius: '36px',
+          overflow: 'hidden',
+          position: 'relative',
+          bgcolor: '#fff',
+          boxShadow: '0px 20px 40px rgba(0,0,0,0.2)',
+        }}
+      >
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: 150,
+            height: 24,
+            bgcolor: '#1c1c1c',
+            borderBottomLeftRadius: 12,
+            borderBottomRightRadius: 12,
+            zIndex: 20,
+          }}
+        />
 
         <iframe
           key={iframeKey}
@@ -68,10 +84,24 @@ export const AppSimulator: React.FC<AppSimulatorProps> = ({ refreshTrigger = 0 }
           allow="cross-origin-isolated"
         />
 
-        <Box sx={{ position: 'absolute', bottom: 8, left: '50%', transform: 'translateX(-50%)', width: 120, height: 5, bgcolor: '#000', borderRadius: 3, opacity: 0.3, zIndex: 30, pointerEvents: 'none' }} />
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: 8,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: 120,
+            height: 5,
+            bgcolor: '#000',
+            borderRadius: 3,
+            opacity: 0.3,
+            zIndex: 30,
+            pointerEvents: 'none',
+          }}
+        />
       </Box>
 
-      <Typography variant="caption" color="text.secondary" sx={{mt: 2}}>
+      <Typography variant="caption" color="text.secondary" sx={{ mt: 2 }}>
         Powered by React Native Web
       </Typography>
     </Box>

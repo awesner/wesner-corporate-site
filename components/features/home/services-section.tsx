@@ -12,8 +12,8 @@ import ServiceItem from 'components/features/home/service-item';
 import { IService } from 'models/interfaces/services/service.interface';
 
 export default function ServicesSection({
-                                          services,
-                                        }: {
+  services,
+}: {
   services: IService[];
 }): JSX.Element {
   const t = useTranslations('services');
@@ -64,15 +64,17 @@ export default function ServicesSection({
           <>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
               <Box sx={{ ...gridStyles, mb: 4, mt: 3 }}>
-                {extraServices.map(({ name, shortDescription, iconUrl, path }) => (
-                  <ServiceItem
-                    key={name}
-                    description={shortDescription}
-                    img={iconUrl || ''}
-                    title={name}
-                    path={path}
-                  />
-                ))}
+                {extraServices.map(
+                  ({ name, shortDescription, iconUrl, path }) => (
+                    <ServiceItem
+                      key={name}
+                      description={shortDescription}
+                      img={iconUrl || ''}
+                      title={name}
+                      path={path}
+                    />
+                  ),
+                )}
               </Box>
             </Collapse>
 
@@ -81,7 +83,9 @@ export default function ServicesSection({
                 variant="outlined"
                 color="primary"
                 onClick={handleToggle}
-                endIcon={expanded ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                endIcon={
+                  expanded ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />
+                }
                 sx={{ px: 4, py: 1 }}
               >
                 {expanded ? t('showLess') : t('showMore')}

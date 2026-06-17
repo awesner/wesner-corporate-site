@@ -14,8 +14,8 @@ import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
 import { useTranslations } from 'next-intl';
 import ContactUs from 'components/shared/contact-us/contact-us';
 
-import Lightbox from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
+import Lightbox from 'yet-another-react-lightbox';
+import 'yet-another-react-lightbox/styles.css';
 
 interface IProductGalleryImage {
   original: string;
@@ -48,26 +48,51 @@ interface IProductPageProps {
 }
 
 const FeatureIcon: React.FC<{ iconName: string }> = ({ iconName }) => {
-  const style = { fontSize: '2.5rem', color: 'primary.main', marginBottom: '1rem' };
+  const style = {
+    fontSize: '2.5rem',
+    color: 'primary.main',
+    marginBottom: '1rem',
+  };
   switch (iconName) {
-    case 'speed': return <SpeedIcon sx={style} />;
-    case 'dashboard': return <DashboardIcon sx={style} />;
-    case 'filter': return <FilterAltIcon sx={style} />;
-    case 'steps': return <AccountTreeIcon sx={style} />;
-    case 'xml': return <CodeIcon sx={style} />;
-    case 'universal': return <AllInclusiveIcon sx={style} />;
-    default: return null;
+    case 'speed':
+      return <SpeedIcon sx={style} />;
+    case 'dashboard':
+      return <DashboardIcon sx={style} />;
+    case 'filter':
+      return <FilterAltIcon sx={style} />;
+    case 'steps':
+      return <AccountTreeIcon sx={style} />;
+    case 'xml':
+      return <CodeIcon sx={style} />;
+    case 'universal':
+      return <AllInclusiveIcon sx={style} />;
+    default:
+      return null;
   }
 };
 
-const ProductContent: React.FC<{ block: IProductContentBlock }> = ({ block }) => {
+const ProductContent: React.FC<{ block: IProductContentBlock }> = ({
+  block,
+}) => {
   switch (block.type) {
     case 'heading':
-      return <Typography variant="h4" component="h2" gutterBottom mt={4}>{block.text}</Typography>;
+      return (
+        <Typography variant="h4" component="h2" gutterBottom mt={4}>
+          {block.text}
+        </Typography>
+      );
     case 'subheading':
-      return <Typography variant="h5" component="h3" gutterBottom mt={3}>{block.text}</Typography>;
+      return (
+        <Typography variant="h5" component="h3" gutterBottom mt={3}>
+          {block.text}
+        </Typography>
+      );
     case 'paragraph':
-      return <Typography variant="body1" paragraph>{block.text}</Typography>;
+      return (
+        <Typography variant="body1" paragraph>
+          {block.text}
+        </Typography>
+      );
     case 'list':
       return (
         <Box component="ul" sx={{ pl: 2, m: 0 }}>
@@ -75,9 +100,12 @@ const ProductContent: React.FC<{ block: IProductContentBlock }> = ({ block }) =>
             <Box component="li" key={index} sx={{ mb: 2 }}>
               <Typography variant="body1" component="span" fontWeight="bold">
                 {item.title}:
-              </Typography>
-              {' '}
-              <Typography variant="body1" component="span" color="text.secondary">
+              </Typography>{' '}
+              <Typography
+                variant="body1"
+                component="span"
+                color="text.secondary"
+              >
                 {item.description}
               </Typography>
             </Box>
@@ -85,7 +113,13 @@ const ProductContent: React.FC<{ block: IProductContentBlock }> = ({ block }) =>
         </Box>
       );
     case 'image':
-      return block.src ? <img src={block.src} alt={block.alt || ''} style={{ maxWidth: '100%', margin: '1.5rem 0', borderRadius: '8px' }} /> : null;
+      return block.src ? (
+        <img
+          src={block.src}
+          alt={block.alt || ''}
+          style={{ maxWidth: '100%', margin: '1.5rem 0', borderRadius: '8px' }}
+        />
+      ) : null;
     default:
       return null;
   }
@@ -100,7 +134,9 @@ const ProductPage: NextPage<IProductPageProps> = ({ product }) => {
     return <div>Produkt nicht gefunden.</div>;
   }
 
-  const lightboxSlides = product.gallery_images.map(image => ({ src: image.original }));
+  const lightboxSlides = product.gallery_images.map((image) => ({
+    src: image.original,
+  }));
 
   return (
     <>
@@ -109,13 +145,30 @@ const ProductPage: NextPage<IProductPageProps> = ({ product }) => {
         <meta name="description" content={product.summary} />
       </Head>
 
-      <Box sx={{ maxWidth: '1100px', margin: '0 auto', padding: { xs: '1rem', md: '2rem' } }}>
+      <Box
+        sx={{
+          maxWidth: '1100px',
+          margin: '0 auto',
+          padding: { xs: '1rem', md: '2rem' },
+        }}
+      >
         <header style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <Typography variant="h2" component="h1" fontWeight="bold">{product.name}</Typography>
-          <Typography variant="h5" color="text.secondary" mt={1}>{product.tagline}</Typography>
+          <Typography variant="h2" component="h1" fontWeight="bold">
+            {product.name}
+          </Typography>
+          <Typography variant="h5" color="text.secondary" mt={1}>
+            {product.tagline}
+          </Typography>
           {product.image_hero && (
-            <Box mt={4} sx={{ borderRadius: '8px', overflow: 'hidden', boxShadow: 3 }}>
-              <img src={product.image_hero} alt={product.name} style={{ width: '100%', display: 'block' }} />
+            <Box
+              mt={4}
+              sx={{ borderRadius: '8px', overflow: 'hidden', boxShadow: 3 }}
+            >
+              <img
+                src={product.image_hero}
+                alt={product.name}
+                style={{ width: '100%', display: 'block' }}
+              />
             </Box>
           )}
         </header>
@@ -124,10 +177,17 @@ const ProductPage: NextPage<IProductPageProps> = ({ product }) => {
           <Grid container spacing={4}>
             {product.features.map((feature) => (
               <Grid item xs={12} sm={6} md={4} key={feature.title}>
-                <Paper elevation={2} sx={{ p: 3, textAlign: 'center', height: '100%' }}>
+                <Paper
+                  elevation={2}
+                  sx={{ p: 3, textAlign: 'center', height: '100%' }}
+                >
                   <FeatureIcon iconName={feature.icon} />
-                  <Typography variant="h6" component="h3" gutterBottom>{feature.title}</Typography>
-                  <Typography variant="body2" color="text.secondary">{feature.description}</Typography>
+                  <Typography variant="h6" component="h3" gutterBottom>
+                    {feature.title}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {feature.description}
+                  </Typography>
                 </Paper>
               </Grid>
             ))}
@@ -148,7 +208,12 @@ const ProductPage: NextPage<IProductPageProps> = ({ product }) => {
           bgcolor="grey.100"
           borderRadius={2}
         >
-          <Typography variant="h3" component="h2" gutterBottom textAlign="center">
+          <Typography
+            variant="h3"
+            component="h2"
+            gutterBottom
+            textAlign="center"
+          >
             {t('gallery')}
           </Typography>
           <Box
@@ -158,7 +223,7 @@ const ProductPage: NextPage<IProductPageProps> = ({ product }) => {
               overflowX: 'auto',
               paddingBottom: '1rem',
               justifyContent: 'center',
-              alignItems: 'center'
+              alignItems: 'center',
             }}
           >
             {product.gallery_images.map((image, index) => (
@@ -181,7 +246,7 @@ const ProductPage: NextPage<IProductPageProps> = ({ product }) => {
                   '&:hover': {
                     transform: 'scale(1.05)',
                     boxShadow: 3,
-                  }
+                  },
                 }}
               />
             ))}
@@ -209,7 +274,12 @@ export const getStaticPaths: GetStaticPaths = ({ locales = [] }) => {
   const paths: any[] = [];
   locales.forEach((locale) => {
     try {
-      const productsFilePath = path.join(process.cwd(), 'data', 'products', `products.${locale}.json`);
+      const productsFilePath = path.join(
+        process.cwd(),
+        'data',
+        'products',
+        `products.${locale}.json`,
+      );
       const fileContents = fs.readFileSync(productsFilePath, 'utf8');
       const products = JSON.parse(fileContents);
       products.forEach((product: any) => {
@@ -225,7 +295,12 @@ export const getStaticPaths: GetStaticPaths = ({ locales = [] }) => {
 export const getStaticProps: GetStaticProps = ({ locale, params }) => {
   let product = null;
   try {
-    const productsFilePath = path.join(process.cwd(), 'data', 'products', `products.${locale}.json`);
+    const productsFilePath = path.join(
+      process.cwd(),
+      'data',
+      'products',
+      `products.${locale}.json`,
+    );
     const fileContents = fs.readFileSync(productsFilePath, 'utf8');
     const products = JSON.parse(fileContents);
     product = products.find((p: any) => p.slug === params?.slug) || null;

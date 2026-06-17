@@ -53,10 +53,7 @@ const ContactUs: NextPage = () => {
     <>
       <Head>
         <title>{t('title')}</title>
-        <meta
-          name="description"
-          content={t('description')}
-        />
+        <meta name="description" content={t('description')} />
       </Head>
       <Container fixed>
         {isSubmited ? (

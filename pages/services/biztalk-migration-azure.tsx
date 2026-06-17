@@ -2627,6 +2627,143 @@ export default function BizTalkMigrationAzure({ locale }: { locale: string }) {
               {/* ─── F2: MIGRATION TAB ─── */}
               {currentTabId === 'migration' && (
                 <>
+                                  {/* BizTalk End of Life */}
+                  <Paper
+                    sx={{ p: 4, mb: 4, bgcolor: 'error.dark', color: 'white' }}
+                  >
+                    <Typography variant="h6" fontWeight="bold" gutterBottom>
+                      {t.f2.eolTitle}
+                    </Typography>
+                    <Typography variant="body1" paragraph>
+                      {t.f2.eolDesc}
+                    </Typography>
+                    <Grid container spacing={2}>
+                      {t.f2.eolItems.map((item, i) => (
+                        <Grid item xs={12} lg={4} key={i}>
+                          <Paper
+                            sx={{ p: 2, bgcolor: 'rgba(255,255,255,0.1)' }}
+                          >
+                            <Typography variant="caption" fontWeight="bold">
+                              {item.title}
+                            </Typography>
+                            <Typography variant="subtitle1" fontWeight="bold">
+                              {item.date}
+                            </Typography>
+                            <Typography variant="body2" sx={{ opacity: 0.8 }}>
+                              {item.desc}
+                            </Typography>
+                          </Paper>
+                        </Grid>
+                      ))}
+                    </Grid>
+                  </Paper>
+
+                                    {/* On-Prem vs Cloud */}
+                  <Typography variant="h5" fontWeight="bold" gutterBottom>
+                    {t.f2.compareTitle}
+                  </Typography>
+                  <TableContainer
+                    component={Paper}
+                    variant="outlined"
+                    sx={{ mb: 4 }}
+                  >
+                    <Table size="small">
+                      <TableHead>
+                        <TableRow>
+                          <TableCell sx={{ fontWeight: 'bold', width: '20%' }}>
+                            {t.envLabels.criterion}
+                          </TableCell>
+                          <TableCell
+                            sx={{
+                              fontWeight: 'bold',
+                              color: 'error.main',
+                              width: '40%',
+                            }}
+                          >
+                            BizTalk (On-Premises)
+                          </TableCell>
+                          <TableCell
+                            sx={{
+                              fontWeight: 'bold',
+                              color: 'primary.main',
+                              width: '40%',
+                            }}
+                          >
+                            Azure Integration Services
+                          </TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {compareData.map((row, i) => (
+                          <TableRow key={i}>
+                            <TableCell sx={{ fontWeight: 500 }}>
+                              {row.k}
+                            </TableCell>
+                            <TableCell>{row.biz}</TableCell>
+                            <TableCell>{row.az}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+
+                                    {/* 6 Rs der Cloud-Migration */}
+                  <Typography variant="h5" fontWeight="bold" gutterBottom>
+                    {t.f2.sixRsTitle}
+                  </Typography>
+                  <Typography variant="body1" paragraph>
+                    {t.f2.sixRsDesc}
+                  </Typography>
+                  <Grid container spacing={2} sx={{ mb: 4 }}>
+                    {sixRData.map((item, i) => (
+                      <Grid item xs={12} lg={4} key={i}>
+                        <Card
+                          variant="outlined"
+                          sx={{
+                            height: '100%',
+                            opacity: item.relevant ? 1 : 0.5,
+                          }}
+                        >
+                          <CardContent>
+                            <Box
+                              sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: 1,
+                                mb: 1,
+                              }}
+                            >
+                              <Chip
+                                label={item.r}
+                                size="small"
+                                sx={{
+                                  bgcolor: item.color + '20',
+                                  color: item.color,
+                                  fontWeight: 'bold',
+                                }}
+                              />
+                              {item.relevant && (
+                                <Chip
+                                  label="Relevant"
+                                  size="small"
+                                  color="success"
+                                  variant="outlined"
+                                  sx={{ height: 20, fontSize: '0.65rem' }}
+                                />
+                              )}
+                            </Box>
+                            <Typography variant="subtitle2" fontWeight="bold">
+                              {item.subtitle}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                              {item.desc}
+                            </Typography>
+                          </CardContent>
+                        </Card>
+                      </Grid>
+                    ))}
+                  </Grid>
+                  
                   {/* Strategien */}
                   <Typography variant="h5" fontWeight="bold" gutterBottom>
                     {t.f2.stratTitle}
@@ -2956,143 +3093,6 @@ export default function BizTalkMigrationAzure({ locale }: { locale: string }) {
                       </Paper>
                     ))}
                   </Stack>
-
-                  {/* 6 Rs der Cloud-Migration */}
-                  <Typography variant="h5" fontWeight="bold" gutterBottom>
-                    {t.f2.sixRsTitle}
-                  </Typography>
-                  <Typography variant="body1" paragraph>
-                    {t.f2.sixRsDesc}
-                  </Typography>
-                  <Grid container spacing={2} sx={{ mb: 4 }}>
-                    {sixRData.map((item, i) => (
-                      <Grid item xs={12} lg={4} key={i}>
-                        <Card
-                          variant="outlined"
-                          sx={{
-                            height: '100%',
-                            opacity: item.relevant ? 1 : 0.5,
-                          }}
-                        >
-                          <CardContent>
-                            <Box
-                              sx={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: 1,
-                                mb: 1,
-                              }}
-                            >
-                              <Chip
-                                label={item.r}
-                                size="small"
-                                sx={{
-                                  bgcolor: item.color + '20',
-                                  color: item.color,
-                                  fontWeight: 'bold',
-                                }}
-                              />
-                              {item.relevant && (
-                                <Chip
-                                  label="Relevant"
-                                  size="small"
-                                  color="success"
-                                  variant="outlined"
-                                  sx={{ height: 20, fontSize: '0.65rem' }}
-                                />
-                              )}
-                            </Box>
-                            <Typography variant="subtitle2" fontWeight="bold">
-                              {item.subtitle}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              {item.desc}
-                            </Typography>
-                          </CardContent>
-                        </Card>
-                      </Grid>
-                    ))}
-                  </Grid>
-
-                  {/* On-Prem vs Cloud */}
-                  <Typography variant="h5" fontWeight="bold" gutterBottom>
-                    {t.f2.compareTitle}
-                  </Typography>
-                  <TableContainer
-                    component={Paper}
-                    variant="outlined"
-                    sx={{ mb: 4 }}
-                  >
-                    <Table size="small">
-                      <TableHead>
-                        <TableRow>
-                          <TableCell sx={{ fontWeight: 'bold', width: '20%' }}>
-                            {t.envLabels.criterion}
-                          </TableCell>
-                          <TableCell
-                            sx={{
-                              fontWeight: 'bold',
-                              color: 'error.main',
-                              width: '40%',
-                            }}
-                          >
-                            BizTalk (On-Premises)
-                          </TableCell>
-                          <TableCell
-                            sx={{
-                              fontWeight: 'bold',
-                              color: 'primary.main',
-                              width: '40%',
-                            }}
-                          >
-                            Azure Integration Services
-                          </TableCell>
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
-                        {compareData.map((row, i) => (
-                          <TableRow key={i}>
-                            <TableCell sx={{ fontWeight: 500 }}>
-                              {row.k}
-                            </TableCell>
-                            <TableCell>{row.biz}</TableCell>
-                            <TableCell>{row.az}</TableCell>
-                          </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
-
-                  {/* BizTalk End of Life */}
-                  <Paper
-                    sx={{ p: 4, mb: 4, bgcolor: 'error.dark', color: 'white' }}
-                  >
-                    <Typography variant="h6" fontWeight="bold" gutterBottom>
-                      {t.f2.eolTitle}
-                    </Typography>
-                    <Typography variant="body1" paragraph>
-                      {t.f2.eolDesc}
-                    </Typography>
-                    <Grid container spacing={2}>
-                      {t.f2.eolItems.map((item, i) => (
-                        <Grid item xs={12} lg={4} key={i}>
-                          <Paper
-                            sx={{ p: 2, bgcolor: 'rgba(255,255,255,0.1)' }}
-                          >
-                            <Typography variant="caption" fontWeight="bold">
-                              {item.title}
-                            </Typography>
-                            <Typography variant="subtitle1" fontWeight="bold">
-                              {item.date}
-                            </Typography>
-                            <Typography variant="body2" sx={{ opacity: 0.8 }}>
-                              {item.desc}
-                            </Typography>
-                          </Paper>
-                        </Grid>
-                      ))}
-                    </Grid>
-                  </Paper>
 
                   {/* Voraussetzungen */}
                   <Typography variant="h5" fontWeight="bold" gutterBottom>

@@ -197,15 +197,13 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         .eq('id', sessionForm.id);
       if (error) alert('Fehler: ' + error.message);
     } else {
-      const { error } = await supabase
-        .from('course_sessions')
-        .insert([
-          {
-            course_id: selectedCourseId,
-            start_time: isoString,
-            max_participants: seatsNum,
-          },
-        ]);
+      const { error } = await supabase.from('course_sessions').insert([
+        {
+          course_id: selectedCourseId,
+          start_time: isoString,
+          max_participants: seatsNum,
+        },
+      ]);
       if (error) alert('Fehler: ' + error.message);
     }
 

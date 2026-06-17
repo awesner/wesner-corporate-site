@@ -65,9 +65,9 @@ export interface BizTalkI18n {
 export const de: BizTalkI18n = {
   hero: {
     overline: 'Wesner Software',
-    title: 'MS BizTalk Migration nach MS Azure',
+    title: ' Migration von MS BizTalk nach MS Azure',
     subtitle:
-      'Von Microsoft BizTalk Server zu Azure Integration Services — Analyse, Strategie, Umsetzung und Betrieb',
+      'Vom Microsoft BizTalk Server zu Azure Integration Services — Analyse, Strategie, Umsetzung und Betrieb',
   },
   tabs: {
     overview: 'Überblick',
@@ -78,18 +78,18 @@ export const de: BizTalkI18n = {
     ipaasTitle:
       'Was ist iPaaS und warum brauchen Unternehmen eine Integrationsplattform?',
     ipaasP1:
-      'iPaaS (Integration Platform as a Service) ist eine Cloud-basierte Plattform, die Unternehmen ermöglicht, Anwendungen, Daten und Prozesse über verschiedene Systeme hinweg zu verbinden — ohne eigene Middleware-Infrastruktur betreiben zu müssen. Der Begriff wurde von Gartner geprägt und beschreibt eine Klasse von Cloud-Diensten, die traditionelle On-Premises-Middleware wie BizTalk Server, MuleSoft oder IBM Integration Bus ersetzen.',
+      'iPaaS (Integration Platform as a Service) ist eine cloudbasierte Plattform, die es Unternehmen ermöglicht, Anwendungen, Daten und Prozesse über verschiedene Systeme hinweg zu verbinden ohne eigene Middleware-Infrastruktur betreiben zu müssen.',
     ipaasP2:
-      'Ohne eine zentrale Integrationsplattform entstehen Point-to-Point-Verbindungen zwischen Systemen — jedes System spricht direkt mit jedem anderen. Bei 10 Systemen ergeben sich bereits bis zu 45 individuelle Verbindungen. Eine iPaaS löst dieses Problem durch eine Hub-and-Spoke-Architektur: Alle Systeme verbinden sich mit der zentralen Plattform, die Routing, Transformation und Monitoring übernimmt.',
+      'Ohne eine zentrale Integrationsplattform braucht es Punkt-zu-Punkt-Verbindungen zwischen den einzelnen Systemen, was bei 10 Systemen bereits 45 Verbindungen ergibt. Eine iPaaS löst dieses Problem durch eine Hub-and-Spoke-Architektur. Das bedeutet, alle Systeme verbinden sich mit der zentralen Plattform, die Routing, Transformation und Monitoring übernimmt.',
     ipaasP3:
-      'Microsoft Azure Integration Services wurde im Gartner Magic Quadrant 2024 für Enterprise iPaaS als Leader eingestuft — neben MuleSoft, Informatica und Boomi. Die Stärke liegt in der nahtlosen Integration mit dem Azure-Ökosystem, dem Serverless-Modell (keine Server zu verwalten) und den über 400+ vorgefertigten Connectors.',
+      'Microsoft Azure Integration Services wurden im Gartner Magic Quadrant 2024 für Enterprise-iPaaS als Leader eingestuft. Ihre Stärken liegen vor allem in der nahtlosen Integration mit dem Azure-Ökosystem, dem Serverless-Modell und den über 400 vorgefertigten Connectors.',
     platformTitle:
       'Azure Integration Services als Enterprise-Integrationsplattform',
     platformDesc:
-      'Azure Integration Services (AIS) ist Microsofts iPaaS-Angebot und besteht aus sechs Kernkomponenten, die zusammen eine vollständige Integrationsplattform bilden. Jede Komponente hat eine spezifische Rolle — zusammen ersetzen sie alle Funktionen von BizTalk Server und gehen darüber hinaus:',
+      'Azure Integration Services (AIS) ist Microsofts iPaaS-Angebot und besteht aus sechs Kernkomponenten, die zusammen eine vollständige Integrationsplattform bilden. Sie ersetzen alle Funktionen von BizTalk Servern und gehen sogar darüber hinaus:',
     serverlessTitle: 'Was bedeutet "Serverless" in diesem Kontext?',
     serverlessDesc:
-      'Serverless bedeutet nicht, dass es keine Server gibt — sondern dass Sie sich nicht um die Server kümmern müssen. Microsoft verwaltet die gesamte Infrastruktur: Betriebssystem, Patching, Skalierung und Hochverfügbarkeit. Sie konzentrieren sich nur auf die Geschäftslogik.',
+      'Serverless bedeutet, dass Sie sich auf ihr Geschäft konzentrieren können anstatt sich um Server kümmern zu müssen. Microsoft verwaltet die gesamte Infrastruktur für Sie: Vom Betriebssystem, über Patching und Skalierung bis hin zur Hochverfügbarkeit.',
     serverlessItems: [
       {
         title: 'Auto-Scaling',
@@ -97,16 +97,41 @@ export const de: BizTalkI18n = {
       },
       {
         title: 'Pay-per-Use',
-        desc: 'Abrechnung pro Ausführung (Logic Apps: pro Action, Functions: pro Invocation). Keine monatlichen Fixkosten für ungenutzte Kapazität.',
+        desc: 'Abrechnung pro Ausführung. Keine monatlichen Fixkosten für ungenutzte Kapazität.',
       },
       {
         title: 'Managed Infrastructure',
-        desc: 'Kein Server-Management, kein Patching, kein Capacity Planning. Microsoft garantiert 99.95% SLA für Logic Apps Standard.',
+        desc: 'Kein Server-Management, kein Patching, kein Capacity Planning.',
       },
     ],
     refsTitle: 'Quellen — Microsoft Learn',
   },
   f2: {
+
+       eolTitle: 'Warum Migrieren?',
+    eolDesc:
+      'Bereits seit dem 14. Oktober 2025 ist der Support von BizTalk-Servern durch Microsoft eingestellt worden. An ihre Stelle treten stattdessen Azure Integration Services als Nachfolger',
+    eolItems: [
+      {
+        title: 'Mainstream Support Ende',
+        date: '14. Oktober 2025',
+        desc: 'Keine neuen Features, keine Hotfixes',
+      },
+      {
+        title: 'Extended Support Ende',
+        date: '14. Oktober 2030',
+        desc: 'Nur Sicherheitsupdates (kostenpflichtig)',
+      },
+      {
+        title: 'Nachfolger',
+        date: 'Azure Integration Services',
+        desc: 'Cloud-native iPaaS-Plattform',
+      },
+    ],
+    compareTitle: 'On-Premises (BizTalk) vs. Cloud (Azure)',
+    sixRsTitle: 'Die 6 Rs der Cloud-Migration',
+    sixRsDesc:
+      'Gartner und AWS haben die 6 Rs der Cloud-Migration als Rahmenwerk definiert. Für BizTalk-Integrationen sind vor allem Rehost, Re-architect und Retire relevant.',
     stratTitle: 'Migrationsstrategie: Lift & Shift vs. Native Neuentwicklung',
     hybridTitle: 'Empfehlung: Hybride Strategie',
     hybridDesc:
@@ -130,30 +155,6 @@ export const de: BizTalkI18n = {
     ],
     mappingTitle: 'BizTalk Server → Azure Integration Services Mapping',
     phasesTitle: 'Migrationsphasen',
-    sixRsTitle: 'Die 6 Rs der Cloud-Migration',
-    sixRsDesc:
-      'Gartner und AWS haben die 6 Rs der Cloud-Migration als Rahmenwerk definiert. Für BizTalk-Integrationen sind vor allem Rehost, Re-architect und Retire relevant.',
-    compareTitle: 'On-Premises (BizTalk) vs. Cloud (Azure) — Vergleich',
-    eolTitle: 'Warum Migration? BizTalk Server End of Life',
-    eolDesc:
-      'Microsoft hat den End of Mainstream Support für BizTalk Server 2020 auf den 14. Oktober 2025 festgelegt. BizTalk Server 2020 ist die letzte Version. Die strategische Nachfolgelösung ist Azure Integration Services.',
-    eolItems: [
-      {
-        title: 'Mainstream Support Ende',
-        date: '14. Oktober 2025',
-        desc: 'Keine neuen Features, keine Hotfixes',
-      },
-      {
-        title: 'Extended Support Ende',
-        date: '14. Oktober 2030',
-        desc: 'Nur Sicherheitsupdates (kostenpflichtig)',
-      },
-      {
-        title: 'Nachfolger',
-        date: 'Azure Integration Services',
-        desc: 'Cloud-native iPaaS-Plattform',
-      },
-    ],
     reqTitle: 'Was benötigen wir für die Migration?',
   },
   f3: {
@@ -174,7 +175,7 @@ export const de: BizTalkI18n = {
       'Alle drei Umgebungen werden aus identischen Bicep Templates provisioniert (Infrastructure as Code). Die Unterschiede werden ausschliesslich über Parameter-Dateien pro Umgebung gesteuert (SKU-Sizing, Netzwerk, Feature Flags).',
     wsTitle: 'WS1 / WS2 / WS3 — Workflow Standard Hosting Plans',
     wsDesc:
-      'Logic Apps Standard läuft auf einem Workflow Standard (WS) Hosting Plan. Dieser bestimmt CPU, RAM und Storage:',
+      'Logic Apps Standard läuft auf einem Workflow Standard (WS) Hosting Plan. Dieser bestimmt CPU, RAM und Storage:', //unschlüssig ob das zu technishc ist oder nicht
   },
   serviceLabels: {
     features: 'Features',
@@ -218,30 +219,31 @@ export const en: BizTalkI18n = {
     ipaasTitle:
       'What is iPaaS and why do enterprises need an integration platform?',
     ipaasP1:
-      'iPaaS (Integration Platform as a Service) is a cloud-based platform that enables enterprises to connect applications, data and processes across different systems — without having to operate their own middleware infrastructure. The term was coined by Gartner and describes a class of cloud services that replace traditional on-premises middleware like BizTalk Server, MuleSoft or IBM Integration Bus.',
+      'iPaaS (Integration Platform as a Service) is a cloud-based platform that enables enterprises to connect applications, data and processes across different systems without having to operate their own middleware infrastructure.',
     ipaasP2:
-      'Without a central integration platform, point-to-point connections emerge between systems — each system talks directly to every other. With 10 systems, this already results in up to 45 individual connections. An iPaaS solves this problem through a hub-and-spoke architecture: All systems connect to the central platform, which handles routing, transformation and monitoring.',
-    ipaasP3:
-      'Microsoft Azure Integration Services was rated as a Leader in the Gartner Magic Quadrant 2024 for Enterprise iPaaS — alongside MuleSoft, Informatica and Boomi. Its strength lies in seamless integration with the Azure ecosystem, the serverless model (no servers to manage) and over 400+ pre-built connectors.',
+      'Without a central integration platform, point-to-point connections emerge between systems. With only 10 systems, this already results in up to 45 individual connections. An iPaaS solves this problem through a hub-and-spoke architectur. It means that all systems connect to the central platform, which handles routing, transformation and monitoring.',
+      ipaasP3:
+      'Microsoft Azure Integration Services was rated as a Leader in the Gartner Magic Quadrant 2024 for Enterprise iPaaS. Its primary strengths lie in the 400 pre-built connectors, seamless integration with the Azure ecosystem and serverless model',
     platformTitle:
       'Azure Integration Services as an Enterprise Integration Platform',
     platformDesc:
-      "Azure Integration Services (AIS) is Microsoft's iPaaS offering and consists of six core components that together form a complete integration platform. Each component has a specific role — together they replace all functions of BizTalk Server and go beyond:",
-    serverlessTitle: 'What does "Serverless" mean in this context?',
+      "Azure Integration Services (AIS) is Microsoft's iPaaS offering and consists of six core components that together form a complete integration platform. Together they replace all functions of BizTalk servers and go even beyond:",
+    serverlessTitle: 'What does "serverless" mean?',
     serverlessDesc:
-      "Serverless does not mean there are no servers — it means you don't have to worry about them. Microsoft manages the entire infrastructure: operating system, patching, scaling and high availability. You focus only on the business logic.",
-    serverlessItems: [
+      "Serverless means you can focus completely on your business instead of always worrying about servers. Microsoft manages the entire infrastructure from operating system,over patching and scaling, to high availability.",
+
+      serverlessItems: [
       {
         title: 'Auto-Scaling',
-        desc: 'Resources are automatically scaled up and down based on load. With 0 requests = 0 costs (Scale-to-Zero).',
+        desc: 'Resources are automatically scaled up and down based on load. 0 requests = 0 costs.', //unsicher ob überzeugend, weil viel nutzen =? viel Kosten?
       },
       {
         title: 'Pay-per-Use',
-        desc: 'Billing per execution (Logic Apps: per action, Functions: per invocation). No monthly fixed costs for unused capacity.',
+        desc: 'Billing per execution. No monthly fixed costs for unused capacity.',
       },
       {
         title: 'Managed Infrastructure',
-        desc: 'No server management, no patching, no capacity planning. Microsoft guarantees 99.95% SLA for Logic Apps Standard.',
+        desc: 'No server management, no patching, no capacity planning.',
       },
     ],
     refsTitle: 'References — Microsoft Learn',
@@ -274,10 +276,11 @@ export const en: BizTalkI18n = {
     sixRsDesc:
       'Gartner and AWS defined the 6 Rs of Cloud Migration as a framework. For BizTalk integrations, Rehost, Re-architect and Retire are most relevant.',
     compareTitle: 'On-Premises (BizTalk) vs. Cloud (Azure) — Comparison',
-    eolTitle: 'Why Migrate? BizTalk Server End of Life',
+    eolTitle: 'Why Migrate?',
     eolDesc:
-      'Microsoft has set the End of Mainstream Support for BizTalk Server 2020 to October 14, 2025. BizTalk Server 2020 is the last version. The strategic successor is Azure Integration Services.',
-    eolItems: [
+      'Since the 14. October 2025 Microsoft does not support BizTalk servers anymore and instead offers Azure Integration Services.',
+
+      eolItems: [
       {
         title: 'Mainstream Support End',
         date: 'October 14, 2025',
@@ -918,7 +921,6 @@ export const strategiesEn = [
       'Legacy patterns remain (e.g. Polling instead of Event-Driven)',
       'No process optimization',
       'Technical debt is carried over',
-      'Not all BizTalk features may be 1:1 mappable',
     ],
     bestFor:
       'Simple pass-through integrations, file transfers, time-critical migrations',
@@ -929,14 +931,13 @@ export const strategiesEn = [
     desc: 'Existing processes are analyzed, optimized and re-developed cloud-natively in Azure. Event-Driven, resilient, scalable.',
     pros: [
       'Cloud-native architecture — Event-Driven instead of Polling',
-      'Process optimization — eliminate unnecessary steps',
+      'Process optimization',
       'Better scalability and resilience',
       'Future-proof — no technical baggage',
       'Chance for standardization across all integrations',
     ],
     cons: [
       'Higher initial effort (Analysis + Design + Development)',
-      'Business stakeholders must validate requirements',
       'Longer time-to-production per application',
     ],
     bestFor:
@@ -944,7 +945,7 @@ export const strategiesEn = [
   },
 ];
 
-export const requirementsEn = [
+export const requirementsEn = [ //sinnvoll das ganz so detailliert hier aufzuführen?
   {
     title: 'Access to BizTalk environment with Visual Studio',
     desc: 'Full access to the existing BizTalk Server environment incl. Visual Studio with BizTalk Developer Tools.',
@@ -991,7 +992,6 @@ export const requirementsEn = [
     desc: 'Joint decision whether each BizTalk application is migrated via Lift & Shift or Native re-development.',
     details: [
       'Assess per application: Complexity, business criticality, change frequency',
-      'Lift & Shift: 1:1 rebuild in Logic Apps — fast, minimal risk',
       'Native Re-development: Process analysis → optimized Azure design',
       'Define decision criteria together',
       'Consider dependencies between applications',
@@ -1260,7 +1260,7 @@ export const onPremVsCloudEn = [
   {
     k: 'Costs',
     biz: 'High fixed costs: Hardware, licenses, maintenance, personnel',
-    az: 'Variable costs: Pay-per-Execution, no upfront investment',
+    az: 'Variable costs: Pay-per-Execution, low upfront investment',
   },
   {
     k: 'Updates',
@@ -1331,7 +1331,7 @@ export const sixRsEn = [
 
 /* ─── F3 EN data ─── */
 
-export const environmentsEn = [
+export const environmentsEn = [ //ist das in der ausführlichkeit notwendig?
   {
     id: 'dev',
     name: 'Development Environment',

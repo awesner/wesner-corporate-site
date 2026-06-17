@@ -651,14 +651,13 @@ const strategies = [
     pros: [
       'Schnelle Migration — minimaler Analyseaufwand',
       'Geringes Risiko — bewährte Logik wird übernommen',
-      'Business-Unterbrechung minimal',
+      'Minimalste Arbeitsunterbrechung',
       'Gut geeignet für einfache File-Transfers (FILE → SFTP)',
     ],
     cons: [
       'Legacy-Patterns bleiben erhalten (z.B. Polling statt Event-Driven)',
       'Keine Optimierung der Prozesse',
-      'Technische Schulden werden mitgenommen',
-      'Möglicherweise nicht alle BizTalk-Features 1:1 abbildbar',
+      'Technische Altschulden werden ebenfalls übernommen ',
     ],
     bestFor:
       'Einfache Pass-Through Integrationen, File-Transfers, zeitkritische Migrationen',
@@ -669,14 +668,13 @@ const strategies = [
     desc: 'Bestehende Prozesse werden analysiert, optimiert und cloud-nativ in Azure neu entwickelt. Event-Driven, resilient, skalierbar.',
     pros: [
       'Cloud-native Architektur — Event-Driven statt Polling',
-      'Prozessoptimierung — unnötige Schritte eliminieren',
+      'Prozessoptimierung',
       'Bessere Skalierbarkeit und Resilienz',
       'Zukunftssicher — kein technischer Ballast',
       'Chance für Standardisierung über alle Integrationen',
     ],
     cons: [
-      'Höherer initialer Aufwand (Analyse + Design + Entwicklung)',
-      'Fachbereich muss Anforderungen validieren',
+      'Höherer Anfangsaufwand (Analyse + Design + Entwicklung)',
       'Längere Time-to-Production pro Applikation',
     ],
     bestFor:
@@ -808,7 +806,7 @@ const phases = [
       'System-Abhängigkeits-Matrix',
       'Migrationsstrategie-Matrix pro Applikation',
       'Priorisierte Migrationsreihenfolge',
-      'Risiko-Assessment',
+      'Risikobewertung',
     ],
   },
   {
@@ -869,7 +867,7 @@ const phases = [
       },
       {
         title: 'Regressionsvergleich',
-        desc: 'Vergleich der Azure-Outputs mit BizTalk-Outputs — identische Eingaben müssen identische Ergebnisse liefern.',
+        desc: 'Vergleich der Azure-Outputs mit BizTalk-Outputs. Sicherstellen, dass identische Eingaben identische Ergebnisse liefern.',
       },
       {
         title: 'Performance Tests',
@@ -881,7 +879,7 @@ const phases = [
       },
       {
         title: 'User Acceptance Testing (UAT)',
-        desc: 'Fachbereich validiert die migrierten Integrationen gegen Business-Anforderungen.',
+        desc: 'Fachbereich prüft ob die migrierten Integrationen den Business-Anforderungen entsprechen.',
       },
     ],
     deliverables: [
@@ -898,7 +896,7 @@ const phases = [
     title: 'Produktion',
     color: '#10B981',
     subtitle: 'Go-Live, Cutover und Übergang in den Regelbetrieb',
-    goal: 'Kontrollierter Übergang von BizTalk zu Azure Integration Services mit minimalem Risiko und ohne Business-Unterbrechung.',
+    goal: 'Kontrollierter Übergang von BizTalk zu Azure Integration Services mit minimalem Risiko und ohne Unterbrechung des Arbeitsalltags.',
     tasks: [
       {
         title: 'Cutover-Plan erstellen',
@@ -906,11 +904,11 @@ const phases = [
       },
       {
         title: 'Parallel-Betrieb einrichten',
-        desc: 'BizTalk und Azure laufen gleichzeitig — schrittweise Umschaltung des Traffics auf Azure.',
+        desc: 'BizTalk und Azure laufen gleichzeitig. Es folgt schrittweise die Umschaltung des Traffics auf Azure.',
       },
       {
         title: 'DNS / Routing umstellen',
-        desc: 'Endpunkte, SFTP-Zugänge, API-URLs auf die neuen Azure-Services umleiten.',
+        desc: 'Endpunkte, SFTP-Zugänge und API-URLs auf die neuen Azure-Services umleiten.',
       },
       {
         title: 'Monitoring & Alerting aktivieren',
@@ -918,11 +916,11 @@ const phases = [
       },
       {
         title: 'Hypercare-Phase',
-        desc: 'Erhöhte Aufmerksamkeit nach Go-Live: Sofortige Reaktion auf Incidents, tägliche Status-Calls.',
+        desc: 'Erhöhte Aufmerksamkeit nach Go-Live: Tägliche Status-Calls und sofortige Reaktion auf Zwischenfälle',
       },
       {
-        title: 'BizTalk dekommissionieren',
-        desc: 'Nach erfolgreicher Stabilisierung: BizTalk-Applikationen abschalten, Server herunterfahren.',
+        title: 'BizTalk abschalten',
+        desc: 'Nach erfolgreicher Stabilisierung BizTalk-Applikationen abschalten und Server herunterfahren.',
       },
     ],
     deliverables: [
@@ -930,7 +928,7 @@ const phases = [
       'Rollback-Runbooks',
       'Monitoring Dashboards (Azure Portal)',
       'Alert Rules mit Eskalationspfaden',
-      'Hypercare-Bericht (täglich)',
+      'Hypercare-Bericht (täglich)', //Prüfen ob du das wirklich leisten möchtest
       'BizTalk Dekommissionierungs-Protokoll',
     ],
   },
@@ -1203,10 +1201,10 @@ const environments = [
     characteristics: [
       'Vollständige VNET-Isolation — alle Services über Private Endpoints',
       'Deployment nur über CI/CD mit Approval Gate',
-      'Managed Identities — keine Passwörter',
+      'Managed Identities (keine Passwörter)',
       'Geo-Redundanz für Service Bus und Storage',
       'Alert Rules mit Action Groups (E-Mail, Teams, PagerDuty)',
-      'Resource Locks — kein versehentliches Löschen',
+      'Resource Locks (kein versehentliches Löschen)',
       'Compliance: Azure Policy Guardrails erzwingen Standards',
       'PIM für Admin-Zugriff (Just-in-Time, zeitlich begrenzt)',
     ],

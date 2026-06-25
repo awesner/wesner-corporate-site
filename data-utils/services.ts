@@ -5,15 +5,27 @@ import {
 } from 'models/interfaces/services/service.interface';
 import { TLocales } from '../types/locales';
 
+// Services temporarily hidden from the home page (currently unavailable).
+// Their detail pages and cross-links remain intact; only the home page list is filtered.
+const HIDDEN_HOME_SERVICE_PATHS = [
+  'ekaer',
+  'mobile-app-entwicklung',
+  'ui-ux-design',
+  'ki-forschung-entwicklung',
+  'sprachassistenten',
+];
+
 export const getServicesShortInfo = (locale: string): IService[] => {
   const services = require(`/data/services/services.${locale}.json`);
 
-  return services.map((item: IService) => ({
-    name: item.name,
-    path: item.path,
-    iconUrl: item.iconUrl,
-    shortDescription: item.shortDescription,
-  }));
+  return services
+    .filter((item: IService) => !HIDDEN_HOME_SERVICE_PATHS.includes(item.path))
+    .map((item: IService) => ({
+      name: item.name,
+      path: item.path,
+      iconUrl: item.iconUrl,
+      shortDescription: item.shortDescription,
+    }));
 };
 
 export const getSingleService = (locale: string, name: string) => {

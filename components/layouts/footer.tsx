@@ -71,8 +71,8 @@ export default function Footer(): JSX.Element {
                 <Stack direction="row" gap={1}>
                   <MapIcon sx={{ fontSize: 16, mt: 0.5 }} />
                   <Typography variant="body2" fontSize={{ xs: 14, lg: 16 }}>
-                    Kornstr. 235
-                    <br /> D-28201 Bremen
+                    Herrlichkeit 2
+                    <br /> D-28109 Bremen
                   </Typography>
                 </Stack>
               </Stack>

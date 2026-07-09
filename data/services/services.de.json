@@ -25,11 +25,14 @@
         "title": "Hub-and-Spoke-Integration",
         "paragraphs": [
           {
-            "text": "Text Text Text.",
-            "list": [
-              "Text Text Text.",
-              "Text Text Text."
-            ]
+            "text": "Bei einer Hub-and-Spoke Integration wird eine zentrale Integrationsplattform eingerichtet, die Routing, Transformation und Monitoring übernimmt. Dadurch wird die Anzahl an notwendigen Verbindungend drastisch reduziert und Skalierbarkeit geschaffen. Die Einführung neuer Systeme ist bei einer solchen Architektur deutlich einfacher, da lediglich eine Verbindung zur zentralen Plattform eingerichtet werden muss."
+            //, "list": [
+            //   "Eine zentrale Integrationsplattform verringert die Anzahl an benötigten Verbindungen drastisch.",
+            //   "Text Text Text.",
+            //   "Text Text Text.",
+            //   "Text Text Text.",
+            //   "Text Text Text."
+            // ]
           }
         ]
       },
@@ -37,11 +40,11 @@
         "title": "Hybride Integration",
         "paragraphs": [
           {
-            "text": "beide Welten miteinander zu verbinden, wäre es spannender und möglich?:",
-            "list": [
-              "Text Text Text.",
-              "Text Text Text."
-            ]
+            "text": "Manchmal kann die Lösung auch ein hybrider Ansatz sein. Die Kombination aus der Einfachheit von Direktverbindungen und der Skalierbarkeit einer zentralen Plattform kann in manchen Fällen die Lösung sein."
+            // ,"list": [
+            //   "Text Text Text.",
+            //   "Text Text Text."
+            // ]
           },
           {
             "text": "Text Text Text."
@@ -335,7 +338,7 @@
     "subtitle": "Das Fundament für Ihren Erfolg",
     "mainTexts": [
       {
-        "text": "Software muss sich verändern können. Eine gute Architektur ermöglicht es Ihnen, neue Features schnell zu integrieren, ohne das gesamte System zu gefährden. Wir setzen auf bewährte Patterns und moderne Ansätze."
+        "text": "Software muss sich verändern können. Eine gute Architektur ermöglicht es Ihnen, neue Features schnell zu integrieren, ohne das gesamte System zu gefährden. Wir setzen auf bewährte Methoden und moderne Ansätze."
       },
       {
         "text": "Egal ob Sie eine neue Plattform auf der Grünen Wiese planen oder einen bestehenden Monolithen in Microservices aufbrechen wollen – wir begleiten Sie von der Analyse bis zur Umsetzung."

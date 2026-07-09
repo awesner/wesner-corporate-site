@@ -6,19 +6,20 @@
   "aproaches": {
     "title": "Unser Vorgehen",
     "research": {
-      "title": "Forschung",
+      "title": "Analyse",
       "number": "Eins",
-      "description": "Wir werden die Herausforderungen/Anforderungen Ihres Unternehmens untersuchen, um zu verstehen, wie wir Ihnen einen Mehrwert bieten können."
+      "description": "Wir untersuchen die Herausforderungen und Anforderungen Ihres Unternehmens untersuchen, um zu verstehen, wie wir Ihnen einen Mehrwert bieten können."
     },
     "solution": {
       "title": "Lösung",
       "number": "Zwei",
-      "description": "Nach der Recherche finden wir die skalierbare und für Sie am besten geeignete Lösung."
+      "description": "Nach der Analyse finden wir die am besten für Sie geeignete und skalierbare Lösung."
+
     },
     "implementation": {
       "title": "Implementierung",
       "number": "Drei",
-      "description": "Sobald wir uns auf die Lösung geeinigt haben, werden wir sie implementieren, indem wir Ihnen unseren besten Service bieten."
+      "description": "Sobald wir uns mit Ihnen auf eine Lösung geeinigt haben, werden wir diese unter Einsatz unseres besten Services implementieren."
     }
   },
   "whywe": {

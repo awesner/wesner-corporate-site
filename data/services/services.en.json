@@ -25,11 +25,14 @@
         "title": "Hub and Spoke Integration",
         "paragraphs": [
           {
-            "text": "Text Text Text.",
-            "list": [
-              "Text Text Text.",
-              "Text Text Text."
-            ]
+           "text": "When using Hub-and-Spoke Integration a central platform will be established to handle routing, transformation and monitoring and therefore drastically reduce the need of connections. With such an architecture the introduction of new systems is simpler because only one connection to the zentral plattform has to be created"
+            //, "list": [
+            //   "Eine zentrale Integrationsplattform verringert die Anzahl an benötigten Verbindungen drastisch.",
+            //   "Text Text Text.",
+            //   "Text Text Text.",
+            //   "Text Text Text.",
+            //   "Text Text Text."
+            // ]
           }
         ]
       },
@@ -37,11 +40,13 @@
         "title": "Hybrid Integration",
         "paragraphs": [
           {
-            "text": "combine both worlds, would it be more exciting and possible?:",
-            "list": [
-              "text Text Text.",
-              "Text Text Text."
-            ]
+            "text": "If the combination of simpler, direct connections and the scalability of a central platform is needed then you need a hybrid method. The real world is not a labratory, therefore sticking to standard solutions is often times not an option and creative, individual ones have to take their place."
+
+            // "text": "combine both worlds, would it be more exciting and possible?:",
+            // "list": [
+            //   "text Text Text.",
+            //   "Text Text Text."
+            // ]
           },
           {
             "text": "Text Text Text."

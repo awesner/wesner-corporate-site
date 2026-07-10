@@ -26,13 +26,6 @@
         "paragraphs": [
           {
             "text": "Bei einer Hub-and-Spoke Integration wird eine zentrale Integrationsplattform eingerichtet, die Routing, Transformation und Monitoring übernimmt. Dadurch wird die Anzahl an notwendigen Verbindungend drastisch reduziert und Skalierbarkeit geschaffen. Die Einführung neuer Systeme ist bei einer solchen Architektur deutlich einfacher, da lediglich eine Verbindung zur zentralen Plattform eingerichtet werden muss."
-            //, "list": [
-            //   "Eine zentrale Integrationsplattform verringert die Anzahl an benötigten Verbindungen drastisch.",
-            //   "Text Text Text.",
-            //   "Text Text Text.",
-            //   "Text Text Text.",
-            //   "Text Text Text."
-            // ]
           }
         ]
       },
@@ -41,10 +34,6 @@
         "paragraphs": [
           {
             "text": "Manchmal kann die Lösung auch ein hybrider Ansatz sein. Die Kombination aus der Einfachheit von Direktverbindungen und der Skalierbarkeit einer zentralen Plattform kann in manchen Fällen die Lösung sein."
-            // ,"list": [
-            //   "Text Text Text.",
-            //   "Text Text Text."
-            // ]
           },
           {
             "text": "Text Text Text."

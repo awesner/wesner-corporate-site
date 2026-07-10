@@ -6,7 +6,7 @@
       "title": "Unternehmensintegration und Systemintegration | Wesner-Softwareentwicklung",
       "description": "Verbinden Sie Ihre Systeme effizient mit unseren Enterprise Integration Lösungen. Von Punkt-zu-Punkt bis zur hybriden Integration."
     },
-    "shortDescription": "Punkt-zu-Punkt-Verbindungen zwischen den zu integrierenden Systemen.",
+    "shortDescription": "Optimierte Verbindungen zwischen den zu integrierenden Systemen.",
     "iconUrl": "/services/enterprise.png",
     "whiteIconUrl": "/services/enterprise-white.png",
     "bannerUrl": "/services/enterprise-banner.png",
@@ -33,7 +33,7 @@
         "title": "Hybride Integration",
         "paragraphs": [
           {
-            "text": "Manchmal kann die Lösung auch ein hybrider Ansatz sein. Die Kombination aus der Einfachheit von Direktverbindungen und der Skalierbarkeit einer zentralen Plattform kann in manchen Fällen die Lösung sein."
+            "text": "Dabei schließen sich Punkt-zu-Punkt und Hub-and-Spoke Integrationen nicht gegenseitig aus. Wird ein leicht skalierbares Netzwerk mit spezifischen, priorisierten Direktverbindungen benötigt, so kann ein hybrider Ansatz der richtige sein."
           }
         ]
       }

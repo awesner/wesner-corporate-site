@@ -6,7 +6,7 @@
       "title": "Enterprise Integration Services | Wesner-Softwareentwicklung",
       "description": "Connect your systems efficiently with our Enterprise Integration solutions. From point-to-point to hybrid integration strategies."
     },
-    "shortDescription": "Point-to-point connections between the systems to be integrated.",
+    "shortDescription": "Optemized connections between the systems to be integrated.",
     "iconUrl": "/services/enterprise.png",
     "whiteIconUrl": "/services/enterprise-white.png",
     "bannerUrl": "/services/enterprise-banner.png",
@@ -34,9 +34,6 @@
         "paragraphs": [
           {
             "text": "If the combination of simpler, direct connections and the scalability of a central platform is needed then you need a hybrid method. The real world is not a labratory, therefore sticking to standard solutions is often times not an option and creative, individual ones have to take their place."
-          },
-          {
-            "text": "Text Text Text."
           }
         ]
       }

@@ -71,8 +71,8 @@ export default function Footer(): JSX.Element {
                 <Stack direction="row" gap={1}>
                   <MapIcon sx={{ fontSize: 16, mt: 0.5 }} />
                   <Typography variant="body2" fontSize={{ xs: 14, lg: 16 }}>
-                    Herrlichkeit 2
-                    <br /> D-28109 Bremen
+                    Herrlichkeit 2/4
+                    <br /> D-28199 Bremen
                   </Typography>
                 </Stack>
               </Stack>
